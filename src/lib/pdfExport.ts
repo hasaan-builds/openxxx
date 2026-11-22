@@ -88,16 +88,88 @@ export function exportLeadMagnetToPdf(
   doc.setTextColor(148, 163, 184);
   doc.text(`${magnet.authorHandle}  ·  Prepared with GhostPilot`, margin, pageHeight - 60);
 
-  // --- CONTENT PAGES ---
+  // --- PAGE 2: VISUAL SYSTEM ROADMAP + COMPARISON TABLE ---
   doc.addPage();
-  let cursorY = 64;
+  let cursorY = 58;
 
   const ensureSpace = (neededHeight: number) => {
     if (cursorY + neededHeight > pageHeight - 68) {
       doc.addPage();
-      cursorY = 64;
+      cursorY = 58;
     }
   };
+
+  // Visual 4-Step Execution Architecture Diagram
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9.5);
+  doc.setTextColor(accentR, accentG, accentB);
+  doc.text('SYSTEM ARCHITECTURE  ·  AT A GLANCE', margin, cursorY);
+  cursorY += 16;
+
+  const roadmapSteps = magnet.sections.slice(0, 4);
+  if (roadmapSteps.length > 0) {
+    const gap = 10;
+    const stepW = (contentWidth - gap * (roadmapSteps.length - 1)) / roadmapSteps.length;
+    const stepH = 74;
+    roadmapSteps.forEach((sec, i) => {
+      const x = margin + i * (stepW + gap);
+      doc.setFillColor(248, 250, 252);
+      doc.setDrawColor(203, 213, 225);
+      doc.roundedRect(x, cursorY, stepW, stepH, 6, 6, 'FD');
+
+      doc.setFillColor(accentR, accentG, accentB);
+      doc.rect(x, cursorY, stepW, 4, 'F');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9);
+      doc.setTextColor(accentR, accentG, accentB);
+      doc.text(`STEP 0${i + 1}`, x + 10, cursorY + 20);
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9.5);
+      doc.setTextColor(15, 23, 42);
+      const shortHeading = doc.splitTextToSize(sec.heading, stepW - 20).slice(0, 3);
+      doc.text(shortHeading, x + 10, cursorY + 35, { lineHeightFactor: 1.25 });
+    });
+    cursorY += stepH + 20;
+  }
+
+  // Common Mistake vs Top 1% Play Comparison Box
+  const halfW = (contentWidth - 12) / 2;
+  doc.setFillColor(254, 242, 242);
+  doc.setDrawColor(252, 165, 165);
+  doc.roundedRect(margin, cursorY, halfW, 74, 6, 6, 'FD');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(185, 28, 28);
+  doc.text('WHAT 95% DO WRONG', margin + 12, cursorY + 18);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9.5);
+  doc.setTextColor(127, 29, 29);
+  const wrongLines = doc.splitTextToSize(
+    `Guessing without a repeatable ${magnet.niche} framework, relying on generic advice, and leaving execution to willpower.`,
+    halfW - 24
+  );
+  doc.text(wrongLines, margin + 12, cursorY + 34, { lineHeightFactor: 1.35 });
+
+  const rightX = margin + halfW + 12;
+  doc.setFillColor(240, 253, 244);
+  doc.setDrawColor(134, 239, 172);
+  doc.roundedRect(rightX, cursorY, halfW, 74, 6, 6, 'FD');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(21, 128, 61);
+  doc.text('THE TOP 1% PLAYBOOK', rightX + 12, cursorY + 18);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9.5);
+  doc.setTextColor(20, 83, 45);
+  const rightLines = doc.splitTextToSize(
+    `Following the exact checklists, scripts, and diagnostic steps inside this ${magnet.format} in order — zero guesswork.`,
+    halfW - 24
+  );
+  doc.text(rightLines, rightX + 12, cursorY + 34, { lineHeightFactor: 1.35 });
+
+  cursorY += 94;
 
   magnet.sections.forEach((section, index) => {
     const bodyLines = section.body

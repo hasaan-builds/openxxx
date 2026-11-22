@@ -159,11 +159,11 @@ export function SimpleIdeasView({
             Find Fresh Ideas ($0)
           </h2>
           <p className="text-sm text-[#6E6E73] dark:text-[#86868B]">
-            Pull real buyer questions from Reddit, Google News, and GitHub for{' '}
+            Pull real signals from 7 live $0 sources (Reddit, Bluesky, News, GitHub, HN, Dev.to, Product Hunt) for{' '}
             <span className="font-medium text-[#1D1D1F] dark:text-[#F5F5F7]">
               {activeBrain.niche}
             </span>{' '}
-            — or paste any Whop or competitor link below.
+            — or paste any YouTube video, Whop page, or link below.
           </p>
         </div>
 
@@ -178,22 +178,22 @@ export function SimpleIdeasView({
           ) : (
             <RefreshCw className="h-4 w-4" aria-hidden="true" />
           )}
-          <span>{scanning ? 'Scanning Live Feeds...' : 'Find Fresh Ideas ($0)'}</span>
+          <span>{scanning ? 'Scanning 7 Live Sources...' : 'Find Fresh Ideas ($0)'}</span>
         </button>
       </div>
 
-      {/* Paste Any Link ($0 Jina Reader) */}
+      {/* Paste Any Link ($0 Jina Reader + YouTube Transcript) */}
       <form onSubmit={handleExtractUrl} className="apple-card p-5 sm:p-6 space-y-3">
         <div className="flex items-center gap-2 text-sm font-semibold text-[#1D1D1F] dark:text-[#F5F5F7]">
           <Globe className="h-4 w-4 text-[#0071E3] dark:text-[#0A84FF]" aria-hidden="true" />
-          <span>Turn Any Whop Page, Article, or GitHub Link Into an Idea ($0)</span>
+          <span>Turn Any YouTube Video, Whop Page, Article, or GitHub Link Into an Idea ($0)</span>
         </div>
         <div className="flex flex-col sm:flex-row gap-2.5">
           <input
             type="url"
             value={urlInput}
             onChange={(e) => setUrlInput(e.target.value)}
-            placeholder="Paste https://whop.com/... or any article/repo link"
+            placeholder="Paste https://youtube.com/watch?v=..., https://whop.com/..., or any link"
             className="apple-input flex-1 text-sm"
           />
           <button

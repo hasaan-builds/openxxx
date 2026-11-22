@@ -121,7 +121,16 @@ export interface BrandBrain {
 export interface RadarItem {
   id: string;
   accountId?: string;
-  source: 'Reddit Pain-Point' | 'Google News' | 'GitHub Trending' | 'Hacker News' | 'Custom RSS';
+  source:
+    | 'Reddit Pain-Point'
+    | 'Google News'
+    | 'GitHub Trending'
+    | 'Hacker News'
+    | 'Bluesky Live'
+    | 'Dev.to'
+    | 'Product Hunt'
+    | 'YouTube Transcript'
+    | 'Custom RSS';
   sourceDetail: string;
   title: string;
   summary: string;

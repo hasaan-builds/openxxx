@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import {
   Copy,
+  Download,
   ExternalLink,
   FileText,
+  Images,
   Loader2,
   PenLine,
   Plus,
   Send,
+  ShieldCheck,
   Sparkles,
   Trash2,
 } from 'lucide-react';
 import { api } from '../lib/api';
+import { exportLeadMagnetToCarouselPngs } from '../lib/carouselCanvas';
 import { scoreCopy } from '../lib/copyScorer';
+import { humanizeCopy, simulateXHeavyRanker } from '../lib/humanizer';
+import { exportLeadMagnetToPdf } from '../lib/pdfExport';
 import { countTweetChars, findNextOpenSlot } from '../lib/scheduler';
 import { buildXIntentUrl } from '../lib/telegramFormatter';
 import type { GhostPilotStore, LeadMagnet, PostItem } from '../lib/types';
@@ -544,6 +550,31 @@ export function SimpleQueuePdfsView({
                       >
                         Make Giveaway Tweet
                       </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const offer = store.brandBrain.offers.find(
+                            (o) => o.id === magnet.linkedOfferId
+                          ) || primaryOffer;
+                          exportLeadMagnetToPdf(magnet, offer);
+                          onNotify(`Downloaded magazine-grade PDF: ${magnet.title}`);
+                        }}
+                        className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
+                      >
+                        <Download className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span>Download PDF</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const count = exportLeadMagnetToCarouselPngs(magnet);
+                          onNotify(`Exported ${count} viral 1080×1350 X Carousel PNG slides!`);
+                        }}
+                        className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
+                      >
+                        <Images className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span>4 Carousel Slides</span>
+                      </button>
                       <a
                         href={`/r/${magnet.slug}`}
                         target="_blank"
@@ -582,6 +613,27 @@ export function SimpleQueuePdfsView({
             <div className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
+                onClick={() => {
+                  let totalFixes = 0;
+                  const next = draftBlocks.map((b) => {
+                    const res = humanizeCopy(b);
+                    totalFixes += res.fixesApplied.length;
+                    return res.cleanedText || b;
+                  });
+                  setDraftBlocks(next);
+                  onNotify(
+                    totalFixes > 0
+                      ? `Humanized! Removed ${totalFixes} AI writing tell(s) ($0).`
+                      : 'Already reads clean & human — zero AI slop detected!'
+                  );
+                }}
+                className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
+              >
+                <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
+                <span>Humanize ($0)</span>
+              </button>
+              <button
+                type="button"
                 onClick={() => handleAiPolish('rewrite')}
                 disabled={Boolean(aiBusy)}
                 className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
@@ -608,6 +660,26 @@ export function SimpleQueuePdfsView({
               </button>
             </div>
           </div>
+
+          {/* Live X Algorithm Heavy Ranker Readout (twitter/the-algorithm) */}
+          {draftBlocks.some((b) => b.trim().length > 0) && (() => {
+            const rank = simulateXHeavyRanker(draftBlocks);
+            return (
+              <div className="rounded-xl bg-[#F5F5F7] dark:bg-white/[0.04] px-4 py-3 text-xs space-y-1">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="font-semibold text-[#1D1D1F] dark:text-[#F5F5F7] tabular-nums">
+                    X Algorithm Fit: Grade {rank.grade} ({rank.totalScore}/100) · ~{rank.estimatedMultiplier}× Reach Multiplier
+                  </span>
+                  {rank.hasTweetOneLinkPenalty && (
+                    <span className="font-semibold text-[#DC2626] dark:text-[#FF453A]">
+                      Tweet 1 Link Penalty Detected
+                    </span>
+                  )}
+                </div>
+                <p className="text-[#515154] dark:text-[#A1A1A6]">{rank.topFix}</p>
+              </div>
+            );
+          })()}
 
           <div className="space-y-3">
             {draftBlocks.map((block, idx) => {

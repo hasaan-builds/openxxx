@@ -1,5 +1,6 @@
 import { GoogleGenAI, ThinkingLevel, Type } from '@google/genai';
 import { scoreCopy } from '../src/lib/copyScorer';
+import { humanizeCopy } from '../src/lib/humanizer';
 import type {
   AudiencePersona,
   AuthorityDossier,
@@ -152,7 +153,11 @@ Produce 5 variations using these exact 5 frameworks:
 4. BAB (Before-After-Bridge) (trigger: Social Proof & Case Study)
 5. Steal My Exact Playbook (trigger: Step-by-Step Playbook)
 
-Keep each tweet punchy, under 280 characters (or 2-3 crisp thread tweets if needed), with short readable lines and blank line breaks.`,
+Keep each tweet punchy, under 280 characters (or 2-3 crisp thread tweets if needed), with short readable lines and blank line breaks.
+X ALGORITHM HEAVY RANKER RULES (github.com/twitter/the-algorithm):
+- NEVER put an external URL inside Tweet 1 (triggers X link penalty; links go in Auto-Plug reply).
+- Optimize for 75x Author-Engaged Reply weight (ask a direct question or comment keyword), 12x Profile Click (use concrete numbers/proof), and 10x Bookmark weight (crisp bullets or numbered steps).
+- ZERO AI slop (no "delve", "tapestry", "game-changer", "not just X but Y", no hashtag spam, max 1 em-dash).`,
     {
       type: Type.ARRAY,
       items: {
@@ -175,14 +180,17 @@ Keep each tweet punchy, under 280 characters (or 2-3 crisp thread tweets if need
   return raw
     .filter((item) => Array.isArray(item.blocks) && item.blocks.length > 0)
     .slice(0, 5)
-    .map((item, idx) => ({
-      id: `gem-var-${Date.now()}-${idx}`,
-      frameworkId: `gem-fw-${idx}`,
-      frameworkName: item.frameworkName || `Variation ${idx + 1}`,
-      trigger: item.trigger || 'Curiosity Gap',
-      blocks: item.blocks,
-      score: scoreCopy(item.blocks, { brandBrain: params.brandBrain, persona: params.persona }),
-    }))
+    .map((item, idx) => {
+      const cleanBlocks = item.blocks.map((b) => humanizeCopy(b).cleanedText || b);
+      return {
+        id: `gem-var-${Date.now()}-${idx}`,
+        frameworkId: `gem-fw-${idx}`,
+        frameworkName: item.frameworkName || `Variation ${idx + 1}`,
+        trigger: item.trigger || 'Curiosity Gap',
+        blocks: cleanBlocks,
+        score: scoreCopy(cleanBlocks, { brandBrain: params.brandBrain, persona: params.persona }),
+      };
+    })
     .sort((a, b) => b.score.total - a.score.total);
 }
 
@@ -219,7 +227,8 @@ ${params.text}`,
   );
 
   const parsed = JSON.parse(rawJson || '{}') as { blocks?: string[] };
-  return parsed.blocks?.filter(Boolean) || [params.text];
+  const rawBlocks = parsed.blocks?.filter(Boolean) || [params.text];
+  return rawBlocks.map((b) => humanizeCopy(b).cleanedText || b);
 }
 
 export async function generateLeadMagnetWithGemini(params: {

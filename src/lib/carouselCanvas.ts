@@ -226,3 +226,80 @@ export function downloadDataUrl(dataUrl: string, filename: string): void {
   link.click();
   document.body.removeChild(link);
 }
+
+/**
+ * Converts any Free PDF Lead Magnet into 4 crisp 1080x1350 viral X Carousel PNG slides
+ * (Cover Hook -> Core Framework -> Action Checklist -> Comment-to-PDF CTA) and downloads them.
+ */
+export function exportLeadMagnetToCarouselPngs(
+  magnet: {
+    slug: string;
+    title: string;
+    subtitle: string;
+    format: string;
+    niche: string;
+    authorName: string;
+    authorHandle: string;
+    giveawayKeyword: string;
+    sections: Array<{ heading: string; body: string; bullets: string[] }>;
+  },
+  themeId: CarouselThemeId = 'obsidian'
+): number {
+  const s1 = magnet.sections[0];
+  const s2 = magnet.sections[1] || s1;
+  const deck: CarouselDeck = {
+    id: `deck-${magnet.slug}`,
+    title: magnet.title,
+    themeId,
+    authorName: magnet.authorName,
+    authorHandle: magnet.authorHandle,
+    createdAt: new Date().toISOString(),
+    slides: [
+      {
+        id: 'sl-1',
+        eyebrow: `FREE ${magnet.format.toUpperCase()}`,
+        headline: magnet.title,
+        body: magnet.subtitle,
+        bullets: [],
+        layout: 'cover',
+      },
+      {
+        id: 'sl-2',
+        eyebrow: 'THE CORE FRAMEWORK',
+        headline: s1?.heading || `How Top 1% Win at ${magnet.niche}`,
+        body: s1?.body || magnet.subtitle,
+        bullets: (s1?.bullets || []).slice(0, 3),
+        layout: 'framework',
+      },
+      {
+        id: 'sl-3',
+        eyebrow: 'ACTION CHECKLIST',
+        headline: s2?.heading || 'Step-by-Step Execution Checklist',
+        body: s2?.body || 'Follow these exact steps in order:',
+        bullets: (s2?.bullets || s1?.bullets || []).slice(0, 4),
+        layout: 'checklist',
+      },
+      {
+        id: 'sl-4',
+        eyebrow: 'GRAB THE FULL PDF FREE',
+        headline: `Comment "${magnet.giveawayKeyword || 'PLAYBOOK'}" below`,
+        body: `I'll send you the complete ${magnet.title} PDF (plus word-for-word scripts & checklist) for $0.`,
+        bullets: [
+          'Follow so I can send it fast',
+          `Comment "${magnet.giveawayKeyword || 'PLAYBOOK'}" right now`,
+          'Bookmark this thread for later',
+        ],
+        layout: 'cta',
+      },
+    ],
+  };
+
+  const safeSlug = magnet.slug.replace(/[^a-z0-9-_]/gi, '-') || 'carousel';
+  deck.slides.forEach((slide, idx) => {
+    const png = renderSlideToPngDataUrl(deck, slide, idx, deck.slides.length);
+    if (png) {
+      downloadDataUrl(png, `${safeSlug}-slide-${idx + 1}.png`);
+    }
+  });
+  return deck.slides.length;
+}

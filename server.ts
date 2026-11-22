@@ -1,9 +1,11 @@
 import 'dotenv/config';
 import express from 'express';
+import fs from 'node:fs';
 import path from 'node:path';
 import { createServer as createViteServer } from 'vite';
 import { scoreCopy } from './src/lib/copyScorer';
 import { buildRankedABVariations } from './src/lib/frameworks';
+import { GITHUB_SKILL_REGISTRY, humanizeCopy } from './src/lib/humanizer';
 import { findNextOpenSlot, pickEvergreenCandidate } from './src/lib/scheduler';
 import type {
   AntigravityTask,
@@ -961,8 +963,113 @@ async function startServer() {
         process.env.APP_URL ||
         'http://localhost:3000';
 
-      for (const msg of messages.slice(0, 3)) {
-        let topic = msg.text;
+      for (const msg of messages.slice(0, 4)) {
+        const trimmed = msg.text.trim();
+        const lower = trimmed.toLowerCase();
+
+        // Slash Command: /help
+        if (lower === '/help' || lower === '/start') {
+          await sendTelegramMessage({
+            botToken: tg.botToken,
+            chatId: tg.chatId,
+            text: [
+              `<b>GhostPilot $0 Telegram Commands</b> (${account.handle})`,
+              '',
+              `• <code>/today</code> — Send your next queued post + 1-tap X button`,
+              `• <code>/ideas</code> — Pull live 7-source ideas for ${activeBrain.niche}`,
+              `• <code>/pdf your topic</code> — Build a Free PDF + Comment-to-PDF Reply Pack`,
+              `• <code>/stats</code> — View queue count, PDFs & next scheduled drop`,
+              `• <b>Paste any URL</b> (YouTube, Whop, article, GitHub) — Auto-converts into a humanized tweet!`,
+            ].join('\n'),
+          });
+          continue;
+        }
+
+        // Slash Command: /stats
+        if (lower === '/stats') {
+          const accPosts = store.posts.filter((p) => !p.accountId || p.accountId === account.id);
+          const ready = accPosts.filter((p) => p.status === 'queued' || p.status === 'draft').length;
+          const accPdfs = store.leadMagnets.filter((m) => !m.accountId || m.accountId === account.id).length;
+          await sendTelegramMessage({
+            botToken: tg.botToken,
+            chatId: tg.chatId,
+            text: `<b>GhostPilot Status · ${account.handle}</b>\n\n• Niche: ${activeBrain.niche}\n• Ready Posts in Queue: <b>${ready}</b>\n• Free Giveaway PDFs: <b>${accPdfs}</b>\n• Drop Times: ${store.queueSlots.map((s) => s.time).join(', ')}`,
+          });
+          continue;
+        }
+
+        // Slash Command: /today
+        if (lower === '/today') {
+          const nextPost = store.posts
+            .filter((p) => (!p.accountId || p.accountId === account.id) && p.status === 'queued')
+            .sort((a, b) => (a.scheduledAt || '').localeCompare(b.scheduledAt || ''))[0];
+          if (!nextPost) {
+            await sendTelegramMessage({
+              botToken: tg.botToken,
+              chatId: tg.chatId,
+              text: `No queued posts for ${account.handle} yet. Text me any URL or tap "Create Today's Posts ($0)" in GhostPilot!`,
+            });
+          } else {
+            const payload = formatPostForTelegram({ post: nextPost, account, baseUrl: origin });
+            await sendTelegramMessage({
+              botToken: tg.botToken,
+              chatId: tg.chatId,
+              text: payload.text,
+              replyMarkup: payload.replyMarkup,
+            });
+          }
+          continue;
+        }
+
+        // Slash Command: /ideas
+        if (lower === '/ideas') {
+          const scan = await runLiveIndustryScan({
+            niche: activeBrain.niche,
+            subreddits: activeBrain.subreddits,
+            customRssUrls: activeBrain.customRssUrls,
+            includeGithub: true,
+          });
+          const top5 = scan.items.slice(0, 5);
+          const lines = top5.map(
+            (it, i) => `${i + 1}. <b>[${it.source}]</b> ${it.title.slice(0, 110)}\n${it.url}`
+          );
+          await sendTelegramMessage({
+            botToken: tg.botToken,
+            chatId: tg.chatId,
+            text: `<b>Top 5 Live $0 Ideas · ${activeBrain.niche}</b>\n\n${lines.join('\n\n') || 'No fresh signals found right now.'}\n\n<i>Reply with any link above and I will write your post!</i>`,
+          });
+          continue;
+        }
+
+        // Slash Command: /pdf <topic>
+        if (lower.startsWith('/pdf')) {
+          const pdfTopic = trimmed.replace(/^\/pdf\s*/i, '').trim() || activeBrain.niche;
+          const offer = activeBrain.offers[0];
+          const newMagnet = buildLocalLeadMagnet(
+            pdfTopic,
+            'Playbook',
+            store.dossiers[0],
+            offer,
+            account
+          );
+          newMagnet.accountId = account.id;
+          store.leadMagnets.unshift(newMagnet);
+          const pack = formatGiveawayPackForTelegram({
+            magnet: newMagnet,
+            offer,
+            account,
+            baseUrl: origin,
+          });
+          await sendTelegramMessage({
+            botToken: tg.botToken,
+            chatId: tg.chatId,
+            text: `<b>Built your new Free PDF + Giveaway Reply Pack ($0)!</b>\n\n${pack.text}`,
+            replyMarkup: pack.replyMarkup,
+          });
+          continue;
+        }
+
+        let topic = trimmed;
         let insight = `Practical lesson for ${activeBrain.niche} buyers.`;
 
         if (msg.url) {
@@ -973,8 +1080,8 @@ async function startServer() {
             store.radarItems.unshift({
               id: `tg-in-${Date.now()}-${createdPosts}`,
               accountId: account.id,
-              source: 'Custom RSS',
-              sourceDetail: 'Sent from Telegram',
+              source: extracted.engine === 'youtube-transcript' ? 'YouTube Transcript' : 'Custom RSS',
+              sourceDetail: extracted.engine === 'youtube-transcript' ? 'YouTube Transcript ($0)' : 'Sent from Telegram',
               title: extracted.title,
               summary: extracted.keyTakeaways.join(' · ').slice(0, 260) || insight,
               url: extracted.url,
@@ -999,13 +1106,14 @@ async function startServer() {
         const best = variations[0];
         if (!best) continue;
 
+        const humanizedBlocks = best.blocks.map((b) => humanizeCopy(b).cleanedText || b);
         const nextSlot = findNextOpenSlot(store.queueSlots, store.posts, new Date());
         const newPost: PostItem = {
           id: `post-tgin-${Date.now()}-${createdPosts}`,
           accountId: account.id,
-          blocks: best.blocks,
+          blocks: humanizedBlocks,
           status: 'queued',
-          format: best.blocks.length > 1 ? 'thread' : 'single',
+          format: humanizedBlocks.length > 1 ? 'thread' : 'single',
           scheduledAt: nextSlot,
           frameworkName: best.frameworkName,
           trigger: best.trigger,
@@ -1039,7 +1147,7 @@ async function startServer() {
         await sendTelegramMessage({
           botToken: tg.botToken,
           chatId: tg.chatId,
-          text: `<b>Turned your Telegram note into a queued post!</b>\n\n${replyPayload.text}`,
+          text: `<b>Turned your Telegram note into a humanized queued post!</b>\n\n${replyPayload.text}`,
           replyMarkup: replyPayload.replyMarkup,
         });
       }
@@ -1053,12 +1161,37 @@ async function startServer() {
     }
   });
 
-  // --- BUILT-IN $0 OPEN-SOURCE TOOL: JINA READER (r.jina.ai) URL -> MARKDOWN ---
+  // --- ANTIGRAVITY IDE SKILLS PACK & GITHUB SKILL REGISTRY ---
+  app.get('/api/skills/pack', (_req, res) => {
+    const skillsDir = path.resolve(process.cwd(), 'antigravity-skills');
+    const skillFiles: Array<{ name: string; path: string; content: string }> = [];
+    if (fs.existsSync(skillsDir)) {
+      const folders = fs.readdirSync(skillsDir).sort();
+      for (const folder of folders) {
+        const skillPath = path.join(skillsDir, folder, 'SKILL.md');
+        if (fs.existsSync(skillPath)) {
+          skillFiles.push({
+            name: folder,
+            path: `antigravity-skills/${folder}/SKILL.md`,
+            content: fs.readFileSync(skillPath, 'utf-8'),
+          });
+        }
+      }
+    }
+    res.json({
+      totalGithubSkills: GITHUB_SKILL_REGISTRY.length,
+      antigravitySkillCount: skillFiles.length,
+      registry: GITHUB_SKILL_REGISTRY,
+      skillFiles,
+    });
+  });
+
+  // --- BUILT-IN $0 OPEN-SOURCE TOOL: JINA READER + YOUTUBE TRANSCRIPT EXTRACTOR ---
   app.post('/api/tools/extract-url', async (req, res) => {
     try {
       const { url, saveToRadar = true } = req.body as { url?: string; saveToRadar?: boolean };
       if (!url?.trim()) {
-        return res.status(400).json({ error: 'Enter a website, article, GitHub repo, or Whop offer URL.' });
+        return res.status(400).json({ error: 'Enter a YouTube, Whop, article, or GitHub repo URL.' });
       }
       const extracted = await extractUrlWithJinaReader(url);
       const store = loadStore();
@@ -1067,18 +1200,21 @@ async function startServer() {
       const activeBrain = activeAccount?.brandBrain || store.brandBrain;
 
       if (saveToRadar) {
+        const isYoutube = extracted.engine === 'youtube-transcript';
         const radarItem: RadarItem = {
           id: `jina-${Date.now()}`,
           accountId: activeAccount.id,
-          source: 'Custom RSS',
-          sourceDetail: `Jina Reader (${new URL(extracted.url).hostname.replace(/^www\./, '')})`,
+          source: isYoutube ? 'YouTube Transcript' : 'Custom RSS',
+          sourceDetail: isYoutube
+            ? 'YouTube Transcript ($0)'
+            : `Jina Reader (${new URL(extracted.url).hostname.replace(/^www\./, '')})`,
           title: extracted.title,
           summary: extracted.keyTakeaways[0] || extracted.markdown.slice(0, 240),
           url: extracted.url,
           niche: activeBrain.niche,
           signalScore: 93,
           publishedAt: new Date().toISOString(),
-          painPointTag: 'Extracted Deep Source',
+          painPointTag: isYoutube ? 'YouTube Video Breakdown' : 'Extracted Deep Source',
         };
         store.radarItems = [radarItem, ...store.radarItems].slice(0, 80);
         saveStore(store);

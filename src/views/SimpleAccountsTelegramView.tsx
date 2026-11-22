@@ -534,7 +534,13 @@ export function SimpleAccountsTelegramView({
                   onChange={(e) => handleSaveAutomationToggles({ twoWayInbox: e.target.checked })}
                   className="h-4 w-4 accent-[#0071E3]"
                 />
-                <span>Two-Way Inbox (text any URL to your bot → turns into a tweet)</span>
+                <span>
+                  Two-Way Telegram Bot (text any YouTube/Whop URL or use{' '}
+                  <span className="font-mono">/today</span>,{' '}
+                  <span className="font-mono">/ideas</span>,{' '}
+                  <span className="font-mono">/pdf</span>,{' '}
+                  <span className="font-mono">/stats</span>)
+                </span>
               </label>
             </div>
           </div>
@@ -686,6 +692,33 @@ export function SimpleAccountsTelegramView({
             </button>
             <button
               type="button"
+              onClick={async () => {
+                try {
+                  const res = await fetch('/api/skills/pack');
+                  const pack = await res.json();
+                  const blob = new Blob([JSON.stringify(pack, null, 2)], {
+                    type: 'application/json',
+                  });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.href = url;
+                  a.download = `ghostpilot-antigravity-skills-pack.json`;
+                  a.click();
+                  URL.revokeObjectURL(url);
+                  onNotify(
+                    `Exported ${pack.antigravitySkillCount} Antigravity SKILL.md playbooks + ${pack.totalGithubSkills} GitHub skills!`
+                  );
+                } catch {
+                  onNotify('Could not export Antigravity Skills Pack.', 'error');
+                }
+              }}
+              className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
+            >
+              <Download className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>Export 6 Antigravity Skills</span>
+            </button>
+            <button
+              type="button"
               onClick={handleExportBackup}
               className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
             >
@@ -696,9 +729,10 @@ export function SimpleAccountsTelegramView({
         </div>
 
         <p className="text-xs text-[#6E6E73] dark:text-[#86868B]">
-          When running locally inside Antigravity, click <b>Create Antigravity Task</b> to write{' '}
-          <span className="font-mono">antigravity-sync/tasks.json</span> — or paste any tweets your
-          Antigravity model wrote straight below (works even with weaker models).
+          When running locally inside Antigravity, your project includes 6 ready-to-use{' '}
+          <span className="font-mono">antigravity-skills/*/SKILL.md</span> playbooks plus{' '}
+          <span className="font-mono">antigravity-sync/tasks.json</span> — so even weaker local
+          models output humanized, X-Algorithm-scored posts and magazine PDFs.
         </p>
 
         <textarea
