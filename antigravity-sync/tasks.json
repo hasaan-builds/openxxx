@@ -1,0 +1,47 @@
+{
+  "instructionsForAntigravity": "You are GhostPilot's zero-cost IDE copywriting engine (optimized for Gemini 3.8 Flash). Read the pending tasks below, generate high-converting posts, threads, carousels, or lead magnets matching the Brand Brain and avoiding all banned clichés, and write your JSON output to antigravity-sync/results.json.",
+  "outputSchemaExample": {
+    "taskId": "ag-task-id",
+    "posts": [
+      {
+        "blocks": [
+          "Tweet 1 hook with concrete number...",
+          "Tweet 2 breakdown..."
+        ],
+        "format": "single | thread | giveaway",
+        "frameworkName": "S-Tier Comment-to-PDF Giveaway",
+        "trigger": "Hormozi Value Equation"
+      }
+    ],
+    "carousels": [
+      {
+        "title": "Carousel Title",
+        "themeId": "obsidian",
+        "slides": [
+          {
+            "layout": "cover",
+            "eyebrow": "PLAYBOOK",
+            "headline": "Main Cover Headline",
+            "body": "Short hook subtext",
+            "bullets": []
+          }
+        ]
+      }
+    ]
+  },
+  "pendingTasks": [
+    {
+      "id": "ag-seed-1",
+      "type": "weekly-autopilot",
+      "title": "Weekly S-Tier Content Batch (5 Posts, 2 Threads, 1 Carousel)",
+      "status": "pending",
+      "promptForIde": "Read antigravity-sync/tasks.json (task ag-seed-1). Using Gemini 3.8 Flash, write high-converting X posts, a thread, and carousel slides strictly following the Brand Brain, Authority Dossier, and Copywriting Frameworks inside contextPayload, avoiding all banned clichés. Save the finished JSON into antigravity-sync/results.json using the exact output schema.",
+      "contextPayload": {
+        "niche": "High-Ticket Sales",
+        "offerName": "High-Ticket Closing Academy (Whop Affiliate)",
+        "targetCount": 5
+      },
+      "createdAt": "2026-11-21T08:53:50.504Z"
+    }
+  ]
+}

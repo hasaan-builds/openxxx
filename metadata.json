@@ -1,0 +1,8 @@
+{
+  "name": "GhostPilot",
+  "description": "5-in-1 S-tier X (Twitter) autopilot studio combining TweetHunter.io, Anyword predictive copywriting, PostNitro carousels, Gamma/Beacon PDF lead magnets, and STORM/GummySearch niche research for Antigravity IDE.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

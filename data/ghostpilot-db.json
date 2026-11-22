@@ -1,0 +1,2039 @@
+{
+  "accounts": [
+    {
+      "id": "acc-primary",
+      "name": "Maya Chen",
+      "handle": "@mayacloses",
+      "bio": "Breaking down high-ticket sales, AI outbound systems & Whop digital product funnels. Free weekly playbooks below.",
+      "avatarUrl": "/src/assets/images/avatar_creator_main_1795259699318.jpg",
+      "followers": 2448,
+      "verified": true,
+      "isPremium": false,
+      "xConnected": false,
+      "xMode": "sandbox",
+      "nicheProfile": {
+        "locked": true,
+        "marketId": "sales-marketing",
+        "marketName": "Sales, Marketing & Copywriting",
+        "subNicheId": "high-ticket-sales",
+        "subNicheName": "High-Ticket Sales & Appointment Setting",
+        "microAngle": "Objection handling & calm closing on $3k–$25k calls",
+        "buyerGoal": "Sell a Whop or Affiliate Course",
+        "lockedAt": "2026-11-21T15:20:07.189Z"
+      },
+      "brandBrain": {
+        "niche": "High-Ticket Sales & Appointment Setting",
+        "subNiches": [
+          "Objection handling & calm closing on $3k–$25k calls"
+        ],
+        "subreddits": [
+          "sales",
+          "entrepreneur",
+          "SaaS",
+          "consulting"
+        ],
+        "customRssUrls": [],
+        "tone": "Direct, tactical sales operator sharing real call notes, exact word tracks, and zero fluff.",
+        "voiceRules": [
+          "Stay 100% locked onto High-Ticket Sales & Appointment Setting: Objection handling & calm closing on $3k–$25k calls. Never drift into unrelated topics.",
+          "Primary business goal: Sell a Whop or Affiliate Course.",
+          "Lead every post with a concrete number, buyer pain point, or contrarian proof.",
+          "Write in crisp Grade 5–7 readability with generous whitespace and zero robotic AI fluff."
+        ],
+        "bannedCliches": [
+          "delve",
+          "in today's fast-paced world",
+          "game-changer",
+          "game changer",
+          "unlock the power",
+          "tapestry",
+          "leverage the power",
+          "dive deep into",
+          "let's dive in",
+          "revolutionize your",
+          "testament to",
+          "navigate the landscape",
+          "ever-evolving",
+          "cutting-edge"
+        ],
+        "winningPhrases": [
+          "close",
+          "objection",
+          "discovery",
+          "call",
+          "prospect",
+          "deal"
+        ],
+        "weeklyMix": {
+          "singlePosts": 3,
+          "threads": 2,
+          "carousels": 1,
+          "giveaways": 1
+        },
+        "personas": [
+          {
+            "id": "persona-high-ticket-sales",
+            "name": "Remote closers",
+            "role": "Remote closers, appointment setters & B2B founders",
+            "fears": [
+              "getting ghosted after sending proposals",
+              "freezing on price objections",
+              "inconsistent commission checks"
+            ],
+            "desires": [
+              "30%+ close rates without pushiness",
+              "$10k+/mo remote closing income",
+              "word-for-word rebuttal scripts"
+            ],
+            "keywords": [
+              "close",
+              "objection",
+              "discovery",
+              "call",
+              "prospect",
+              "deal",
+              "script",
+              "setter",
+              "pipeline"
+            ]
+          }
+        ],
+        "activePersonaId": "persona-high-ticket-sales",
+        "offers": [
+          {
+            "id": "offer-1795274407189",
+            "name": "High-Ticket Sales & Appointment Setting Starter Offer (Whop)",
+            "platform": "Whop",
+            "url": "https://whop.com/",
+            "priceLabel": "$49",
+            "promise": "Help remote closers master Objection handling & calm closing on $3k–$25k calls without guesswork.",
+            "autoPlugTemplate": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+            "giveawayKeyword": "CLOSE",
+            "clicks": 0,
+            "leads": 0,
+            "estimatedRevenue": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "acc-secondary",
+      "name": "AI Repo Radar",
+      "handle": "@aireporadar",
+      "bio": "Curating breakout GitHub repos, local AI workflows & zero-cost automation blueprints every morning.",
+      "avatarUrl": "/src/assets/images/avatar_founder_two_1795259546979.jpg",
+      "followers": 890,
+      "verified": false,
+      "isPremium": false,
+      "xConnected": false,
+      "xMode": "sandbox"
+    },
+    {
+      "id": "acc-1795284214698",
+      "name": "Alex Rivera",
+      "handle": "@alexbuildsai",
+      "bio": "AI Agents & Vibe Coding · Building $0 AI apps with Antigravity & Gemini",
+      "avatarUrl": "/src/assets/images/avatar_creator_main_1795259699318.jpg",
+      "followers": 0,
+      "verified": false,
+      "isPremium": false,
+      "xConnected": false,
+      "xMode": "sandbox",
+      "nicheProfile": {
+        "locked": true,
+        "marketId": "ai-tech",
+        "marketName": "AI, Tech & Software",
+        "subNicheId": "ai-agents-vibe-coding",
+        "subNicheName": "AI Agents & Vibe Coding",
+        "microAngle": "Building $0 AI apps with Antigravity & Gemini",
+        "buyerGoal": "Sell a Whop or Affiliate Course",
+        "lockedAt": "2026-11-21T18:04:40.969Z"
+      },
+      "brandBrain": {
+        "niche": "AI Agents & Vibe Coding",
+        "subNiches": [
+          "Building $0 AI apps with Antigravity & Gemini"
+        ],
+        "subreddits": [
+          "LocalLLaMA",
+          "artificial",
+          "SideProject",
+          "singularity"
+        ],
+        "customRssUrls": [],
+        "tone": "Sharp, builder-first curator sharing tested tools, exact workflows, and zero hype.",
+        "voiceRules": [
+          "Stay 100% locked onto AI Agents & Vibe Coding: Building $0 AI apps with Antigravity & Gemini. Never drift into unrelated topics.",
+          "Primary business goal: Sell a Whop or Affiliate Course.",
+          "Lead every post with a concrete number, buyer pain point, or contrarian proof.",
+          "Write in crisp Grade 5–7 readability with generous whitespace and zero robotic AI fluff."
+        ],
+        "bannedCliches": [
+          "delve",
+          "in today's fast-paced world",
+          "game-changer",
+          "game changer",
+          "unlock the power",
+          "tapestry",
+          "leverage the power",
+          "dive deep into",
+          "let's dive in",
+          "revolutionize your",
+          "testament to",
+          "navigate the landscape",
+          "ever-evolving",
+          "cutting-edge"
+        ],
+        "winningPhrases": [
+          "agent",
+          "github",
+          "workflow",
+          "local",
+          "prompt",
+          "automate"
+        ],
+        "weeklyMix": {
+          "singlePosts": 3,
+          "threads": 2,
+          "carousels": 1,
+          "giveaways": 1
+        },
+        "personas": [
+          {
+            "id": "persona-ai-agents-vibe-coding",
+            "name": "Indie builders",
+            "role": "Indie builders, solo founders & beginner vibe coders",
+            "fears": [
+              "falling behind on AI tools",
+              "wasting money on paid API subscriptions",
+              "getting stuck on technical errors"
+            ],
+            "desires": [
+              "launch profitable AI apps fast",
+              "automate work at $0/month",
+              "discover breakout GitHub repos early"
+            ],
+            "keywords": [
+              "agent",
+              "github",
+              "workflow",
+              "local",
+              "prompt",
+              "automate",
+              "free",
+              "repo",
+              "stack"
+            ]
+          }
+        ],
+        "activePersonaId": "persona-ai-agents-vibe-coding",
+        "offers": [
+          {
+            "id": "offer-1795284280969",
+            "name": "AI Agents & Vibe Coding Starter Offer (Whop)",
+            "platform": "Whop",
+            "url": "https://whop.com/",
+            "priceLabel": "$49",
+            "promise": "Help indie builders master Building $0 AI apps with Antigravity & Gemini without guesswork.",
+            "autoPlugTemplate": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+            "giveawayKeyword": "STACK",
+            "clicks": 0,
+            "leads": 0,
+            "estimatedRevenue": 0
+          }
+        ]
+      }
+    }
+  ],
+  "activeAccountId": "acc-primary",
+  "brandBrain": {
+    "niche": "High-Ticket Sales & Appointment Setting",
+    "subNiches": [
+      "Objection handling & calm closing on $3k–$25k calls"
+    ],
+    "subreddits": [
+      "sales",
+      "entrepreneur",
+      "SaaS",
+      "consulting"
+    ],
+    "customRssUrls": [],
+    "tone": "Direct, tactical sales operator sharing real call notes, exact word tracks, and zero fluff.",
+    "voiceRules": [
+      "Stay 100% locked onto High-Ticket Sales & Appointment Setting: Objection handling & calm closing on $3k–$25k calls. Never drift into unrelated topics.",
+      "Primary business goal: Sell a Whop or Affiliate Course.",
+      "Lead every post with a concrete number, buyer pain point, or contrarian proof.",
+      "Write in crisp Grade 5–7 readability with generous whitespace and zero robotic AI fluff."
+    ],
+    "bannedCliches": [
+      "delve",
+      "in today's fast-paced world",
+      "game-changer",
+      "game changer",
+      "unlock the power",
+      "tapestry",
+      "leverage the power",
+      "dive deep into",
+      "let's dive in",
+      "revolutionize your",
+      "testament to",
+      "navigate the landscape",
+      "ever-evolving",
+      "cutting-edge"
+    ],
+    "winningPhrases": [
+      "close",
+      "objection",
+      "discovery",
+      "call",
+      "prospect",
+      "deal"
+    ],
+    "weeklyMix": {
+      "singlePosts": 3,
+      "threads": 2,
+      "carousels": 1,
+      "giveaways": 1
+    },
+    "personas": [
+      {
+        "id": "persona-high-ticket-sales",
+        "name": "Remote closers",
+        "role": "Remote closers, appointment setters & B2B founders",
+        "fears": [
+          "getting ghosted after sending proposals",
+          "freezing on price objections",
+          "inconsistent commission checks"
+        ],
+        "desires": [
+          "30%+ close rates without pushiness",
+          "$10k+/mo remote closing income",
+          "word-for-word rebuttal scripts"
+        ],
+        "keywords": [
+          "close",
+          "objection",
+          "discovery",
+          "call",
+          "prospect",
+          "deal",
+          "script",
+          "setter",
+          "pipeline"
+        ]
+      }
+    ],
+    "activePersonaId": "persona-high-ticket-sales",
+    "offers": [
+      {
+        "id": "offer-1795274407189",
+        "name": "High-Ticket Sales & Appointment Setting Starter Offer (Whop)",
+        "platform": "Whop",
+        "url": "https://whop.com/",
+        "priceLabel": "$49",
+        "promise": "Help remote closers master Objection handling & calm closing on $3k–$25k calls without guesswork.",
+        "autoPlugTemplate": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "giveawayKeyword": "CLOSE",
+        "clicks": 0,
+        "leads": 0,
+        "estimatedRevenue": 0
+      }
+    ]
+  },
+  "radarItems": [
+    {
+      "id": "rd-rss-1795350831010-0",
+      "source": "Reddit Pain-Point",
+      "sourceDetail": "Reddit Live (sales)",
+      "title": "Dan Lok - High Ticket Closer Course",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxOWUt4TjRCOVZXT3ZpMXUxbzR0bGEzWFV3Uzh1eWo4RmpTX1ZBbFZNUkczdUhXX2R0SGRyUVdsZkpQZ0duMUJyQ1BmN0kzTkZxbDdXYXRrWjJXQXF4bGtLRWJ1cWFUMjFSUW11b2VBQ0o1WU0zRHlzZTNKV2FIcE5WWWhsRGx1d3hX?oc=5\" target=\"_blank\">Dan",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOWUt4TjRCOVZXT3ZpMXUxbzR0bGEzWFV3Uzh1eWo4RmpTX1ZBbFZNUkczdUhXX2R0SGRyUVdsZkpQZ0duMUJyQ1BmN0kzTkZxbDdXYXRrWjJXQXF4bGtLRWJ1cWFUMjFSUW11b2VBQ0o1WU0zRHlzZTNKV2FIcE5WWWhsRGx1d3hX?oc=5",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "signalScore": 93,
+      "publishedAt": "2018-06-28T07:00:00.000Z",
+      "painPointTag": "Community Signal",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "rd-rss-1795350831011-1",
+      "source": "Reddit Pain-Point",
+      "sourceDetail": "Reddit Live (sales)",
+      "title": "Where to find legit high ticket remote sales jobs?",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMinwFBVV95cUxNYXRzMzd1NWRrYXlQS2xDeTBoVzA2cDkwZUdTYjRzalpjZWpWZlAzcG9TZERFYnBWYXRQRjk0R2k2NHBFcm1OaVJzam81dTdUMmowMkd0WG5LWVlWNnBGWFcybmo2Uk5yVkhBVW44TDdwaWc1Yi0wdTJ6a3d6TkZPVDJiWFp0UzJ6NlpTN2hWQlFjR0xRVklRZkY5U3",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNYXRzMzd1NWRrYXlQS2xDeTBoVzA2cDkwZUdTYjRzalpjZWpWZlAzcG9TZERFYnBWYXRQRjk0R2k2NHBFcm1OaVJzam81dTdUMmowMkd0WG5LWVlWNnBGWFcybmo2Uk5yVkhBVW44TDdwaWc1Yi0wdTJ6a3d6TkZPVDJiWFp0UzJ6NlpTN2hWQlFjR0xRVklRZkY5U3JDX0U?oc=5",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "signalScore": 91,
+      "publishedAt": "2024-02-14T08:00:00.000Z",
+      "painPointTag": "Buyer Question / Pain Point",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "rd-rss-1795350831011-2",
+      "source": "Reddit Pain-Point",
+      "sourceDetail": "Reddit Live (sales)",
+      "title": "Seeking perspective from experienced reps: Am I wrong about the future of high-ticket sales?",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxPZHpGZE0xSVdaU21FN3pTSERCM3NSbWFBM25MY29qVl8wc1hPVUtEb2FHanEyeDh2dEVPWDRubk9xYmhtZVhiQUZrb1lLb3lqV2dzR2wyRnlLelR6Rkc4QkwtdG5SNzJFNUZGNlo1anZmNVVyRkV5NTVsS3d2X3UxZlFyaUlSajl1aTlTVldZZkNFTTdVdDFsTlVJVQ",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPZHpGZE0xSVdaU21FN3pTSERCM3NSbWFBM25MY29qVl8wc1hPVUtEb2FHanEyeDh2dEVPWDRubk9xYmhtZVhiQUZrb1lLb3lqV2dzR2wyRnlLelR6Rkc4QkwtdG5SNzJFNUZGNlo1anZmNVVyRkV5NTVsS3d2X3UxZlFyaUlSajl1aTlTVldZZkNFTTdVdDFsTlVJVQ?oc=5",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "signalScore": 89,
+      "publishedAt": "2025-09-27T07:00:00.000Z",
+      "painPointTag": "Buyer Question / Pain Point",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "rd-rss-1795350831011-3",
+      "source": "Reddit Pain-Point",
+      "sourceDetail": "Reddit Live (sales)",
+      "title": "Is solar sales dead?",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMid0FVX3lxTFA2SkFPdkJPazlPYkh6WWwzaUhqQmhqV1FNb3p6SWdUcEZIdFlCb3R4a0dKNnlfSGNLX0g3T25kSEQ3U0VXa0RQQk1KcEFUVlRWSHdSbHE4VS1aZVBEX2o4Umltb2ZEVDNfVGVWTzJSaWF0LTJLc1Jr?oc=5\" target=\"_blank\">Is solar sales dead?</a>&nb",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFA2SkFPdkJPazlPYkh6WWwzaUhqQmhqV1FNb3p6SWdUcEZIdFlCb3R4a0dKNnlfSGNLX0g3T25kSEQ3U0VXa0RQQk1KcEFUVlRWSHdSbHE4VS1aZVBEX2o4Umltb2ZEVDNfVGVWTzJSaWF0LTJLc1Jr?oc=5",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "signalScore": 87,
+      "publishedAt": "2023-10-16T07:00:00.000Z",
+      "painPointTag": "Buyer Question / Pain Point",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "rd-rss-1795350831011-4",
+      "source": "Reddit Pain-Point",
+      "sourceDetail": "Reddit Live (sales)",
+      "title": "Have an opportunity to get my foot in the door with sales. What kind of reading material or other forms of content will help me learn what I need to know?",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMimwFBVV95cUxQcmxTTE5BNDlTNFBaVzc3TkgzODNtWTM5dFFRRm10ZUdwTXFmUGFBUWFkOS1paC1sbk1RTXZQQVYwU3VQcjV4elN1aUxNNkFGSnFqZVA1eGk2cmxCUVNhODYxbUR6dVREOHRSZVlFbTdEZklrTkYzcFZBd2I0WmtPYmNZVkw3bmd1VlZkMnJJVTVHdWxka2IyOTMxdw",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQcmxTTE5BNDlTNFBaVzc3TkgzODNtWTM5dFFRRm10ZUdwTXFmUGFBUWFkOS1paC1sbk1RTXZQQVYwU3VQcjV4elN1aUxNNkFGSnFqZVA1eGk2cmxCUVNhODYxbUR6dVREOHRSZVlFbTdEZklrTkYzcFZBd2I0WmtPYmNZVkw3bmd1VlZkMnJJVTVHdWxka2IyOTMxdw?oc=5",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "signalScore": 85,
+      "publishedAt": "2025-08-13T07:00:00.000Z",
+      "painPointTag": "Buyer Question / Pain Point",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gn-1795349682110-0",
+      "source": "Google News",
+      "sourceDetail": "Live News · High-Ticket Sales & Appointment Setting",
+      "title": "5 Steps To Sell High-Ticket Offers Without A Discovery Call - Forbes",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxQNjJpTEhxM3UyYWIya3MwYnhDcUk0cVIyM3cwZEk2emZ1MzlsTlEwYVZ6bHhLdkFZb0d6TjVwUmY2NlNDNDlMWVk4OEFPUFZsZWdSbkhLenRTT1JVc2daRkxFbkpRQk96dWpLQlY1d29DczI5bk8xdGtfa2oxVkRsSEpWSnVRSEVnVldVclg2SjlXMkJNQS1paDFvWH",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQNjJpTEhxM3UyYWIya3MwYnhDcUk0cVIyM3cwZEk2emZ1MzlsTlEwYVZ6bHhLdkFZb0d6TjVwUmY2NlNDNDlMWVk4OEFPUFZsZWdSbkhLenRTT1JVc2daRkxFbkpRQk96dWpLQlY1d29DczI5bk8xdGtfa2oxVkRsSEpWSnVRSEVnVldVclg2SjlXMkJNQS1paDFvWHdJc2lYbmdReGNyM09ua212VTBj?oc=5",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "signalScore": 92,
+      "publishedAt": "2026-09-17T07:00:00.000Z",
+      "painPointTag": "Breaking Industry Trend",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gn-1795349682110-1",
+      "source": "Google News",
+      "sourceDetail": "Live News · High-Ticket Sales & Appointment Setting",
+      "title": "10 best appointment setting companies 2027 - INQUIRER.net USA",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMieEFVX3lxTE5tbDh2UWxUOWdBOHRTRXhScmU2eXljeEVyYTNNZ3RHaXQteGFILVFGRnN3Z0ZlZUN4ZUdDeW9PdTZfaXgzZjhJalJySzBfbWI0WE1YZzZjdC1BbmZJMnRHTTh6dkpMdEdsbFlJOUs5MlE3YnhtczR4OA?oc=5\" target=\"_blank\">10 best appointment setti",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5tbDh2UWxUOWdBOHRTRXhScmU2eXljeEVyYTNNZ3RHaXQteGFILVFGRnN3Z0ZlZUN4ZUdDeW9PdTZfaXgzZjhJalJySzBfbWI0WE1YZzZjdC1BbmZJMnRHTTh6dkpMdEdsbFlJOUs5MlE3YnhtczR4OA?oc=5",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "signalScore": 89,
+      "publishedAt": "2026-11-06T08:00:00.000Z",
+      "painPointTag": "Breaking Industry Trend",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gn-1795349682110-2",
+      "source": "Google News",
+      "sourceDetail": "Live News · High-Ticket Sales & Appointment Setting",
+      "title": "LeadsNow.ai Surpasses 50,000 Booked Sales Appointments as AI Appointment Setting Overtakes Cold Calling for High-Ticket Businesses - USA Today",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMijgJBVV95cUxPUGVPSW50UEM3UFo0T2VSNTFNU1htdnp0X0ZEX0RHZWs5ekItTThDLUFTR0VsZUpJdnloZlE4X29ON29kZWNrT3JHSG9hN2RIak9IWVFrQ2J0WkRJdnk1R0s3UkJJNnRwWHhPMDdCeDRfVWozWVZyVU9zMHZlYTdoRXpua1FiNWJFbjFpdzl6bFBVbThXdUhHejNua1",
+      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxPUGVPSW50UEM3UFo0T2VSNTFNU1htdnp0X0ZEX0RHZWs5ekItTThDLUFTR0VsZUpJdnloZlE4X29ON29kZWNrT3JHSG9hN2RIak9IWVFrQ2J0WkRJdnk1R0s3UkJJNnRwWHhPMDdCeDRfVWozWVZyVU9zMHZlYTdoRXpua1FiNWJFbjFpdzl6bFBVbThXdUhHejNua1ZZTTRSemR5ZEdabjVtV3RzVkV5eTducmk2UHR0SngxWjItR2dVRWZ4QzBpek9VWVdiUTFBY1dnVUNNOUg0Vkt0dkhSLUdqY0JXQmN0RXMyNU1fQ3BxaGNXR3IwUUt1VGZCNlV0Y204bnJrQjZ6eXJsZXc?oc=5",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "signalScore": 86,
+      "publishedAt": "2026-07-23T07:00:00.000Z",
+      "painPointTag": "Breaking Industry Trend",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gn-1795349682110-3",
+      "source": "Google News",
+      "sourceDetail": "Live News · High-Ticket Sales & Appointment Setting",
+      "title": "10 Free or Low-Cost CRM Tools for Small Businesses - U.S. Chamber of Commerce",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTE15WkVtMGxhOHY3SVY2eUlpZlB1SFB6QTY1RmpmTUlmMzlZUk8xOEw0cmx1YTlISkRlR2VmZFl1VkdMQWNDLVgxT0ZrWjNKNHV4d3dBeU9LdmVuQ05nN1VXcUdyM1FiVXNjbmRPeDM2QQ?oc=5\" target=\"_blank\">10 Free or Low-Cost CRM Tools for Sma",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE15WkVtMGxhOHY3SVY2eUlpZlB1SFB6QTY1RmpmTUlmMzlZUk8xOEw0cmx1YTlISkRlR2VmZFl1VkdMQWNDLVgxT0ZrWjNKNHV4d3dBeU9LdmVuQ05nN1VXcUdyM1FiVXNjbmRPeDM2QQ?oc=5",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "signalScore": 83,
+      "publishedAt": "2026-08-25T07:00:00.000Z",
+      "painPointTag": "Breaking Industry Trend",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gn-1795349682110-4",
+      "source": "Google News",
+      "sourceDetail": "Live News · High-Ticket Sales & Appointment Setting",
+      "title": "Remote High-Ticket Closing: Indians Are Earning Big, Here's How! - The Hans India",
+      "summary": "<a href=\"https://news.google.com/rss/articles/CBMirwFBVV95cUxPalV5cG1SdzZMZm5IX3VNMGhSWlVaZktRdllCZFMwblgzLU9zTG9EejhXTkVlZlpYR3pXOFUySzVYb01Eak11MWxGS3BPaXVlMjI3T0sydExMYU11dkwwemtHU2p0Zk9vdm9seVBWRTNTUUNNMUxtUS1GQU8ybmNmRXhaUGY3UWFKdThBLU1PaDF3TmoyVWNDX3NkYm",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPalV5cG1SdzZMZm5IX3VNMGhSWlVaZktRdllCZFMwblgzLU9zTG9EejhXTkVlZlpYR3pXOFUySzVYb01Eak11MWxGS3BPaXVlMjI3T0sydExMYU11dkwwemtHU2p0Zk9vdm9seVBWRTNTUUNNMUxtUS1GQU8ybmNmRXhaUGY3UWFKdThBLU1PaDF3TmoyVWNDX3NkYmE4V3RjTUdld0RqcUIweGRtYkZB?oc=5",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "signalScore": 80,
+      "publishedAt": "2026-07-24T07:00:00.000Z",
+      "painPointTag": "Breaking Industry Trend",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "rad-1",
+      "source": "Reddit Pain-Point",
+      "sourceDetail": "r/sales · 312 upvotes",
+      "title": "Why 70% of prospects ghost right after saying \"Send me the proposal\"",
+      "summary": "Reps share that emailing a proposal without booking a live review call drops close rate below 11%. Top closers walk through pricing live and isolate the real objection before hanging up.",
+      "url": "https://reddit.com/r/sales",
+      "niche": "High-Ticket Sales",
+      "signalScore": 94,
+      "publishedAt": "2026-11-21T07:53:50.504Z",
+      "painPointTag": "Ghosting / Proposal Trap",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "rad-2",
+      "source": "Reddit Pain-Point",
+      "sourceDetail": "r/sales · 248 upvotes",
+      "title": "How do you answer \"I need to talk to my partner/spouse\" without sounding pushy?",
+      "summary": "High-intent thread where closers break down the 2-question isolation framework: first verify whether they personally want to move forward, then ask what specific question their partner will ask.",
+      "url": "https://reddit.com/r/sales",
+      "niche": "High-Ticket Sales",
+      "signalScore": 91,
+      "publishedAt": "2026-11-21T02:53:50.504Z",
+      "painPointTag": "Partner Objection",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "rad-3",
+      "source": "Google News",
+      "sourceDetail": "B2B Revenue Insights",
+      "title": "B2B buyers now spend 83% of the buying journey researching creators before talking to sales",
+      "summary": "New benchmark report shows buyers overwhelmingly trust operators who publish transparent playbooks, teardowns, and free checklists over cold outbound pitches.",
+      "url": "https://news.google.com",
+      "niche": "High-Ticket Sales",
+      "signalScore": 88,
+      "publishedAt": "2026-11-20T21:53:50.504Z",
+      "painPointTag": "Authority Positioning",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "rad-4",
+      "source": "GitHub Trending",
+      "sourceDetail": "github.com · 4,820 stars this week",
+      "title": "Open-source local CRM & automated outreach copilot hits #1 trending on GitHub",
+      "summary": "Developers and solo founders are replacing $300/month SaaS stacks with lightweight local AI workflow tools that draft tailored follow-ups from call transcripts.",
+      "url": "https://github.com/trending",
+      "niche": "AI & Sales Automation",
+      "signalScore": 86,
+      "publishedAt": "2026-11-20T17:53:50.504Z",
+      "painPointTag": "Zero-Cost Tooling",
+      "accountId": "acc-primary"
+    }
+  ],
+  "dossiers": [
+    {
+      "id": "dos-1795351183642",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "title": "High-Ticket Sales & Appointment Setting — 5-Angle Authority Dossier",
+      "createdAt": "2026-11-22T12:39:43.642Z",
+      "sourceCount": 8,
+      "angles": {
+        "buyerPainPoints": [
+          "Dan Lok - High Ticket Closer Course (Reddit Live (sales))",
+          "Where to find legit high ticket remote sales jobs? (Reddit Live (sales))",
+          "Seeking perspective from experienced reps: Am I wrong about the future of high-ticket sales? (Reddit Live (sales))",
+          "Most High-Ticket Sales & Appointment Setting beginners drown in theory without a repeatable daily checklist."
+        ],
+        "coreFrameworks": [
+          "The 3-Step High-Ticket Sales & Appointment Setting Diagnostic: Audit Current Leak -> Quantify Cost -> Deploy 1 Core System.",
+          "Value-First Authority Funnel: Live Industry Breakdown -> Free PDF Playbook -> High-Ticket Sales & Appointment Setting Starter Offer (Whop).",
+          "Weekly Content Mix: 2 Pain-Point Hooks, 2 Visual Carousels, 1 Comment-to-PDF Giveaway."
+        ],
+        "contrarianTruths": [
+          "In High-Ticket Sales & Appointment Setting, copying surface-level tactics fails — solving the top 1 buyer objection creates 80% of trust.",
+          "Giving away your best checklist for free converts 4x better than hiding basic tips behind a paywall."
+        ],
+        "scriptsAndProof": [
+          "Live Signal: 5 Steps To Sell High-Ticket Offers Without A Discovery Call - Forbes — turn into a 4-slide breakdown carousel.",
+          "Live Signal: 10 best appointment setting companies 2027 - INQUIRER.net USA — turn into a 4-slide breakdown carousel.",
+          "Live Signal: LeadsNow.ai Surpasses 50,000 Booked Sales Appointments as AI Appointment Setting Overtakes Cold Calling for High-Ticket Businesses - USA Today — turn into a 4-slide breakdown carousel.",
+          "Giveaway CTA Script: \"I condensed 25 hours of High-Ticket Sales & Appointment Setting research into a free PDF playbook. Comment 'CLOSE' and I'll send it over.\""
+        ],
+        "offerBridges": [
+          "Embed High-Ticket Sales & Appointment Setting Starter Offer (Whop) on Page 3 and the Final Action Page of every free PDF Playbook.",
+          "Attach an Auto-Plug reply 20 minutes after every high-value High-Ticket Sales & Appointment Setting thread pointing to your Smart Resource Page."
+        ]
+      },
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "dos-1795349948917",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "title": "High-Ticket Sales & Appointment Setting Authority Dossier: Calm Closing & Pipeline Mechanics ($3k-$25k Offers)",
+      "createdAt": "2026-11-22T12:19:08.917Z",
+      "sourceCount": 8,
+      "angles": {
+        "buyerPainPoints": [],
+        "coreFrameworks": [],
+        "contrarianTruths": [],
+        "scriptsAndProof": [],
+        "offerBridges": []
+      },
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "dos-sales-1",
+      "niche": "High-Ticket Sales",
+      "title": "S-Tier High-Ticket Sales & Objection Mastery Authority Dossier",
+      "createdAt": "2026-11-20T23:53:50.504Z",
+      "sourceCount": 18,
+      "angles": {
+        "buyerPainPoints": [
+          "Prospects say \"Send me the proposal\" and vanish forever (70%+ ghost rate).",
+          "Reps panic and immediately discount price when they hear \"It's too expensive.\"",
+          "Discovery calls feel like an interrogation instead of a high-status doctor diagnosis.",
+          "Appointment setters burn hours sending copy-paste DMs that get 2% reply rates."
+        ],
+        "coreFrameworks": [
+          "The 3-Layer Pain Ladder: Surface Problem -> Financial Cost -> Personal Urgency (\"Why fix this this quarter?\").",
+          "The Calm Isolation Loop: Validate -> Isolate (\"Aside from price, is there anything else holding you back?\") -> Solve.",
+          "No-Proposal-Without-Calendar Rule: Never email a quote without a 10-minute review slot booked on the call."
+        ],
+        "contrarianTruths": [
+          "Hard-closing tricks actually destroy $5k+ deals; calm disqualification builds 3x more authority.",
+          "If you get price objections at minute 28, you lost the call at minute 6 during discovery.",
+          "Talking less than 35% of the call doubles close rate for remote B2B closers."
+        ],
+        "scriptsAndProof": [
+          "Price Objection Script: \"Totally fair — when you say expensive, do you mean you don't have the cash flow right now, or you're not yet 100% convinced this pays back 3x?\"",
+          "Partner Objection Script: \"Makes complete sense. If your partner was sitting right here, what's the #1 question they'd ask before saying yes?\"",
+          "Proposal Trap Script: \"Happy to send the breakdown — let's put 10 minutes on Thursday to review it together so nothing sits unanswered.\""
+        ],
+        "offerBridges": [
+          "Give away the 12-Page Objection Playbook PDF free via Comment \"CLOSE\" -> embed the High-Ticket Closing Academy (Whop) call-recording vault on Page 3 & Final Page.",
+          "Turn the 3-Layer Pain Ladder into a 6-slide visual carousel -> attach Auto-Plug pointing to the 27 Cold DM & Discovery Scripts pack."
+        ]
+      }
+    }
+  ],
+  "leadMagnets": [
+    {
+      "id": "lm-sales-playbook",
+      "slug": "high-ticket-objection-playbook",
+      "title": "The 2026 High-Ticket Objection & Discovery Playbook",
+      "subtitle": "Word-for-word scripts, the 3-Layer Pain Ladder, and the exact calm-closing checklist used on $5,000+ Zoom calls.",
+      "format": "Playbook",
+      "niche": "High-Ticket Sales",
+      "themeColor": "#0284C7",
+      "authorName": "Maya Chen",
+      "authorHandle": "@mayacloses",
+      "linkedOfferId": "offer-whop-sales",
+      "giveawayKeyword": "CLOSE",
+      "views": 643,
+      "downloads": 389,
+      "offerClicks": 114,
+      "createdAt": "2026-11-15T11:53:50.504Z",
+      "sections": [
+        {
+          "id": "sec-1",
+          "type": "takeaway",
+          "heading": "Why 90% of Objections Happen in Minute 6 (Not Minute 28)",
+          "body": "Most closers treat objections like a debate at the end of the call. S-tier closers prevent them early by quantifying the real cost of staying stuck before ever mentioning a solution or price.",
+          "bullets": [
+            "Target talk-to-listen ratio: You 30%, Prospect 70%.",
+            "Never pitch features before the buyer explicitly names their #1 bottleneck.",
+            "Calm curiosity beats pressure tactics on every deal above $2,500."
+          ]
+        },
+        {
+          "id": "sec-2",
+          "type": "framework",
+          "heading": "The 3-Layer Pain Diagnosis Framework",
+          "body": "Move every discovery call cleanly through three escalating layers so the buyer argues for solving the problem themselves:",
+          "bullets": [
+            "Layer 1 (Symptom): \"What made you book this call today instead of 3 months from now?\"",
+            "Layer 2 (Quantified Cost): \"If this stays exactly the same for the next 6 months, what does that cost in lost revenue or time?\"",
+            "Layer 3 (Urgency Lock): \"On a scale of 1-10, how urgent is fixing this in the next 30 days?\""
+          ]
+        },
+        {
+          "id": "sec-3",
+          "type": "script",
+          "heading": "Word-for-Word Rebuttals for the Top 3 High-Ticket Objections",
+          "body": "Keep these three calm, non-defensive responses beside your monitor during every Zoom call:",
+          "bullets": [
+            "\"It's too expensive\" -> \"Totally fair. When you say expensive, is it a cash-flow timing issue today, or are you not yet 100% sure this pays back 3x?\"",
+            "\"Send me the proposal\" -> \"Happy to send it over — let's lock 10 minutes Thursday at 2pm to walk through questions together so it doesn't collect dust.\"",
+            "\"I need to ask my partner\" -> \"Smart move. Putting yourself in their shoes, what's the #1 hesitation they'll bring up when you share this?\""
+          ]
+        },
+        {
+          "id": "sec-4",
+          "type": "checklist",
+          "heading": "Pre-Call S-Tier Closer Checklist (2 Minutes Before Zoom)",
+          "body": "Run through these five checks before clicking Join Meeting:",
+          "bullets": [
+            "Review prospect bio, website, and last 3 posts for 1 genuine observation.",
+            "Write down their likely #1 bottleneck before the call starts.",
+            "Silence notifications and keep a 3-second pause rule after pricing.",
+            "Have next-step calendar times open before quoting investment."
+          ]
+        },
+        {
+          "id": "sec-5",
+          "type": "offer-callout",
+          "heading": "Want to Watch 47 Real Recorded $10k+ Calls & Drill Live?",
+          "body": "Reading scripts is step one — hearing real tonality and pacing on live calls is what doubles your close rate in 30 days. The High-Ticket Closing Academy on Whop includes full annotated recordings and daily roleplay rooms.",
+          "bullets": [
+            "47 full unedited B2B & coaching closing calls with timestamp breakdowns",
+            "Daily live objection-handling roleplay sessions with 7-figure closers",
+            "Instant access via Whop with plug-and-play CRM trackers"
+          ]
+        }
+      ]
+    }
+  ],
+  "carousels": [
+    {
+      "id": "deck-1795349330413",
+      "accountId": "acc-primary",
+      "title": "Vibe Coding Explained: Tools and Guides - Google Cloud",
+      "themeId": "ivory",
+      "authorName": "Mohammad Jayed Hasan",
+      "authorHandle": "@HasanJayed21239",
+      "linkedOfferId": "offer-1795349282679",
+      "slides": [
+        {
+          "id": "sl-1-1795349330413",
+          "layout": "cover",
+          "eyebrow": "AI AGENTS & VIBE CODING",
+          "headline": "Vibe Coding Explained: Tools and Guides - Google Cloud",
+          "body": "Reverse-engineered from real buyer pain points & top frameworks.",
+          "bullets": []
+        },
+        {
+          "id": "sl-2-1795349330413",
+          "layout": "checklist",
+          "eyebrow": "KEY TAKEAWAYS",
+          "headline": "What Actually Moves The Needle",
+          "body": "Skip the fluff and execute these exact levers.",
+          "bullets": [
+            "<a href=\"https://news.google.com/rss/articles/CBMiY0FVX3lxTE40RkNrRkVzQzVTMDc3UWY0czJ0M1lHbE1icVpXLV9TTm0td3B3M202WmItZU5oYjIxcDVjajhCaXRjb2R4OUdBSzR0Z21tM1NXY1p1X2pHVWNuVFpIa2NCYW95bw?oc=5\" target=\"_blank\">Vibe Coding Explained: Tools and Guides</a>&nbsp;&nbs"
+          ]
+        },
+        {
+          "id": "sl-3-1795349330413",
+          "layout": "cta",
+          "eyebrow": "FREE PLAYBOOK",
+          "headline": "Want the Full AI Agents & Vibe Coding PDF?",
+          "body": "Comment \"STACK\" below and I'll DM you the full guide free.",
+          "bullets": []
+        }
+      ],
+      "createdAt": "2026-11-22T12:08:50.413Z"
+    },
+    {
+      "id": "car-1",
+      "title": "Why 70% of Prospects Ghost After \"Send Me The Proposal\"",
+      "themeId": "obsidian",
+      "authorName": "Maya Chen",
+      "authorHandle": "@mayacloses",
+      "linkedOfferId": "offer-whop-sales",
+      "linkedLeadMagnetId": "lm-sales-playbook",
+      "createdAt": "2026-11-19T11:53:50.504Z",
+      "slides": [
+        {
+          "id": "sl-1",
+          "layout": "cover",
+          "eyebrow": "HIGH-TICKET SALES PLAYBOOK",
+          "headline": "Why 70% of Prospects Ghost After \"Send Me The Proposal\"",
+          "body": "And the 4-step calm framework S-tier closers use to keep control of every $5k+ deal.",
+          "bullets": []
+        },
+        {
+          "id": "sl-2",
+          "layout": "comparison",
+          "eyebrow": "THE HIDDEN MISTAKE",
+          "headline": "Amateur Closer vs. S-Tier Operator",
+          "body": "The proposal isn't the problem. Hanging up without a decision frame is.",
+          "leftLabel": "AMATEUR WAY",
+          "rightLabel": "S-TIER WAY",
+          "bullets": [
+            "Says \"Sure, I'll email it tonight!\" then sends 5 awkward \"just bumping this\" follow-ups into silence.",
+            "Isolates the real question live on Zoom and books a 10-minute review slot before hanging up."
+          ]
+        },
+        {
+          "id": "sl-3",
+          "layout": "framework",
+          "eyebrow": "THE 3-STEP FIX",
+          "headline": "Use the Calm Isolation Loop",
+          "body": "Never fight the request — clarify what happens next.",
+          "bullets": [
+            "Validate: \"Happy to put everything in writing for you.\"",
+            "Isolate: \"Before I send it, is there anything in the scope you're unsure about right now?\"",
+            "Lock Next Step: \"Let's book 10 minutes Thursday at 2pm to review it together.\""
+          ]
+        },
+        {
+          "id": "sl-4",
+          "layout": "cta",
+          "eyebrow": "FREE 12-PAGE PDF PLAYBOOK",
+          "headline": "Want All 19 Word-for-Word Objection Scripts?",
+          "body": "Comment \"CLOSE\" below this post and I'll send you the complete 2026 High-Ticket Objection Playbook PDF free.",
+          "bullets": [
+            "3-Layer Pain Discovery questions",
+            "Price, Partner & Proposal rebuttals",
+            "2-Minute Pre-Call Closer Checklist"
+          ]
+        }
+      ],
+      "accountId": "acc-primary"
+    }
+  ],
+  "posts": [
+    {
+      "id": "post-ag-1795349682610-3",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Unpopular truth about Reps panic and immediately discount price when they hear \"It's too expensive.\":\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master The 3-Layer Pain Ladder: Surface Problem -> Financial Cost -> Personal Urgency (\"Why fix this this quarter?\").\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-11-27T09:30:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
+      "predictiveScore": 89,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-22T12:14:42.610Z"
+    },
+    {
+      "id": "post-ag-1795349682609-2",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Unpopular truth about Prospects say \"Send me the proposal\" and vanish forever (70%+ ghost rate).:\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master No-Proposal-Without-Calendar Rule: Never email a quote without a 10-minute review slot booked on the call.\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-11-26T16:30:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
+      "predictiveScore": 91,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-22T12:14:42.609Z"
+    },
+    {
+      "id": "post-ag-1795349682609-1",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Unpopular truth about 10 best appointment setting companies 2027 - INQUIRER.net USA:\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master The Calm Isolation Loop: Validate -> Isolate (\"Aside from price, is there anything else holding you back?\") -> Solve.\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-11-26T09:00:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
+      "predictiveScore": 89,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-22T12:14:42.609Z"
+    },
+    {
+      "id": "post-ag-1795349682608-0",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Unpopular truth about 5 Steps To Sell High-Ticket Offers Without A Discovery Call - Forbes:\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master The 3-Layer Pain Ladder: Surface Problem -> Financial Cost -> Personal Urgency (\"Why fix this this quarter?\").\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "giveaway",
+      "scheduledAt": "2026-11-25T09:00:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
+      "predictiveScore": 95,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-22T12:14:42.608Z"
+    },
+    {
+      "id": "post-ag-1795331361931-3",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Unpopular truth about Reps panic and immediately discount price when they hear \"It's too expensive.\":\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master The 3-Layer Pain Ladder: Surface Problem -> Financial Cost -> Personal Urgency (\"Why fix this this quarter?\").\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-11-24T17:00:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
+      "predictiveScore": 89,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-22T07:09:21.931Z"
+    },
+    {
+      "id": "post-ag-1795331361930-2",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Unpopular truth about Prospects say \"Send me the proposal\" and vanish forever (70%+ ghost rate).:\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master No-Proposal-Without-Calendar Rule: Never email a quote without a 10-minute review slot booked on the call.\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-11-24T09:00:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
+      "predictiveScore": 91,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-22T07:09:21.930Z"
+    },
+    {
+      "id": "post-ag-1795331361929-1",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Unpopular truth about How do you answer \"I need to talk to my partner/spouse\" without sounding pushy?:\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master The Calm Isolation Loop: Validate -> Isolate (\"Aside from price, is there anything else holding you back?\") -> Solve.\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-11-23T16:30:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
+      "predictiveScore": 89,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-22T07:09:21.929Z"
+    },
+    {
+      "id": "post-ag-1795331361926-0",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Unpopular truth about Why 70% of prospects ghost right after saying \"Send me the proposal\":\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master The 3-Layer Pain Ladder: Surface Problem -> Financial Cost -> Personal Urgency (\"Why fix this this quarter?\").\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "giveaway",
+      "scheduledAt": "2026-11-23T09:00:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
+      "predictiveScore": 91,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-22T07:09:21.927Z"
+    },
+    {
+      "id": "post-1795284347054",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "You are quietly losing 60% of warm prospects in minute 4 of your ai agents & vibe coding process.\n\nMost beginners guess instead of following a system.\n\nTop 1% do this instead:\n1. Diagnose the exact bottleneck\n2. Prove the fix in 60 seconds\n3. Offer 1 free playbook\n\nSave this."
+      ],
+      "status": "published",
+      "format": "single",
+      "scheduledAt": "2026-11-22T11:00:00.000Z",
+      "frameworkName": "Silent Leak (Loss Aversion)",
+      "trigger": "Loss Aversion",
+      "predictiveScore": 86,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 5,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-21T18:05:47.054Z",
+      "publishedAt": "2026-11-22T12:13:07.864Z",
+      "xTweetIds": [
+        "sandbox-1795349587864-1"
+      ]
+    },
+    {
+      "id": "post-1795264020726",
+      "accountId": "acc-primary",
+      "blocks": [
+        "You are quietly losing 60% of warm prospects in the first 4 minutes of your sales call.\n\nPitching features before diagnosing urgency kills trust.\n\nTop closers do this instead:\n1. Quantify the cost of doing nothing\n2. Ask \"why solve this now?\"\n3. Pitch only the gap they named\n\nBookmark this before your next call."
+      ],
+      "status": "published",
+      "format": "single",
+      "scheduledAt": "2026-11-22T11:00:00.000Z",
+      "frameworkName": "Silent Leak (Loss Aversion)",
+      "trigger": "Loss Aversion",
+      "predictiveScore": 74,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "If you want the full call-recording vault + live roleplay drills I learned this from, check out the academy here -> https://whop.com/marketplace/high-ticket-sales-blueprint",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 5,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-whop-sales"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-21T12:27:00.726Z",
+      "publishedAt": "2026-11-22T12:13:07.864Z",
+      "xTweetIds": [
+        "sandbox-1795349587864-1"
+      ]
+    },
+    {
+      "id": "post-queued-1",
+      "accountId": "acc-primary",
+      "blocks": [
+        "I spent 38 hours dissecting 140 recorded $10k+ Zoom sales calls.\n\nPut every winning rebuttal into a free 12-page Playbook:\n• The 3-Layer Pain Discovery flow\n• Word-for-word scripts for Price, Partner & Proposal objections\n• 2-minute pre-call closer checklist\n\nComment \"CLOSE\" and I'll send you the full PDF free."
+      ],
+      "status": "published",
+      "format": "giveaway",
+      "scheduledAt": "2026-11-21T14:53:50.504Z",
+      "frameworkName": "S-Tier Comment-to-PDF Giveaway",
+      "trigger": "Hormozi Value Equation",
+      "predictiveScore": 93,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "Want instant access without waiting for a DM? Grab the interactive playbook + full Whop call vault here -> /r/high-ticket-objection-playbook",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 15,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 8,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-whop-sales",
+        "linkedLeadMagnetId": "lm-sales-playbook",
+        "linkedCarouselId": "car-1"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-21T06:53:50.504Z",
+      "publishedAt": "2026-11-21T15:08:34.438Z",
+      "xTweetIds": [
+        "sandbox-1795273714438-1"
+      ]
+    },
+    {
+      "id": "post-queued-2",
+      "accountId": "acc-primary",
+      "blocks": [
+        "You are quietly losing 60% of warm prospects in minute 4 of your sales call.\n\nPitching features before diagnosing urgency destroys authority.\n\nHere is the exact 3-Layer Pain Ladder S-tier closers run instead (bookmark this thread) 🧵👇",
+        "1/ Layer 1 — Surface Symptom:\n\nNever ask \"Tell me about your business.\"\n\nAsk: \"What made you book this call today instead of waiting another 3 months?\"\n\nNow the buyer tells you what actually hurts right now.",
+        "2/ Layer 2 — Quantified Cost of Inaction:\n\nFollow with: \"If this stays exactly the same for 6 months, what does it cost you in revenue or hours?\"\n\nNow your price is measured against the real cost of doing nothing.",
+        "3/ Layer 3 — Urgency Lock:\n\nFinish discovery with: \"On a 1–10 scale, how urgent is fixing this in the next 30 days?\"\n\nPitch only the gap they just named. Watch price objections drop by half."
+      ],
+      "status": "published",
+      "format": "thread",
+      "scheduledAt": "2026-11-22T05:53:50.504Z",
+      "frameworkName": "Silent Leak (Loss Aversion)",
+      "trigger": "Loss Aversion",
+      "predictiveScore": 89,
+      "automations": {
+        "threadDelayMinutes": 2,
+        "autoPlugEnabled": true,
+        "autoPlugText": "If you want to watch 47 real recorded $10k+ calls using this exact discovery flow -> https://whop.com/marketplace/high-ticket-sales-blueprint",
+        "autoPlugDelayMinutes": 15,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 28,
+        "linkedOfferId": "offer-whop-sales"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-21T08:53:50.504Z",
+      "publishedAt": "2026-11-22T06:23:10.010Z",
+      "xTweetIds": [
+        "sandbox-1795328590010-1",
+        "sandbox-1795328590010-2",
+        "sandbox-1795328590010-3",
+        "sandbox-1795328590010-4"
+      ]
+    },
+    {
+      "id": "post-draft-1",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Unpopular truth about high-ticket sales:\n\n\"Always be closing\" ruins more $5k+ deals than it saves.\n\nAfter auditing 200+ calls, here is what actually converts:\n\n→ Disqualify fast to build instant status\n→ Talk less than 35% of the call\n→ Let the buyer argue for the solution\n\nWhich mistake do you see most often?"
+      ],
+      "status": "draft",
+      "format": "single",
+      "frameworkName": "Contrarian Truth + Proof",
+      "trigger": "Contrarian Proof",
+      "predictiveScore": 87,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": false,
+        "autoPlugText": "",
+        "autoPlugDelayMinutes": 30,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": false,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-21T09:53:50.504Z"
+    },
+    {
+      "id": "post-pub-1",
+      "accountId": "acc-primary",
+      "blocks": [
+        "70% of prospects ghost the moment you hear \"Send me the proposal.\"\n\nNever hang up without locking a 10-minute review call.\n\nUse this 1-line script:\n\"Happy to send it — let's lock 10 minutes Thursday at 2pm so nothing sits unanswered.\"\n\nBookmark this before your next Zoom."
+      ],
+      "status": "published",
+      "format": "single",
+      "publishedAt": "2026-10-28T11:53:50.504Z",
+      "frameworkName": "Silent Leak (Loss Aversion)",
+      "trigger": "Loss Aversion",
+      "predictiveScore": 91,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "Full 12-page Objection Playbook free -> /r/high-ticket-objection-playbook",
+        "autoPlugDelayMinutes": 20,
+        "autoPlugMinLikes": 15,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-whop-sales"
+      },
+      "metrics": {
+        "impressions": 42800,
+        "likes": 618,
+        "retweets": 124,
+        "replies": 86,
+        "bookmarks": 540,
+        "offerClicks": 112
+      },
+      "xTweetIds": [
+        "sandbox-1001"
+      ],
+      "createdAt": "2026-10-27T11:53:50.504Z"
+    },
+    {
+      "id": "post-pub-2",
+      "accountId": "acc-primary",
+      "blocks": [
+        "I compiled all 27 cold DM openers that booked 140+ qualified calls without a single spam pitch.\n\nInside the free PDF:\n• The 1-line observation opener\n• The 60-second Loom teardown DM\n• Exact transition from chat to calendar\n\nComment \"SCRIPTS\" and I'll DM you the playbook."
+      ],
+      "status": "published",
+      "format": "giveaway",
+      "publishedAt": "2026-11-13T11:53:50.504Z",
+      "frameworkName": "S-Tier Comment-to-PDF Giveaway",
+      "trigger": "Hormozi Value Equation",
+      "predictiveScore": 94,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "Grab all 27 scripts immediately -> https://whop.com/marketplace/27-dm-closing-scripts",
+        "autoPlugDelayMinutes": 30,
+        "autoPlugMinLikes": 20,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 8,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-dm-scripts"
+      },
+      "metrics": {
+        "impressions": 68400,
+        "likes": 892,
+        "retweets": 184,
+        "replies": 312,
+        "bookmarks": 790,
+        "offerClicks": 196
+      },
+      "xTweetIds": [
+        "sandbox-1002"
+      ],
+      "createdAt": "2026-11-12T11:53:50.504Z"
+    },
+    {
+      "id": "post-pub-3",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Amateur closers memorize 40 aggressive rebuttal lines.\n\nS-tier closers ask 3 calm questions in minute 5 so the objection never appears.\n\nThe difference isn't confidence. It's diagnosis."
+      ],
+      "status": "published",
+      "format": "single",
+      "publishedAt": "2026-11-17T11:53:50.504Z",
+      "frameworkName": "Old Way vs. S-Tier Way",
+      "trigger": "Pattern Interrupt",
+      "predictiveScore": 84,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": false,
+        "autoPlugText": "",
+        "autoPlugDelayMinutes": 30,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": false,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21
+      },
+      "metrics": {
+        "impressions": 19200,
+        "likes": 304,
+        "retweets": 52,
+        "replies": 34,
+        "bookmarks": 178,
+        "offerClicks": 28
+      },
+      "xTweetIds": [
+        "sandbox-1003"
+      ],
+      "createdAt": "2026-11-16T11:53:50.504Z"
+    }
+  ],
+  "queueSlots": [
+    {
+      "id": "slot-mon-1",
+      "dayOfWeek": 1,
+      "time": "09:00",
+      "label": "Morning Authority",
+      "enabled": true
+    },
+    {
+      "id": "slot-mon-2",
+      "dayOfWeek": 1,
+      "time": "16:30",
+      "label": "Afternoon Engagement",
+      "enabled": true
+    },
+    {
+      "id": "slot-tue-1",
+      "dayOfWeek": 2,
+      "time": "09:00",
+      "label": "Thread / Carousel",
+      "enabled": true
+    },
+    {
+      "id": "slot-tue-2",
+      "dayOfWeek": 2,
+      "time": "17:00",
+      "label": "Afternoon Insight",
+      "enabled": true
+    },
+    {
+      "id": "slot-wed-1",
+      "dayOfWeek": 3,
+      "time": "09:00",
+      "label": "PDF Giveaway Drop",
+      "enabled": true
+    },
+    {
+      "id": "slot-thu-1",
+      "dayOfWeek": 4,
+      "time": "09:00",
+      "label": "Contrarian Take",
+      "enabled": true
+    },
+    {
+      "id": "slot-thu-2",
+      "dayOfWeek": 4,
+      "time": "16:30",
+      "label": "Case Study",
+      "enabled": true
+    },
+    {
+      "id": "slot-fri-1",
+      "dayOfWeek": 5,
+      "time": "09:30",
+      "label": "Weekly Playbook",
+      "enabled": true
+    },
+    {
+      "id": "slot-sat-1",
+      "dayOfWeek": 6,
+      "time": "11:00",
+      "label": "Evergreen Hit",
+      "enabled": true
+    },
+    {
+      "id": "slot-sun-1",
+      "dayOfWeek": 0,
+      "time": "11:00",
+      "label": "Sunday Reflection",
+      "enabled": true
+    }
+  ],
+  "viralTweets": [
+    {
+      "id": "vt-1",
+      "authorName": "Elena Vance",
+      "authorHandle": "@elenasellsb2b",
+      "authorAvatar": "/src/assets/images/avatar_founder_one_1795259546935.jpg",
+      "niche": "High-Ticket Sales",
+      "format": "single",
+      "text": "I listened to 100 failed $10k sales calls last month.\n\n84 of them died for the exact same reason:\n\nThe rep answered \"What's the price?\" before the buyer admitted how much the problem was costing them.\n\nFix discovery and closing becomes easy.",
+      "likes": 4820,
+      "retweets": 890,
+      "bookmarks": 3910,
+      "outlierMultiplier": 11.4,
+      "hookFormula": "Credible Sample Size + Single Root Cause",
+      "trigger": "Loss Aversion",
+      "anatomyNotes": "Opens with hard proof (100 calls), narrows to 1 unmistakable mistake (84/100), ends on a memorable 7-word takeaway.",
+      "isStaffPick": true,
+      "isDailyInspiration": true,
+      "collectionIds": [
+        "col-hooks"
+      ]
+    },
+    {
+      "id": "vt-2",
+      "authorName": "Marcus Reid",
+      "authorHandle": "@marcusgrowth",
+      "authorAvatar": "/src/assets/images/avatar_founder_two_1795259546979.jpg",
+      "niche": "Digital Products & Whop",
+      "format": "thread",
+      "text": "You don't need 100,000 followers to make $10,000/month selling digital products on X.\n\nYou need 1 specific niche, 1 free $97-quality PDF playbook, and 2 comment giveaways per week.\n\nHere is the exact 5-step funnel (steal every template) 🧵👇",
+      "likes": 7310,
+      "retweets": 1420,
+      "bookmarks": 6840,
+      "outlierMultiplier": 14.8,
+      "hookFormula": "Myth Bust + Simple 3-Part Formula",
+      "trigger": "Hormozi Value Equation",
+      "anatomyNotes": "Destroys the \"I need huge followers\" objection in line 1, simplifies the system into 3 concrete pieces, promises stealable templates.",
+      "isStaffPick": true,
+      "isDailyInspiration": true,
+      "collectionIds": [
+        "col-giveaways"
+      ]
+    },
+    {
+      "id": "vt-3",
+      "authorName": "Devon Brooks",
+      "authorHandle": "@devonbuildsai",
+      "authorAvatar": "/src/assets/images/avatar_founder_two_1795259546979.jpg",
+      "niche": "AI & GitHub",
+      "format": "single",
+      "text": "Stop paying $200/month for 5 separate AI subscriptions.\n\nThese 4 open-source GitHub repos run locally on your laptop for $0:\n\n1. Automated niche news radar\n2. Copywriting scorer & A/B tester\n3. Slide carousel generator\n4. PDF playbook studio\n\nComment \"FREE\" and I'll DM you the links.",
+      "likes": 9140,
+      "retweets": 2110,
+      "bookmarks": 8420,
+      "outlierMultiplier": 18.2,
+      "hookFormula": "Stop Paying $X + Free Open-Source Stack",
+      "trigger": "Loss Aversion",
+      "anatomyNotes": "Instant wallet-pain hook (\"Stop paying $200/month\"), clean numbered list, low-friction 1-word comment CTA.",
+      "isStaffPick": true,
+      "isDailyInspiration": false,
+      "collectionIds": [
+        "col-giveaways"
+      ]
+    },
+    {
+      "id": "vt-4",
+      "authorName": "Claire Thornton",
+      "authorHandle": "@clairerealestate",
+      "authorAvatar": "/src/assets/images/avatar_founder_one_1795259546935.jpg",
+      "niche": "Real Estate",
+      "format": "thread",
+      "text": "First-time investors lose $30,000+ on their first rental because they trust Zillow estimates instead of running 4 real numbers.\n\nI built a 1-page Deal Analyzer checklist after 19 doors.\n\nHere is the exact math every broker skips 🧵👇",
+      "likes": 3490,
+      "retweets": 640,
+      "bookmarks": 3120,
+      "outlierMultiplier": 9.6,
+      "hookFormula": "Dollar Loss Warning + Specific Checklist",
+      "trigger": "Curiosity Gap",
+      "anatomyNotes": "Names exact audience (\"First-time investors\"), quantifies dollar risk ($30,000+), anchors authority (\"19 doors\").",
+      "isStaffPick": false,
+      "isDailyInspiration": true,
+      "collectionIds": [
+        "col-hooks"
+      ]
+    }
+  ],
+  "collections": [
+    {
+      "id": "col-hooks",
+      "name": "High-Retention Hooks",
+      "description": "Outlier openers with 9x+ reach multipliers"
+    },
+    {
+      "id": "col-giveaways",
+      "name": "Comment-to-PDF Winners",
+      "description": "Proven giveaway posts that convert to Whop offers"
+    }
+  ],
+  "autoDmCampaigns": [
+    {
+      "id": "dm-1",
+      "name": "Objection Playbook PDF Giveaway",
+      "postId": "post-queued-1",
+      "triggerKeyword": "CLOSE",
+      "requireFollow": true,
+      "requireLike": true,
+      "leadMagnetId": "lm-sales-playbook",
+      "offerId": "offer-whop-sales",
+      "dmTemplate": "Hey {{name}}! Here is the 2026 High-Ticket Objection & Discovery Playbook PDF you commented for -> {{smartLink}}\n\nQuick question: what objection hits you most on calls right now (price, partner, or \"send proposal\")?",
+      "active": true,
+      "sentCount": 84,
+      "pendingCommenters": [
+        {
+          "id": "c-1",
+          "handle": "@jordansets",
+          "name": "Jordan",
+          "commentText": "CLOSE — need the partner rebuttal badly!",
+          "sent": false,
+          "commentedAt": "2026-11-21T10:53:50.504Z"
+        },
+        {
+          "id": "c-2",
+          "handle": "@sam_b2b",
+          "name": "Sam",
+          "commentText": "CLOSE please!",
+          "sent": false,
+          "commentedAt": "2026-11-21T09:53:50.504Z"
+        },
+        {
+          "id": "c-3",
+          "handle": "@kylecloser",
+          "name": "Kyle",
+          "commentText": "CLOSE",
+          "sent": true,
+          "commentedAt": "2026-11-21T05:53:50.504Z"
+        }
+      ],
+      "createdAt": "2026-11-15T11:53:50.504Z"
+    }
+  ],
+  "crmLists": [
+    {
+      "id": "list-buyers",
+      "name": "Warm PDF Leads",
+      "description": "Commented on lead-magnet giveaways & clicked Whop offer"
+    },
+    {
+      "id": "list-authority",
+      "name": "S-Tier Niche Creators",
+      "description": "High-profile accounts to reply to daily for visibility"
+    }
+  ],
+  "crmContacts": [
+    {
+      "id": "crm-1",
+      "name": "Elena Vance",
+      "handle": "@elenasellsb2b",
+      "avatarUrl": "/src/assets/images/avatar_founder_one_1795259546935.jpg",
+      "bio": "VP Sales Advisor · Helping B2B closers scale past $15k/mo",
+      "followers": 48200,
+      "listId": "list-authority",
+      "stage": "Engaged",
+      "notes": "Replied to her discovery thread twice — high visibility audience overlap.",
+      "latestTweet": "Hot take: Your close rate isn't a script problem, it's a lead qualification problem.",
+      "lastInteractedAt": "2026-11-21T06:53:50.504Z"
+    },
+    {
+      "id": "crm-2",
+      "name": "Jordan Alvarez",
+      "handle": "@jordansets",
+      "avatarUrl": "/src/assets/images/avatar_founder_two_1795259546979.jpg",
+      "bio": "Remote Appointment Setter -> moving into High-Ticket Closing",
+      "followers": 1240,
+      "listId": "list-buyers",
+      "stage": "DM Sent",
+      "notes": "Commented CLOSE on Objection Playbook giveaway; asked about live roleplay drills.",
+      "latestTweet": "Just booked 6 discovery calls this week — trying to level up my objection handling before taking my first close.",
+      "lastInteractedAt": "2026-11-21T09:53:50.504Z"
+    },
+    {
+      "id": "crm-3",
+      "name": "Marcus Reid",
+      "handle": "@marcusgrowth",
+      "avatarUrl": "/src/assets/images/avatar_founder_two_1795259546979.jpg",
+      "bio": "Building $50k/mo digital product ecosystems on Whop & X",
+      "followers": 62500,
+      "listId": "list-authority",
+      "stage": "Engaged",
+      "notes": "Top creator in Whop digital products — great account for insightful morning replies.",
+      "latestTweet": "Every creator should have 1 killer free PDF that solves 1 painful problem better than paid courses.",
+      "lastInteractedAt": "2026-11-20T11:53:50.504Z"
+    },
+    {
+      "id": "crm-4",
+      "name": "Tessa Patel",
+      "handle": "@tessacloses",
+      "avatarUrl": "/src/assets/images/avatar_founder_one_1795259546935.jpg",
+      "bio": "B2B AE & SaaS Sales Coach",
+      "followers": 6890,
+      "listId": "list-buyers",
+      "stage": "Buyer",
+      "notes": "Downloaded Objection Playbook PDF and joined High-Ticket Closing Academy via Whop link.",
+      "latestTweet": "The 3-Layer Pain Ladder saved a $12k deal for me this morning.",
+      "lastInteractedAt": "2026-11-19T11:53:50.504Z"
+    }
+  ],
+  "analytics": [
+    {
+      "date": "2026-10-23",
+      "followers": 1420,
+      "impressions": 4200,
+      "engagements": 176,
+      "profileVisits": 76,
+      "offerClicks": 32
+    },
+    {
+      "date": "2026-10-24",
+      "followers": 1471,
+      "impressions": 5521,
+      "engagements": 254,
+      "profileVisits": 99,
+      "offerClicks": 19
+    },
+    {
+      "date": "2026-10-25",
+      "followers": 1499,
+      "impressions": 6842,
+      "engagements": 342,
+      "profileVisits": 123,
+      "offerClicks": 23
+    },
+    {
+      "date": "2026-10-26",
+      "followers": 1527,
+      "impressions": 8163,
+      "engagements": 441,
+      "profileVisits": 147,
+      "offerClicks": 28
+    },
+    {
+      "date": "2026-10-27",
+      "followers": 1578,
+      "impressions": 6084,
+      "engagements": 353,
+      "profileVisits": 110,
+      "offerClicks": 21
+    },
+    {
+      "date": "2026-10-28",
+      "followers": 1606,
+      "impressions": 7405,
+      "engagements": 311,
+      "profileVisits": 133,
+      "offerClicks": 25
+    },
+    {
+      "date": "2026-10-29",
+      "followers": 1634,
+      "impressions": 8726,
+      "engagements": 401,
+      "profileVisits": 157,
+      "offerClicks": 48
+    },
+    {
+      "date": "2026-10-30",
+      "followers": 1662,
+      "impressions": 10047,
+      "engagements": 502,
+      "profileVisits": 181,
+      "offerClicks": 34
+    },
+    {
+      "date": "2026-10-31",
+      "followers": 1713,
+      "impressions": 7968,
+      "engagements": 430,
+      "profileVisits": 143,
+      "offerClicks": 27
+    },
+    {
+      "date": "2026-11-01",
+      "followers": 1741,
+      "impressions": 9289,
+      "engagements": 539,
+      "profileVisits": 167,
+      "offerClicks": 32
+    },
+    {
+      "date": "2026-11-02",
+      "followers": 1769,
+      "impressions": 10610,
+      "engagements": 446,
+      "profileVisits": 191,
+      "offerClicks": 36
+    },
+    {
+      "date": "2026-11-03",
+      "followers": 1797,
+      "impressions": 11931,
+      "engagements": 549,
+      "profileVisits": 215,
+      "offerClicks": 41
+    },
+    {
+      "date": "2026-11-04",
+      "followers": 1848,
+      "impressions": 9852,
+      "engagements": 493,
+      "profileVisits": 177,
+      "offerClicks": 52
+    },
+    {
+      "date": "2026-11-05",
+      "followers": 1876,
+      "impressions": 11173,
+      "engagements": 603,
+      "profileVisits": 201,
+      "offerClicks": 38
+    },
+    {
+      "date": "2026-11-06",
+      "followers": 1904,
+      "impressions": 12494,
+      "engagements": 725,
+      "profileVisits": 225,
+      "offerClicks": 43
+    },
+    {
+      "date": "2026-11-07",
+      "followers": 1932,
+      "impressions": 10415,
+      "engagements": 437,
+      "profileVisits": 187,
+      "offerClicks": 36
+    },
+    {
+      "date": "2026-11-08",
+      "followers": 1983,
+      "impressions": 11736,
+      "engagements": 540,
+      "profileVisits": 211,
+      "offerClicks": 40
+    },
+    {
+      "date": "2026-11-09",
+      "followers": 2011,
+      "impressions": 13057,
+      "engagements": 653,
+      "profileVisits": 235,
+      "offerClicks": 45
+    },
+    {
+      "date": "2026-11-10",
+      "followers": 2039,
+      "impressions": 14378,
+      "engagements": 776,
+      "profileVisits": 259,
+      "offerClicks": 67
+    },
+    {
+      "date": "2026-11-11",
+      "followers": 2067,
+      "impressions": 12299,
+      "engagements": 713,
+      "profileVisits": 221,
+      "offerClicks": 42
+    },
+    {
+      "date": "2026-11-12",
+      "followers": 2118,
+      "impressions": 13620,
+      "engagements": 572,
+      "profileVisits": 245,
+      "offerClicks": 47
+    },
+    {
+      "date": "2026-11-13",
+      "followers": 2146,
+      "impressions": 14941,
+      "engagements": 687,
+      "profileVisits": 269,
+      "offerClicks": 51
+    },
+    {
+      "date": "2026-11-14",
+      "followers": 2174,
+      "impressions": 16262,
+      "engagements": 813,
+      "profileVisits": 293,
+      "offerClicks": 56
+    },
+    {
+      "date": "2026-11-15",
+      "followers": 2202,
+      "impressions": 14183,
+      "engagements": 766,
+      "profileVisits": 255,
+      "offerClicks": 48
+    },
+    {
+      "date": "2026-11-16",
+      "followers": 2253,
+      "impressions": 15504,
+      "engagements": 899,
+      "profileVisits": 279,
+      "offerClicks": 71
+    },
+    {
+      "date": "2026-11-17",
+      "followers": 2281,
+      "impressions": 16825,
+      "engagements": 707,
+      "profileVisits": 303,
+      "offerClicks": 58
+    },
+    {
+      "date": "2026-11-18",
+      "followers": 2309,
+      "impressions": 18146,
+      "engagements": 835,
+      "profileVisits": 327,
+      "offerClicks": 62
+    },
+    {
+      "date": "2026-11-19",
+      "followers": 2360,
+      "impressions": 16067,
+      "engagements": 803,
+      "profileVisits": 289,
+      "offerClicks": 55
+    },
+    {
+      "date": "2026-11-20",
+      "followers": 2388,
+      "impressions": 17388,
+      "engagements": 939,
+      "profileVisits": 313,
+      "offerClicks": 59
+    },
+    {
+      "date": "2026-11-21",
+      "followers": 2416,
+      "impressions": 18709,
+      "engagements": 1085,
+      "profileVisits": 337,
+      "offerClicks": 64
+    }
+  ],
+  "antigravityTasks": [
+    {
+      "id": "ag-seed-1",
+      "type": "weekly-autopilot",
+      "title": "Weekly S-Tier Content Batch (5 Posts, 2 Threads, 1 Carousel)",
+      "status": "pending",
+      "promptForIde": "Read antigravity-sync/tasks.json (task ag-seed-1). Using Gemini 3.8 Flash, write high-converting X posts, a thread, and carousel slides strictly following the Brand Brain, Authority Dossier, and Copywriting Frameworks inside contextPayload, avoiding all banned clichés. Save the finished JSON into antigravity-sync/results.json using the exact output schema.",
+      "contextPayload": {
+        "niche": "High-Ticket Sales",
+        "offerName": "High-Ticket Closing Academy (Whop Affiliate)",
+        "targetCount": 5
+      },
+      "createdAt": "2026-11-21T08:53:50.504Z"
+    }
+  ],
+  "automationLogs": [
+    {
+      "id": "log-plug-1795349587864-2",
+      "timestamp": "2026-11-22T12:13:07.864Z",
+      "type": "auto-plug",
+      "mode": "sandbox",
+      "postId": "post-1795264020726",
+      "message": "Auto-Plug armed (+25m delay) with Offer CTA."
+    },
+    {
+      "id": "log-1795349587864-2",
+      "timestamp": "2026-11-22T12:13:07.864Z",
+      "type": "publish",
+      "mode": "sandbox",
+      "postId": "post-1795264020726",
+      "message": "Published single (1 tweet) via Safe Sandbox."
+    },
+    {
+      "id": "log-plug-1795349587864-1",
+      "timestamp": "2026-11-22T12:13:07.864Z",
+      "type": "auto-plug",
+      "mode": "sandbox",
+      "postId": "post-1795284347054",
+      "message": "Auto-Plug armed (+25m delay) with Offer CTA."
+    },
+    {
+      "id": "log-1795349587864-1",
+      "timestamp": "2026-11-22T12:13:07.864Z",
+      "type": "publish",
+      "mode": "sandbox",
+      "postId": "post-1795284347054",
+      "message": "Published single (1 tweet) via Safe Sandbox."
+    },
+    {
+      "id": "log-plug-1795328590010-1",
+      "timestamp": "2026-11-22T06:23:10.010Z",
+      "type": "auto-plug",
+      "mode": "sandbox",
+      "postId": "post-queued-2",
+      "message": "Auto-Plug armed (+15m delay) with Offer CTA."
+    },
+    {
+      "id": "log-1795328590010-1",
+      "timestamp": "2026-11-22T06:23:10.010Z",
+      "type": "publish",
+      "mode": "sandbox",
+      "postId": "post-queued-2",
+      "message": "Published thread (4 tweets) via Safe Sandbox."
+    },
+    {
+      "id": "log-plug-1795273714438-1",
+      "timestamp": "2026-11-21T15:08:34.438Z",
+      "type": "auto-plug",
+      "mode": "sandbox",
+      "postId": "post-queued-1",
+      "message": "Auto-Plug armed (+25m delay) with Offer CTA."
+    },
+    {
+      "id": "log-1795273714438-1",
+      "timestamp": "2026-11-21T15:08:34.438Z",
+      "type": "publish",
+      "mode": "sandbox",
+      "postId": "post-queued-1",
+      "message": "Published giveaway (1 tweet) via Safe Sandbox."
+    },
+    {
+      "id": "log-1",
+      "timestamp": "2026-11-21T10:53:50.504Z",
+      "type": "scheduler",
+      "mode": "sandbox",
+      "message": "Background scheduler checked queue — 2 posts armed and waiting for their next slot."
+    },
+    {
+      "id": "log-2",
+      "timestamp": "2026-11-21T03:53:50.504Z",
+      "type": "auto-plug",
+      "mode": "sandbox",
+      "message": "Auto-Plug triggered on \"27 Cold DM Openers\" (+196 offer clicks tracked).",
+      "postId": "post-pub-2"
+    },
+    {
+      "id": "log-3",
+      "timestamp": "2026-11-20T11:53:50.504Z",
+      "type": "auto-rt",
+      "mode": "sandbox",
+      "message": "Auto-Retweet boosted top giveaway post to US/EU afternoon timezone.",
+      "postId": "post-pub-2"
+    }
+  ],
+  "globalAutomationDefaults": {
+    "autoPlugEnabled": true,
+    "autoPlugDelayMinutes": 25,
+    "autoRetweetEnabled": true,
+    "autoRetweetDelayHours": 6,
+    "autoUnretweetAfterHours": 24,
+    "evergreenEnabled": true,
+    "evergreenIntervalDays": 21,
+    "autoDeleteEnabled": false,
+    "autoDeleteAfterHours": 72
+  }
+}
