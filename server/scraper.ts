@@ -310,49 +310,82 @@ async function fetchCustomRss(urls: string[], niche: string): Promise<RadarItem[
 }
 
 async function fetchBlueskySignals(niche: string): Promise<RadarItem[]> {
+  const core = niche
+    .replace(/[^a-zA-Z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter((w) => w.length > 2)
+    .slice(0, 3)
+    .join(' ');
+  const q = encodeURIComponent(core || niche);
+
+  // 1. Try direct Bluesky Public XRPC search first
   try {
-    const core = niche
-      .replace(/[^a-zA-Z0-9\s]/g, ' ')
-      .split(/\s+/)
-      .filter((w) => w.length > 2)
-      .slice(0, 3)
-      .join(' ');
-    const q = encodeURIComponent(core || niche);
     const res = await fetchWithTimeout(
       `https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=${q}&sort=top&limit=4`,
       { Accept: 'application/json' },
+      3000
+    );
+    if (res.ok) {
+      const data = (await res.json()) as {
+        posts?: Array<{
+          uri?: string;
+          author?: { handle?: string; displayName?: string };
+          record?: { text?: string; createdAt?: string };
+          likeCount?: number;
+          replyCount?: number;
+        }>;
+      };
+      const livePosts = (data.posts || [])
+        .filter((p) => (p.record?.text || '').trim().length >= 30)
+        .slice(0, 3)
+        .map((p, idx) => {
+          const text = (p.record?.text || '').replace(/\s+/g, ' ').trim();
+          const rkey = (p.uri || '').split('/').pop() || '';
+          const handle = p.author?.handle || 'bsky.social';
+          return {
+            id: `bsky-${Date.now()}-${idx}`,
+            source: 'Bluesky Live' as const,
+            sourceDetail: `@${handle} · ${p.likeCount || 0} likes · ${p.replyCount || 0} replies`,
+            title: text.slice(0, 120) + (text.length > 120 ? '…' : ''),
+            summary: `Live public social angle on "${core || niche}" — turn this debate into a contrarian X post or thread.`,
+            url: rkey ? `https://bsky.app/profile/${handle}/post/${rkey}` : 'https://bsky.app',
+            niche,
+            signalScore: Math.min(96, 81 + Math.min(14, Math.round(((p.likeCount || 0) + (p.replyCount || 0) * 3) / 5))),
+            publishedAt: p.record?.createdAt || new Date().toISOString(),
+            painPointTag: 'Live Social Debate',
+          };
+        });
+      if (livePosts.length > 0) return livePosts;
+    }
+  } catch {
+    // Fall back to cloud-safe indexed social search below
+  }
+
+  // 2. Cloud-safe $0 fallback: live indexed Bluesky & X viral discussions via Google News RSS
+  try {
+    const rssQuery = encodeURIComponent(`(site:x.com OR site:bsky.app) ${core || niche}`);
+    const rssRes = await fetchWithTimeout(
+      `https://news.google.com/rss/search?q=${rssQuery}&hl=en-US&gl=US&ceid=US:en`,
+      {},
       5000
     );
-    if (!res.ok) return [];
-    const data = (await res.json()) as {
-      posts?: Array<{
-        uri?: string;
-        author?: { handle?: string; displayName?: string };
-        record?: { text?: string; createdAt?: string };
-        likeCount?: number;
-        replyCount?: number;
-      }>;
-    };
-    return (data.posts || [])
-      .filter((p) => (p.record?.text || '').trim().length >= 30)
-      .slice(0, 3)
-      .map((p, idx) => {
-        const text = (p.record?.text || '').replace(/\s+/g, ' ').trim();
-        const rkey = (p.uri || '').split('/').pop() || '';
-        const handle = p.author?.handle || 'bsky.social';
-        return {
-          id: `bsky-${Date.now()}-${idx}`,
-          source: 'Bluesky Live' as const,
-          sourceDetail: `@${handle} · ${p.likeCount || 0} likes · ${p.replyCount || 0} replies`,
-          title: text.slice(0, 120) + (text.length > 120 ? '…' : ''),
-          summary: `Live public social angle on "${core || niche}" — turn this debate into a contrarian X post or thread.`,
-          url: rkey ? `https://bsky.app/profile/${handle}/post/${rkey}` : 'https://bsky.app',
-          niche,
-          signalScore: Math.min(96, 81 + Math.min(14, Math.round(((p.likeCount || 0) + (p.replyCount || 0) * 3) / 5))),
-          publishedAt: p.record?.createdAt || new Date().toISOString(),
-          painPointTag: 'Live Social Debate',
-        };
-      });
+    if (!rssRes.ok) return [];
+    const xml = await rssRes.text();
+    const parsed = parseRssItems(xml, 3);
+    return parsed
+      .filter((item) => item.title)
+      .map((item, idx) => ({
+        id: `bsky-rss-${Date.now()}-${idx}`,
+        source: 'Bluesky Live' as const,
+        sourceDetail: `Live Social Thread (X / Bluesky)`,
+        title: item.title.replace(/\s*-\s*(X|Twitter|Bluesky)$/i, '').trim(),
+        summary: `Trending social conversation in ${niche} — tap Write Post to quote, counter, or expand this angle.`,
+        url: item.link || 'https://bsky.app',
+        niche,
+        signalScore: Math.max(82, 94 - idx * 3),
+        publishedAt: new Date(item.pubDate).toISOString() || new Date().toISOString(),
+        painPointTag: 'Live Social Debate',
+      }));
   } catch {
     return [];
   }
@@ -530,7 +563,7 @@ async function tryExtractYoutubeTranscript(cleanUrl: string, videoId: string): P
     const pageRes = await fetchWithTimeout(
       `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`,
       { 'Accept-Language': 'en-US,en;q=0.9' },
-      6500
+      2800
     );
     if (!pageRes.ok) return null;
     const html = await pageRes.text();

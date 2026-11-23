@@ -342,6 +342,331 @@
   },
   "radarItems": [
     {
+      "id": "bsky-rss-1795393554344-0",
+      "source": "Bluesky Live",
+      "sourceDetail": "Live Social Thread (X / Bluesky)",
+      "title": "all our agents at langchain (internal GTM & content agents, LangSmith Engine) have a learning loop with similar pieces wrote about what we think makes up a \"knowledge factory\" https://t.co/xaAZb5i79q",
+      "summary": "Trending social conversation in AI Agents — tap Write Post to quote, counter, or expand this angle.",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1MNGlHdGc1OVgyenc0MG52TTluWF8waVpvM0ozQ1RzNWFxTDdwNkJpM1BRTWZMWTZhcVIzMjdlSkRoMFRRYTllYlpiaThzMFFvQ1JWdWJWU1p5Wk5oNmY0?oc=5",
+      "niche": "AI Agents",
+      "signalScore": 94,
+      "publishedAt": "2026-11-21T16:40:42.000Z",
+      "painPointTag": "Live Social Debate",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gh-826170402-1795393554390",
+      "source": "GitHub Trending",
+      "sourceDetail": "19,913 ★ · Java",
+      "title": "elizaOS/eliza — Trending open-source repository",
+      "summary": "Open source agentic operating system",
+      "url": "https://github.com/elizaOS/eliza",
+      "niche": "AI Agents",
+      "signalScore": 92,
+      "publishedAt": "2026-11-23T00:25:37Z",
+      "painPointTag": "Breakout Tool / Repo",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "bsky-rss-1795393554344-1",
+      "source": "Bluesky Live",
+      "sourceDetail": "Live Social Thread (X / Bluesky)",
+      "title": "ICE is completely and totally out of control. Like many Americans, I’m outraged by masked agents, who do not identify themselves, dragging people off jetways as they board a flight, creating chaos in our communities. Today’s actions at Seattle-Tacoma Internat",
+      "summary": "Trending social conversation in AI Agents — tap Write Post to quote, counter, or expand this angle.",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9TLUJ3ai1Rb0pWdUdhdkotMWotTEZ1YkMxc292cW1JY1ZZY3lyYWVuaHBPakRZd2JmYVBzeEh2TjdPMURTNHFDaV9tXzc4eEtzVUw5NVpWX0tXR09HSGxidVVsQXFxUQ?oc=5",
+      "niche": "AI Agents",
+      "signalScore": 91,
+      "publishedAt": "2026-11-21T20:49:02.000Z",
+      "painPointTag": "Live Social Debate",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "bsky-rss-1795393554344-2",
+      "source": "Bluesky Live",
+      "sourceDetail": "Live Social Thread (X / Bluesky)",
+      "title": "This morning, masked ICE agents detained at least one passenger waiting to board an Alaska Airlines flight at Sea-Tac Airport. The masked agents forcibly dragged the individual off the jet bridge, taking them into custody. Let me be clear: this is absolutely una",
+      "summary": "Trending social conversation in AI Agents — tap Write Post to quote, counter, or expand this angle.",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1abGNhSnVKdXNoVnMwQ19iVVB4VjdDS1VFMHF5dnp3U1EtQ0ljSHdHVXhoQU40RlpWZDNsT0k4bW5McjZmWm5hTmpKWWI0V1RqZFdkRmJJOHlxQVpWV0ZqWGdFTQ?oc=5",
+      "niche": "AI Agents",
+      "signalScore": 88,
+      "publishedAt": "2026-11-21T22:49:46.000Z",
+      "painPointTag": "Live Social Debate",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gh-1337168270-1795393554416",
+      "source": "GitHub Trending",
+      "sourceDetail": "152 ★ · Python",
+      "title": "ldbumble/taskuary — Trending open-source repository",
+      "summary": "Your AI work partner. Mail, chats and tickets become one list in the right order; your agents do the work, and nothing goes out until you approve. Free, open source, runs on your computer.",
+      "url": "https://github.com/ldbumble/taskuary",
+      "niche": "AI Agents",
+      "signalScore": 88,
+      "publishedAt": "2026-11-23T00:22:52Z",
+      "painPointTag": "Breakout Tool / Repo",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gh-1102340385-1795393554416",
+      "source": "GitHub Trending",
+      "sourceDetail": "766 ★ · Rust",
+      "title": "zavora-ai/adk-rust — Trending open-source repository",
+      "summary": "Rust Agent Development Kit (ADK-Rust): Build AI agents in Rust with modular components for models, tools, memory, realtime voice, and more. ADK-Rust is a flexible framework for developing AI agents with simplicity and power. Model-agnostic, deployment-agnostic, optimized for frontier AI models. Includes support for real-time voice agents.",
+      "url": "https://github.com/zavora-ai/adk-rust",
+      "niche": "AI Agents",
+      "signalScore": 86,
+      "publishedAt": "2026-11-23T00:24:11Z",
+      "painPointTag": "Breakout Tool / Repo",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "ph-1795393554036-1",
+      "source": "Product Hunt",
+      "sourceDetail": "Product Hunt Launch Feed",
+      "title": "Omi CLI",
+      "summary": "AI coding agents that work while you're away.",
+      "url": "https://www.producthunt.com/products/omi-cli",
+      "niche": "AI Agents",
+      "signalScore": 84,
+      "publishedAt": "2026-11-23T00:25:54.036Z",
+      "painPointTag": "Trending Tool Launch",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "ph-1795393554036-3",
+      "source": "Product Hunt",
+      "sourceDetail": "Product Hunt Launch Feed",
+      "title": "Webless Agents",
+      "summary": "Agents you want to put in front of customers",
+      "url": "https://www.producthunt.com/products/webless",
+      "niche": "AI Agents",
+      "signalScore": 84,
+      "publishedAt": "2026-11-23T00:25:54.036Z",
+      "painPointTag": "Trending Tool Launch",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "hn-50605688-1795393554347",
+      "source": "Hacker News",
+      "sourceDetail": "HN · 1 pts · 0 comments",
+      "title": "Show HN: Run Mult AI Agents (Claude, Gemini, etc.) as a team of bees, maids",
+      "summary": "Trending builder discussion on Hacker News around \"AI Agents\".",
+      "url": "https://github.com/ericwang915/agent-hive",
+      "niche": "AI Agents",
+      "signalScore": 75,
+      "publishedAt": "2026-11-23T00:22:01Z",
+      "painPointTag": "Builder Debate",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gn-1795392457367-0",
+      "source": "Google News",
+      "sourceDetail": "Live News · AI Agents",
+      "title": "Banks Have Had It Up to Here With Your AI Agent - WIRED",
+      "summary": "Fresh breaking news angle in AI Agents — tap Write Post or Make Free PDF to turn this into content.",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9pUy1ObG9vc0x4SEwtc2xRdFNzNldlekRzdXZhOTNWZnByOUh2TzRsUEI2dWhiM2Y3cmZEZGZrQ1RBLUx5VDhreGo5YW1GRVZtZnNlNmlRSjFvRlFkcnlwZFEtYnJFOUZ3SWxrYlZfWG5ka3c?oc=5",
+      "niche": "AI Agents",
+      "signalScore": 92,
+      "publishedAt": "2026-11-22T11:00:00.000Z",
+      "painPointTag": "Breaking Industry Trend",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gh-1460452633-1795392457494",
+      "source": "GitHub Trending",
+      "sourceDetail": "518 ★ · Python",
+      "title": "pierridotite/mobile-agent-testers — Trending open-source repository",
+      "summary": "20 AI testers on 20 different phones, in parallel, on GitHub's free runners: Claude Code agents on iOS Simulators and Android emulators that find broken flows, translation, layout and accessibility bugs",
+      "url": "https://github.com/pierridotite/mobile-agent-testers",
+      "niche": "AI Agents",
+      "signalScore": 92,
+      "publishedAt": "2026-11-23T00:06:16Z",
+      "painPointTag": "Breakout Tool / Repo",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "rd-rss-1795392458090-1",
+      "source": "Reddit Pain-Point",
+      "sourceDetail": "Reddit Live (LocalLLaMA)",
+      "title": "[Harness Adapters] Fine tune Qwen3.8-27B for Pi Agents",
+      "summary": "Active Reddit thread in AI Agents — tap Write Post or Make Free PDF to turn this into content.",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOT2VQZDF2RzRfSzRzODdRMzN5aXRsaU5nZnZGOFNEVWtiRHdkcTQ1Y0FHQXM2Wi1PdVBYSGl1QnFOaG05Z0dfOEthZ1pFNHNvX292MDNRcVVvcXFnV1ZfZG45bGxLWFF1SUNxWmJ6RGlYZDdac1k3THpOSTBxcG9kRXhyMzdvTUFQREZhWVMyMXhZb1pnaWJKcmVXcmxzSmYxSWllcWQwOA?oc=5",
+      "niche": "AI Agents",
+      "signalScore": 91,
+      "publishedAt": "2026-11-17T13:48:41.000Z",
+      "painPointTag": "Community Signal",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gh-1332461149-1795392457509",
+      "source": "GitHub Trending",
+      "sourceDetail": "9,832 ★ · TypeScript",
+      "title": "nightly-labs/openbot — Trending open-source repository",
+      "summary": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
+      "url": "https://github.com/nightly-labs/openbot",
+      "niche": "AI Agents",
+      "signalScore": 90,
+      "publishedAt": "2026-11-23T00:07:28Z",
+      "painPointTag": "Breakout Tool / Repo",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "rd-rss-1795392458090-2",
+      "source": "Reddit Pain-Point",
+      "sourceDetail": "Reddit Live (LocalLLaMA)",
+      "title": "Tencent Hy Team & Shunyu Yao Here! Ask Us Anything about Hy4 & Hy4 flash!",
+      "summary": "Active Reddit thread in AI Agents — tap Write Post or Make Free PDF to turn this into content.",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNM2o2NkNSQ2hMY1dIX2hHRHlTUmFwWkFCbmFzTGE2Mml4TUdDN2psS2Y3YzVWWGloTEEwX3VhdHVrMXJWaEQxNEJBNXRfWnI4cC1yX2V6UDFDQXVCeG9wdkhOaUU4emJ3UWZOVkNON05OX2xCdE1xN2t6N3ZjajZ2RzQzYjBOdjJBQmFTYUdqcGF3RVE1dXBrOEtiT2hkcGYzdEF3?oc=5",
+      "niche": "AI Agents",
+      "signalScore": 89,
+      "publishedAt": "2026-11-20T15:10:58.000Z",
+      "painPointTag": "Community Signal",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gn-1795392457367-1",
+      "source": "Google News",
+      "sourceDetail": "Live News · AI Agents",
+      "title": "Here are the top AI agents that can live in your text messages - TechCrunch",
+      "summary": "Fresh breaking news angle in AI Agents — tap Write Post or Make Free PDF to turn this into content.",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOYUhxQXlJS1pjd0swWl9LM1VGQS1jMmFKMnBtNGpjNmY0Q1BXZ0VEV3NZM0ZOdXFDOWU1bHVjT0pPZlI1enV5cGhiZVJidlJKMGZZOGcwZGhZRE9tVU5QWnNxN2VtRHMtTkNwWmp2MHloTnFRVU81dTZfcU5IZmk2YW5SdDIyVWljRVowclN2ejJlUQ?oc=5",
+      "niche": "AI Agents",
+      "signalScore": 89,
+      "publishedAt": "2026-11-21T17:00:00.000Z",
+      "painPointTag": "Breaking Industry Trend",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gh-1097346685-1795392457509",
+      "source": "GitHub Trending",
+      "sourceDetail": "115,016 ★ · Rust",
+      "title": "pbakaus/impeccable — Trending open-source repository",
+      "summary": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships.",
+      "url": "https://github.com/pbakaus/impeccable",
+      "niche": "AI Agents",
+      "signalScore": 88,
+      "publishedAt": "2026-11-23T00:05:31Z",
+      "painPointTag": "Breakout Tool / Repo",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "rd-rss-1795392458090-3",
+      "source": "Reddit Pain-Point",
+      "sourceDetail": "Reddit Live (LocalLLaMA)",
+      "title": "thinkingmachines/Inkling-2-Mini (MoE: 26b, a3B)",
+      "summary": "Active Reddit thread in AI Agents — tap Write Post or Make Free PDF to turn this into content.",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQbjRaaGRJVFdtOHRnV3ZzblNhSlhfVUtoUmFBSmx0MjhRZFhkV2czNmxTSjF6U2xTWDRPMVplVXFsel9PWkhObmlKMUtxVFdOZ3kzeXVBYWRnZEdjbTVkRnNRSEx5UllFUS1BTWZjRElHNUZPWGZUQXN0a2h4VEpDLVRENkl1eFBSS1VNMHc2VVAtdjlLUlN4Z3FB?oc=5",
+      "niche": "AI Agents",
+      "signalScore": 87,
+      "publishedAt": "2026-11-20T20:10:53.000Z",
+      "painPointTag": "Community Signal",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gn-1795392457367-2",
+      "source": "Google News",
+      "sourceDetail": "Live News · AI Agents",
+      "title": "Apple Risks Losing the AI Agent War With an Outdated Playbook - Bloomberg.com",
+      "summary": "Fresh breaking news angle in AI Agents — tap Write Post or Make Free PDF to turn this into content.",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQY0NlQ2FFZWVRd2FPTTJ4cjhKU3Vjb1hXdlZ2R1pfN2IxdlBxMDRZWmRMS1FyNXFSamtldk5GcVVPdnlxOFc2cmRsbS12TnFSdGhKeUx5NEF5dFJHUE12WDR2NGpZckk5cm5Ha3YzeXp0RkR2Y1BuTnhDWDczS18tTTlTWFplX0oyQy1SRDhFRS1jbzY3RnlIMWU1eHB1UktHWmpMT003MXV4d2l0bEg0QVp2bWJrWFUzQ3Rsdk5UbG9zNS1rLWlZV0pjejZQUQ?oc=5",
+      "niche": "AI Agents",
+      "signalScore": 86,
+      "publishedAt": "2026-11-23T00:02:05.000Z",
+      "painPointTag": "Breaking Industry Trend",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gh-1309102418-1795392457509",
+      "source": "GitHub Trending",
+      "sourceDetail": "10,410 ★ · TypeScript",
+      "title": "makecindy/cindy — Trending open-source repository",
+      "summary": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
+      "url": "https://github.com/makecindy/cindy",
+      "niche": "AI Agents",
+      "signalScore": 86,
+      "publishedAt": "2026-11-23T00:04:32Z",
+      "painPointTag": "Breakout Tool / Repo",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gn-1795392457367-3",
+      "source": "Google News",
+      "sourceDetail": "Live News · AI Agents",
+      "title": "AI agents design an entirely new CPU architecture from scratch, startup claims — Frostbite posts 4.59x the performance per watt of an in-order core in pre-silicon tests - Tom's Hardware",
+      "summary": "Fresh breaking news angle in AI Agents — tap Write Post or Make Free PDF to turn this into content.",
+      "url": "https://news.google.com/rss/articles/CBMixgJBVV95cUxNWWJFNWVqemZoM0VmWnp2ZEVzb1FybXpvaWNOcHhzV3E5dlJSdGlWdk1Gang3TC1HQTRTLU1WYVN2ZzRiZmxoajJUTnRvUldrRG56XzNMMTFmS25nMXo5S0RSQVZUb05jSmJnYnVSdGpheTRrUktoTGdWVG50N3laSkN6Y2FZQ28wZG5UYWM3QmpqQ0RaMEg1R19UVmY3QnBIczdnUlZJbVdjb296cnlaWmR1bHF1ekM0NUhERTR3TEU2dnl4WDQ2T1Z1dW53aVE4T2NCbHZyNzBuUE9xWHV0RkVORzR1MjNpcEs5Z2xYNFVYNVFUTG1oNm4zbnFfU0dvcHhNREkwVndRTmdLX2pMdWZtdVYzbnNlSVZ0SHdKSkhhRHo3V2lGZHNLLWR2bGxZZDdNeG0wcmpWQVRkRTZ1ekcydXJoZw?oc=5",
+      "niche": "AI Agents",
+      "signalScore": 83,
+      "publishedAt": "2026-11-22T13:00:00.000Z",
+      "painPointTag": "Breaking Industry Trend",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "gn-1795392457367-4",
+      "source": "Google News",
+      "sourceDetail": "Live News · AI Agents",
+      "title": "Signal is Serious About Protecting Your Privacy - Signal Messenger",
+      "summary": "Fresh breaking news angle in AI Agents — tap Write Post or Make Free PDF to turn this into content.",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9lN3Y2OTltU21GVUZTVDlKc1pjV3VpOUQ1WGowUXItbUxVanJjRWlNRlRGVTEyT0pJUWdoMzlJcFZtSWROT1RadTVQUlBLeTc0aGhCRXBhRFB0M3ZT?oc=5",
+      "niche": "AI Agents",
+      "signalScore": 80,
+      "publishedAt": "2026-11-20T10:30:18.000Z",
+      "painPointTag": "Breaking Industry Trend",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "ph-1795392457128-0",
+      "source": "Product Hunt",
+      "sourceDetail": "Product Hunt Launch Feed",
+      "title": "Pushback",
+      "summary": "The flight tracker that knows which lounge you can use",
+      "url": "https://www.producthunt.com/products/pushback-flight-tracker",
+      "niche": "AI Agents",
+      "signalScore": 76,
+      "publishedAt": "2026-11-23T00:07:37.128Z",
+      "painPointTag": "Trending Tool Launch",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "hn-50605502-1795392458328",
+      "source": "Hacker News",
+      "sourceDetail": "HN · 1 pts · 0 comments",
+      "title": "Show HN: Inbox Envoy, an open-source email triage skill for your own AI agent",
+      "summary": "Trending builder discussion on Hacker News around \"AI Agents\".",
+      "url": "https://github.com/salespeak-ai/inbox-envoy",
+      "niche": "AI Agents",
+      "signalScore": 75,
+      "publishedAt": "2026-11-23T00:00:35Z",
+      "painPointTag": "Builder Debate",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "hn-50605218-1795392458328",
+      "source": "Hacker News",
+      "sourceDetail": "HN · 3 pts · 2 comments",
+      "title": "Show HN: Trix - A terminal workspace that shows which coding agent needs you",
+      "summary": "Trending builder discussion on Hacker News around \"AI Agents\".",
+      "url": "https://trixapp.ai/",
+      "niche": "AI Agents",
+      "signalScore": 75,
+      "publishedAt": "2026-11-22T23:28:23Z",
+      "painPointTag": "Builder Debate",
+      "accountId": "acc-primary"
+    },
+    {
+      "id": "hn-50604592-1795392458328",
+      "source": "Hacker News",
+      "sourceDetail": "HN · 2 pts · 15 comments",
+      "title": "We trained Machine Learning agents and tested them on 50k+ bets. The result",
+      "summary": "Trending builder discussion on Hacker News around \"AI Agents\".",
+      "url": "https://oddsfy.ai/artigos/ml-agents-50k-bets/",
+      "niche": "AI Agents",
+      "signalScore": 75,
+      "publishedAt": "2026-11-22T22:25:24Z",
+      "painPointTag": "Builder Debate",
+      "accountId": "acc-primary"
+    },
+    {
       "id": "rd-rss-1795367054178-0",
       "source": "Reddit Pain-Point",
       "sourceDetail": "Reddit Live (LocalLLaMA)",
@@ -885,6 +1210,80 @@
   ],
   "leadMagnets": [
     {
+      "id": "lm-1795392492276",
+      "slug": "the-2026-high-ticket-discovery-call-audit-play-2276",
+      "title": "The 2026 High-Ticket Discovery Call Audit Playbook",
+      "subtitle": "Step-by-step frameworks, buyer pain-point fixes, and plug-and-play scripts for High-Ticket Discovery Call Audit.",
+      "format": "Playbook",
+      "niche": "High-Ticket Sales & Appointment Setting",
+      "themeColor": "#0284C7",
+      "authorName": "Maya Chen",
+      "authorHandle": "@mayacloses",
+      "linkedOfferId": "offer-1795274407189",
+      "giveawayKeyword": "CLOSE",
+      "views": 1,
+      "downloads": 0,
+      "offerClicks": 0,
+      "createdAt": "2026-11-23T00:08:12.276Z",
+      "sections": [
+        {
+          "id": "sec-1795392492276-1",
+          "type": "takeaway",
+          "heading": "Why Most People Fail at High-Ticket Discovery Call Audit",
+          "body": "Instead of guessing, top operators anchor everything around real buyer pain points and repeatable daily execution.",
+          "bullets": [
+            "Dan Lok - High Ticket Closer Course (Reddit Live (sales))",
+            "Where to find legit high ticket remote sales jobs? (Reddit Live (sales))",
+            "Seeking perspective from experienced reps: Am I wrong about the future of high-ticket sales? (Reddit Live (sales))"
+          ]
+        },
+        {
+          "id": "sec-1795392492276-2",
+          "type": "framework",
+          "heading": "Core S-Tier High-Ticket Discovery Call Audit Frameworks",
+          "body": "Apply these proven mental models in sequence:",
+          "bullets": [
+            "The 3-Step High-Ticket Sales & Appointment Setting Diagnostic: Audit Current Leak -> Quantify Cost -> Deploy 1 Core System.",
+            "Value-First Authority Funnel: Live Industry Breakdown -> Free PDF Playbook -> High-Ticket Sales & Appointment Setting Starter Offer (Whop).",
+            "Weekly Content Mix: 2 Pain-Point Hooks, 2 Visual Carousels, 1 Comment-to-PDF Giveaway."
+          ]
+        },
+        {
+          "id": "sec-1795392492276-3",
+          "type": "script",
+          "heading": "Word-for-Word Templates & Proof",
+          "body": "Copy and adapt these directly into your workflow today:",
+          "bullets": [
+            "Live Signal: 5 Steps To Sell High-Ticket Offers Without A Discovery Call - Forbes — turn into a 4-slide breakdown carousel.",
+            "Live Signal: 10 best appointment setting companies 2027 - INQUIRER.net USA — turn into a 4-slide breakdown carousel.",
+            "Live Signal: LeadsNow.ai Surpasses 50,000 Booked Sales Appointments as AI Appointment Setting Overtakes Cold Calling for High-Ticket Businesses - USA Today — turn into a 4-slide breakdown carousel."
+          ]
+        },
+        {
+          "id": "sec-1795392492276-4",
+          "type": "checklist",
+          "heading": "7-Day Execution Checklist",
+          "body": "Check off each action item this week to lock in momentum:",
+          "bullets": [
+            "Pick 1 high-pain buyer problem to solve publicly",
+            "Share 1 visual carousel breaking down the exact mechanism",
+            "Track replies and follow up with helpful clarity"
+          ]
+        },
+        {
+          "id": "sec-1795392492276-5",
+          "type": "offer-callout",
+          "heading": "Next Step: High-Ticket Sales & Appointment Setting Starter Offer (Whop)",
+          "body": "Help remote closers master Objection handling & calm closing on $3k–$25k calls without guesswork.",
+          "bullets": [
+            "Platform: Whop ($49)",
+            "Direct access included via the button below"
+          ]
+        }
+      ],
+      "accountId": "acc-primary"
+    },
+    {
       "id": "lm-sales-playbook",
       "slug": "high-ticket-objection-playbook",
       "title": "The 2026 High-Ticket Objection & Discovery Playbook",
@@ -1059,6 +1458,114 @@
     }
   ],
   "posts": [
+    {
+      "id": "post-ag-1795393570579-1",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Never drop your link in Tweet 1. Put it in your 30-min Auto-Plug reply instead."
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-11-30T09:00:00.000Z",
+      "frameworkName": "Antigravity Plain-Text Recovery",
+      "predictiveScore": 67,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T00:26:10.579Z"
+    },
+    {
+      "id": "post-ag-1795393570578-0",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Most closers talk too much on discovery calls. Let the buyer name the cost of waiting."
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-11-29T11:00:00.000Z",
+      "frameworkName": "Antigravity Plain-Text Recovery",
+      "predictiveScore": 58,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T00:26:10.579Z"
+    },
+    {
+      "id": "post-ag-1795392492303-0",
+      "accountId": "acc-primary",
+      "blocks": [
+        "1. Most closers talk too much on discovery calls. Let the buyer name the cost of waiting.\n\n2. Never drop your link in Tweet 1. Put it in your 30-min Auto-Plug reply instead."
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-11-28T11:00:00.000Z",
+      "frameworkName": "Antigravity Plain-Text Recovery",
+      "predictiveScore": 78,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T00:08:12.303Z"
+    },
     {
       "id": "post-ag-1795349682610-3",
       "accountId": "acc-primary",

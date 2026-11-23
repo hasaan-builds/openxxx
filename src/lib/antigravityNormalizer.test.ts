@@ -35,3 +35,13 @@ test('extractJsonFromModelOutput falls back gracefully when weaker model writes 
   assert.equal(normalized.posts.length, 2);
   assert.ok(normalized.posts[1].blocks[0].includes('PLAYBOOK'));
 });
+
+test('extractJsonFromModelOutput splits numbered plain-text tweets from weaker models cleanly', () => {
+  const numbered = `1. Most closers pitch too early on Zoom calls. Let the buyer quantify the cost of waiting.\n\n2. Never put an external link in Tweet 1. Drop it in your 30-min Auto-Plug reply instead.`;
+  const parsed = extractJsonFromModelOutput(numbered);
+  const normalized = normalizeAntigravityResults(parsed);
+  assert.equal(normalized.posts.length, 2);
+  assert.ok(!normalized.posts[0].blocks[0].startsWith('1.'));
+  assert.ok(normalized.posts[1].blocks[0].startsWith('Never put an external link'));
+});
+

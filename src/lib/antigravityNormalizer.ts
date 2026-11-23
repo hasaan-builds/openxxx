@@ -85,10 +85,15 @@ export function extractJsonFromModelOutput(rawText: string): unknown {
     }
   }
 
-  // 4. Plain-text fallback: if a weaker model ignored JSON and wrote tweets separated by --- or blank lines
-  const chunks = trimmed
-    .split(/\n\s*---+\s*\n|\n{3,}/)
-    .map((c) => c.trim())
+  // 4. Plain-text fallback: if a weaker model ignored JSON and wrote tweets separated by ---, blank lines, or numbered items
+  const rawChunks = /\n\s*---+\s*\n|\n{3,}/.test(trimmed)
+    ? trimmed.split(/\n\s*---+\s*\n|\n{3,}/)
+    : /(?:^|\n)\s*(?:\d+[.)]|Tweet\s+\d+[:.)])\s+/i.test(trimmed)
+    ? trimmed.split(/\n(?=\s*(?:\d+[.)]|Tweet\s+\d+[:.)])\s+)/i)
+    : trimmed.split(/\n{2,}/);
+
+  const chunks = rawChunks
+    .map((c) => c.replace(/^\s*(?:\d+[.)]|Tweet\s+\d+[:.)])\s+/i, '').trim())
     .filter((c) => c.length >= 20);
   if (chunks.length > 0) {
     return {
