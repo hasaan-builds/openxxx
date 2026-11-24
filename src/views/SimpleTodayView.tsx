@@ -5,8 +5,10 @@ import {
   Copy,
   ExternalLink,
   FileText,
+  Layers,
   Lightbulb,
   Loader2,
+  MessageSquare,
   Send,
   Sparkles,
 } from 'lucide-react';
@@ -42,7 +44,7 @@ export function SimpleTodayView({
   onOpenNicheWizard,
   onNotify,
 }: SimpleTodayViewProps) {
-  const [generating, setGenerating] = useState(false);
+  const [generatingCount, setGeneratingCount] = useState<4 | 14 | null>(null);
   const [sendingPostId, setSendingPostId] = useState<string | null>(null);
 
   const tg = activeAccount.telegram?.botToken ? activeAccount.telegram : store.telegramConfig;
@@ -55,23 +57,31 @@ export function SimpleTodayView({
   const nextPost = queuedPosts[0];
   const latestPdf = store.leadMagnets[0];
   const primaryOffer = store.brandBrain.offers[0];
+  const capturedLeadsCount = (store.capturedLeads || []).length;
+  const totalAffiliateClicks = store.leadMagnets.reduce(
+    (sum, m) => sum + (m.offerClicks || 0),
+    0
+  );
+  const replyTargets = store.crmContacts.slice(0, 3);
   const nicheTitle =
     activeAccount.nicheProfile?.subNicheName || store.brandBrain.niche || 'Pick your niche';
 
-  const handleGeneratePack = async () => {
-    setGenerating(true);
+  const handleGeneratePack = async (count: 4 | 14) => {
+    setGeneratingCount(count);
     try {
       const res = await api.runLocalTurbo({
-        goal: `Create ready-to-post tweets for ${nicheTitle} promoting ${primaryOffer?.name || 'free PDF'}`,
+        count,
       });
       onReplaceStore(res.store);
       onNotify(
-        `Created ${res.importedPosts} ready posts for ${activeAccount.handle}. Tap Send to Telegram anytime.`
+        count === 14
+          ? `Batched ${res.importedPosts} varied posts across your next 14 days ($0)!`
+          : `Created ${res.importedPosts} ready posts for ${activeAccount.handle}. Tap Send to Telegram anytime.`
       );
     } catch (err) {
       onNotify(err instanceof Error ? err.message : 'Could not create posts.', 'error');
     } finally {
-      setGenerating(false);
+      setGeneratingCount(null);
     }
   };
 
@@ -102,7 +112,7 @@ export function SimpleTodayView({
 
   return (
     <div className="space-y-8">
-      {/* Main Hero — Single Clear Primary Action */}
+      {/* Main Hero — Clear Primary Action + 14-Day Batch Factory */}
       <section className="apple-card p-7 sm:p-9 space-y-6">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
@@ -119,34 +129,51 @@ export function SimpleTodayView({
                 }
               >
                 {telegramConnected
-                  ? `Telegram Connected (@${tg?.botUsername || 'bot'})`
+                  ? `Telegram Active (@${tg?.botUsername || 'bot'})`
                   : 'Telegram Not Connected Yet'}
               </span>
             </div>
 
             <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-[-0.025em] text-[#1D1D1F] dark:text-[#F5F5F7] text-balance">
-              Your $0 daily posting flow, simplified.
+              All 6 Tweet Hunter branches running locally for $0.
             </h2>
 
             <p className="text-[15px] text-[#515154] dark:text-[#A1A1A6] leading-relaxed">
-              GhostPilot finds fresh ideas in your niche, writes your posts and free PDFs, and sends
-              them to your Telegram on schedule so you can post to X in one tap for $0.
+              Batch posts, run Auto-Plug &amp; Auto-RT alerts via Telegram, share paid-worth free
+              PDFs, and route warm leads into{' '}
+              <span className="font-medium text-[#1D1D1F] dark:text-[#F5F5F7]">
+                {primaryOffer?.name || 'your Affiliate Group Offer'}
+              </span>
+              .
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
             <button
               type="button"
-              onClick={handleGeneratePack}
-              disabled={generating}
-              className="apple-btn-primary px-6 py-3 text-sm whitespace-nowrap"
+              onClick={() => handleGeneratePack(14)}
+              disabled={Boolean(generatingCount)}
+              className="apple-btn-primary px-5 py-3 text-sm whitespace-nowrap"
             >
-              {generating ? (
+              {generatingCount === 14 ? (
+                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              ) : (
+                <Layers className="h-4 w-4" aria-hidden="true" />
+              )}
+              <span>{generatingCount === 14 ? 'Batching 14 Days...' : 'Batch 14 Posts ($0)'}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleGeneratePack(4)}
+              disabled={Boolean(generatingCount)}
+              className="apple-btn-secondary px-4 py-3 text-sm whitespace-nowrap"
+            >
+              {generatingCount === 4 ? (
                 <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
               ) : (
                 <Sparkles className="h-4 w-4" aria-hidden="true" />
               )}
-              <span>{generating ? 'Creating Posts...' : "Create Today's Posts ($0)"}</span>
+              <span>{generatingCount === 4 ? 'Creating...' : 'Create 4 Today'}</span>
             </button>
             <button
               type="button"
@@ -158,11 +185,11 @@ export function SimpleTodayView({
           </div>
         </div>
 
-        {/* Clean 3-Stat Strip — Unboxed Tabular Metrics */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-black/[0.06] dark:border-white/[0.08]">
+        {/* Clean 4-Stat Funnel Strip — Unboxed Tabular Metrics */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-6 border-t border-black/[0.06] dark:border-white/[0.08]">
           <div className="space-y-1">
             <div className="text-xs font-medium text-[#6E6E73] dark:text-[#86868B]">
-              Posts Ready in Queue
+              Queued Posts
             </div>
             <div className="font-display text-2xl font-semibold tabular-nums text-[#1D1D1F] dark:text-[#F5F5F7]">
               {queuedPosts.length}
@@ -179,36 +206,53 @@ export function SimpleTodayView({
 
           <div className="space-y-1">
             <div className="text-xs font-medium text-[#6E6E73] dark:text-[#86868B]">
-              Free Giveaway PDFs
+              Paid-Worth PDFs
             </div>
             <div className="font-display text-2xl font-semibold tabular-nums text-[#1D1D1F] dark:text-[#F5F5F7]">
               {store.leadMagnets.length}
             </div>
             <div className="text-xs text-[#6E6E73] dark:text-[#86868B] truncate">
-              {latestPdf ? latestPdf.title : 'Create your first free PDF in Queue & PDFs'}
+              {latestPdf ? latestPdf.title : 'Create in Queue & PDFs'}
             </div>
           </div>
 
           <div className="space-y-1">
             <div className="text-xs font-medium text-[#6E6E73] dark:text-[#86868B]">
-              Next Scheduled Telegram Drop
+              Captured Email Leads
             </div>
             <div className="font-display text-2xl font-semibold tabular-nums text-[#1D1D1F] dark:text-[#F5F5F7]">
-              {nextPost ? formatSlotTime(nextPost.scheduledAt) : 'Queue empty'}
+              {capturedLeadsCount}
+            </div>
+            <button
+              type="button"
+              onClick={() => onNavigate('engage-dm')}
+              className="text-xs font-medium text-[#0071E3] dark:text-[#0A84FF] hover:underline inline-flex items-center gap-1"
+            >
+              <span>Leads &amp; CSV</span>
+              <ArrowRight className="h-3 w-3" aria-hidden="true" />
+            </button>
+          </div>
+
+          <div className="space-y-1">
+            <div className="text-xs font-medium text-[#6E6E73] dark:text-[#86868B]">
+              Affiliate Group Clicks
+            </div>
+            <div className="font-display text-2xl font-semibold tabular-nums text-[#1D1D1F] dark:text-[#F5F5F7]">
+              {totalAffiliateClicks}
             </div>
             <button
               type="button"
               onClick={() => onNavigate('accounts-telegram')}
               className="text-xs font-medium text-[#0071E3] dark:text-[#0A84FF] hover:underline inline-flex items-center gap-1"
             >
-              <span>{telegramConnected ? 'Edit Telegram times' : 'Connect Telegram ($0)'}</span>
+              <span>{nextPost ? `Next: ${formatSlotTime(nextPost.scheduledAt)}` : 'Edit schedule'}</span>
               <ArrowRight className="h-3 w-3" aria-hidden="true" />
             </button>
           </div>
         </div>
       </section>
 
-      {/* Quick 3-Step Setup Checklist (shown cleanly until Telegram is connected) */}
+      {/* Quick Setup Banner (shown cleanly until Telegram is connected) */}
       {!telegramConnected && (
         <section className="apple-card p-6 sm:p-7 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -217,8 +261,8 @@ export function SimpleTodayView({
                 Connect your free Telegram Bot in 30 seconds
               </h3>
               <p className="text-sm text-[#6E6E73] dark:text-[#86868B] mt-0.5">
-                Once connected, GhostPilot sends every post, Auto-Plug reply, and Free PDF straight
-                to your phone on schedule — $0 forever.
+                Once connected, GhostPilot sends every post, Auto-Plug, Auto-RT boost, and 4-step DM
+                script straight to your phone on schedule — $0 forever.
               </p>
             </div>
             <button
@@ -243,7 +287,7 @@ export function SimpleTodayView({
             <p className="text-xs text-[#6E6E73] dark:text-[#86868B] mt-0.5">
               {nextPost
                 ? `Scheduled ${formatSlotTime(nextPost.scheduledAt)} · ${nextPost.blocks.length} tweet${nextPost.blocks.length > 1 ? 's' : ''}`
-                : 'Click "Create Today\'s Posts ($0)" above or pick an idea to fill your queue.'}
+                : 'Click "Batch 14 Posts ($0)" above or remix a viral hook to fill your queue.'}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -253,7 +297,7 @@ export function SimpleTodayView({
               className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
             >
               <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>Find Fresh Ideas</span>
+              <span>Ideas &amp; Viral Library</span>
             </button>
             <button
               type="button"
@@ -261,7 +305,7 @@ export function SimpleTodayView({
               className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
             >
               <FileText className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>All Posts &amp; PDFs</span>
+              <span>Queue &amp; PDFs</span>
             </button>
           </div>
         </div>
@@ -321,7 +365,71 @@ export function SimpleTodayView({
         ) : (
           <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center gap-2 text-sm text-[#6E6E73] dark:text-[#86868B]">
             <CheckCircle2 className="h-4 w-4 text-[#16A34A]" aria-hidden="true" />
-            <span>No queued posts yet. Tap &quot;Create Today&apos;s Posts ($0)&quot; to generate 4 posts in 1 second.</span>
+            <span>No queued posts yet. Tap &quot;Batch 14 Posts ($0)&quot; to fill two full weeks in 1 second.</span>
+          </div>
+        )}
+      </section>
+
+      {/* Daily 0-Follower Reply-Guy Mission Card */}
+      <section className="apple-card p-6 sm:p-7 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 className="font-display text-lg font-semibold text-[#1D1D1F] dark:text-[#F5F5F7]">
+              Daily 0-Follower Reply-Guy Mission
+            </h3>
+            <p className="text-xs text-[#6E6E73] dark:text-[#86868B] mt-0.5">
+              Drop 5–10 sharp replies under big {nicheTitle} accounts today so readers click your
+              Bio &amp; Pinned Freebie.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => onNavigate('engage-dm')}
+            className="apple-btn-secondary px-4 py-2 text-xs whitespace-nowrap shrink-0"
+          >
+            <MessageSquare className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>Open Reply-Guy &amp; 4-Step DM</span>
+          </button>
+        </div>
+
+        {replyTargets.length > 0 ? (
+          <div className="divide-y divide-black/[0.06] dark:divide-white/[0.08] border-t border-black/[0.06] dark:border-white/[0.08]">
+            {replyTargets.map((target) => {
+              const cleanHandle = target.handle.replace(/^@/, '');
+              return (
+                <div
+                  key={target.id}
+                  className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-sm"
+                >
+                  <div className="min-w-0">
+                    <span className="font-semibold text-[#1D1D1F] dark:text-[#F5F5F7]">
+                      {target.name}
+                    </span>{' '}
+                    <span className="font-mono text-xs text-[#6E6E73] dark:text-[#86868B]">
+                      {target.handle}
+                    </span>
+                    <span className="text-xs text-[#6E6E73] dark:text-[#86868B]">
+                      {' '}
+                      · {target.stage}
+                    </span>
+                  </div>
+                  <a
+                    href={`https://x.com/${encodeURIComponent(cleanHandle)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-medium text-[#0071E3] dark:text-[#0A84FF] hover:underline inline-flex items-center gap-1 whitespace-nowrap shrink-0"
+                  >
+                    <span>Reply on X ($0)</span>
+                    <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="pt-3 border-t border-black/[0.06] dark:border-white/[0.08] text-xs text-[#6E6E73] dark:text-[#86868B]">
+            Add your first 5 big niche accounts inside Engage &amp; Auto-DM to unlock daily 1-tap
+            value replies.
           </div>
         )}
       </section>

@@ -48,6 +48,8 @@ export function SimpleAccountsTelegramView({
     existingTg?.autoPlugReminderEnabled ?? true
   );
   const [evergreenOn, setEvergreenOn] = useState(store.globalAutomationDefaults.evergreenEnabled);
+  const [autoRtOn, setAutoRtOn] = useState(store.globalAutomationDefaults.autoRetweetEnabled);
+  const [autoDeleteOn, setAutoDeleteOn] = useState(store.globalAutomationDefaults.autoDeleteEnabled);
   const [twoWayInbox, setTwoWayInbox] = useState(existingTg?.twoWayInboxEnabled ?? true);
 
   const [detectingChat, setDetectingChat] = useState(false);
@@ -57,15 +59,14 @@ export function SimpleAccountsTelegramView({
   // Simple daily schedule times
   const [newTime, setNewTime] = useState('18:00');
 
-  // Account management state
+  // Account & Affiliate Group Offer state
   const [newAccName, setNewAccName] = useState('');
   const [newAccHandle, setNewAccHandle] = useState('');
-  const [editingWhopUrl, setEditingWhopUrl] = useState(
-    activeAccount.brandBrain?.offers[0]?.url || store.brandBrain.offers[0]?.url || ''
-  );
-  const [editingWhopName, setEditingWhopName] = useState(
-    activeAccount.brandBrain?.offers[0]?.name || store.brandBrain.offers[0]?.name || ''
-  );
+  const activeOffer = activeAccount.brandBrain?.offers[0] || store.brandBrain.offers[0];
+  const [editingWhopUrl, setEditingWhopUrl] = useState(activeOffer?.url || '');
+  const [editingWhopName, setEditingWhopName] = useState(activeOffer?.name || '');
+  const [editingWhopPrice, setEditingWhopPrice] = useState(activeOffer?.priceLabel || 'Affiliate Group');
+  const [editingWhopPromise, setEditingWhopPromise] = useState(activeOffer?.promise || '');
 
   // Compact Antigravity Bridge state
   const [rawPaste, setRawPaste] = useState('');
@@ -136,16 +137,22 @@ export function SimpleAccountsTelegramView({
     autoDeliver?: boolean;
     autoPlugReminder?: boolean;
     evergreenOn?: boolean;
+    autoRtOn?: boolean;
+    autoDeleteOn?: boolean;
     twoWayInbox?: boolean;
   }) => {
     const ad = next.autoDeliver ?? autoDeliver;
     const ap = next.autoPlugReminder ?? autoPlugReminder;
     const ev = next.evergreenOn ?? evergreenOn;
+    const rt = next.autoRtOn ?? autoRtOn;
+    const del = next.autoDeleteOn ?? autoDeleteOn;
     const tw = next.twoWayInbox ?? twoWayInbox;
 
     setAutoDeliver(ad);
     setAutoPlugReminder(ap);
     setEvergreenOn(ev);
+    setAutoRtOn(rt);
+    setAutoDeleteOn(del);
     setTwoWayInbox(tw);
 
     const nextTg: TelegramConfig = {
@@ -168,9 +175,11 @@ export function SimpleAccountsTelegramView({
         ...store.globalAutomationDefaults,
         evergreenEnabled: ev,
         autoPlugEnabled: ap,
+        autoRetweetEnabled: rt,
+        autoDeleteEnabled: del,
       },
     });
-    onNotify('Saved your $0 Telegram automation settings.');
+    onNotify('Saved your 6-branch $0 TweetHunter automation rules.');
   };
 
   const handleAddDailyTime = async () => {
@@ -217,26 +226,34 @@ export function SimpleAccountsTelegramView({
   const handleSaveWhopOffer = async (e: React.FormEvent) => {
     e.preventDefault();
     const brain = activeAccount.brandBrain || store.brandBrain;
+    const cleanName = editingWhopName.trim() || 'My Affiliate Group';
+    const cleanUrl = editingWhopUrl.trim() || 'https://whop.com';
+    const cleanPrice = editingWhopPrice.trim() || 'Affiliate Group';
+    const cleanPromise =
+      editingWhopPromise.trim() || `Hands-on ${brain.niche} community, templates & live breakdowns.`;
+
     const offers = brain.offers.length
       ? brain.offers.map((o, idx) =>
           idx === 0
             ? {
                 ...o,
-                name: editingWhopName.trim() || o.name,
-                url: editingWhopUrl.trim() || o.url,
-                autoPlugTemplate: `Want the full system? Check out ${editingWhopName.trim() || o.name} here: ${editingWhopUrl.trim() || o.url}`,
+                name: cleanName,
+                url: cleanUrl,
+                priceLabel: cleanPrice,
+                promise: cleanPromise,
+                autoPlugTemplate: `Want the full system & live group? Check out ${cleanName} here: ${cleanUrl}`,
               }
             : o
         )
       : [
           {
             id: `offer-${Date.now()}`,
-            name: editingWhopName.trim() || 'My Whop Offer',
+            name: cleanName,
             platform: 'Whop' as const,
-            url: editingWhopUrl.trim() || 'https://whop.com',
-            priceLabel: '$97',
-            promise: `Complete ${brain.niche} playbook`,
-            autoPlugTemplate: `Grab ${editingWhopName.trim() || 'the full guide'} here: ${editingWhopUrl.trim() || 'https://whop.com'}`,
+            url: cleanUrl,
+            priceLabel: cleanPrice,
+            promise: cleanPromise,
+            autoPlugTemplate: `Want the full system & live group? Check out ${cleanName} here: ${cleanUrl}`,
             giveawayKeyword: 'PLAYBOOK',
             clicks: 0,
             leads: 0,
@@ -249,7 +266,7 @@ export function SimpleAccountsTelegramView({
       a.id === activeAccount.id ? { ...a, brandBrain: updatedBrain } : a
     );
     await onSaveRawStore({ accounts: nextAccounts, brandBrain: updatedBrain });
-    onNotify('Updated your Whop offer link for this account.');
+    onNotify(`Saved Affiliate Group Offer "${cleanName}" across all PDFs, Auto-Plugs & DM scripts.`);
   };
 
   const handleAddAccount = async (e: React.FormEvent) => {
@@ -521,11 +538,29 @@ export function SimpleAccountsTelegramView({
               <label className="flex items-center gap-2.5 cursor-pointer">
                 <input
                   type="checkbox"
+                  checked={autoRtOn}
+                  onChange={(e) => handleSaveAutomationToggles({ autoRtOn: e.target.checked })}
+                  className="h-4 w-4 accent-[#0071E3]"
+                />
+                <span>Auto-Retweet (+8h) &amp; Auto-UnRT (+24h) Telegram alerts</span>
+              </label>
+              <label className="flex items-center gap-2.5 cursor-pointer">
+                <input
+                  type="checkbox"
                   checked={evergreenOn}
                   onChange={(e) => handleSaveAutomationToggles({ evergreenOn: e.target.checked })}
                   className="h-4 w-4 accent-[#0071E3]"
                 />
-                <span>Evergreen Recycling (re-queue top winners automatically)</span>
+                <span>Evergreen Recycling (re-queue top winners every 14 days)</span>
+              </label>
+              <label className="flex items-center gap-2.5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={autoDeleteOn}
+                  onChange={(e) => handleSaveAutomationToggles({ autoDeleteOn: e.target.checked })}
+                  className="h-4 w-4 accent-[#0071E3]"
+                />
+                <span>Auto-Delete low-performer review nudge (+48h)</span>
               </label>
               <label className="flex items-center gap-2.5 cursor-pointer">
                 <input
@@ -535,10 +570,9 @@ export function SimpleAccountsTelegramView({
                   className="h-4 w-4 accent-[#0071E3]"
                 />
                 <span>
-                  Two-Way Telegram Bot (text any YouTube/Whop URL or use{' '}
-                  <span className="font-mono">/today</span>,{' '}
-                  <span className="font-mono">/ideas</span>,{' '}
-                  <span className="font-mono">/pdf</span>,{' '}
+                  Two-Way Telegram Bot (<span className="font-mono">/today</span>,{' '}
+                  <span className="font-mono">/ideas</span>, <span className="font-mono">/pdf</span>,{' '}
+                  <span className="font-mono">/replies</span>, <span className="font-mono">/dm</span>,{' '}
                   <span className="font-mono">/stats</span>)
                 </span>
               </label>
@@ -547,15 +581,16 @@ export function SimpleAccountsTelegramView({
         </div>
       </section>
 
-      {/* SECTION 2: MANAGE ACCOUNTS & WHOP OFFER */}
+      {/* SECTION 2: MANAGE ACCOUNTS & AFFILIATE GROUP OFFER */}
       <section className="apple-card p-6 sm:p-7 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h3 className="font-display text-lg font-semibold text-[#1D1D1F] dark:text-[#F5F5F7]">
-              2. Your X Accounts &amp; Whop Offer Link
+              2. Your X Accounts &amp; Affiliate Group Offer
             </h3>
             <p className="text-xs text-[#6E6E73] dark:text-[#86868B] mt-0.5">
-              Every account keeps its own separate niche, ideas, PDFs, and schedule.
+              Every Paid-Worth PDF, Auto-Plug reply, and 4-Step DM script automatically points warm
+              leads to this Affiliate Group link.
             </p>
           </div>
           <button
@@ -567,28 +602,46 @@ export function SimpleAccountsTelegramView({
           </button>
         </div>
 
-        {/* Active Account Whop Offer Quick Editor */}
+        {/* Active Account Affiliate Group Offer Editor */}
         <form
           onSubmit={handleSaveWhopOffer}
-          className="grid grid-cols-1 md:grid-cols-[1fr_1fr_auto] gap-3 pt-4 border-t border-black/[0.06] dark:border-white/[0.08]"
+          className="space-y-3 pt-4 border-t border-black/[0.06] dark:border-white/[0.08]"
         >
-          <input
-            type="text"
-            value={editingWhopName}
-            onChange={(e) => setEditingWhopName(e.target.value)}
-            placeholder="Whop / Affiliate Product Name"
-            className="apple-input text-sm"
-          />
-          <input
-            type="url"
-            value={editingWhopUrl}
-            onChange={(e) => setEditingWhopUrl(e.target.value)}
-            placeholder="https://whop.com/your-affiliate-link"
-            className="apple-input text-sm"
-          />
-          <button type="submit" className="apple-btn-primary px-4 py-2.5 text-sm whitespace-nowrap">
-            Save Whop Offer Link
-          </button>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <input
+              type="text"
+              value={editingWhopName}
+              onChange={(e) => setEditingWhopName(e.target.value)}
+              placeholder="Affiliate Group Name (e.g. AI Builders Guild)"
+              className="apple-input text-sm"
+            />
+            <input
+              type="url"
+              value={editingWhopUrl}
+              onChange={(e) => setEditingWhopUrl(e.target.value)}
+              placeholder="https://whop.com/your-affiliate-link"
+              className="apple-input text-sm"
+            />
+            <input
+              type="text"
+              value={editingWhopPrice}
+              onChange={(e) => setEditingWhopPrice(e.target.value)}
+              placeholder="Price / Label (e.g. $49/mo Group)"
+              className="apple-input text-sm"
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="text"
+              value={editingWhopPromise}
+              onChange={(e) => setEditingWhopPromise(e.target.value)}
+              placeholder="Why beginners love this group (shown inside every Paid-Worth PDF)"
+              className="apple-input flex-1 text-sm"
+            />
+            <button type="submit" className="apple-btn-primary px-5 py-2.5 text-sm whitespace-nowrap shrink-0">
+              Save Affiliate Group Offer
+            </button>
+          </div>
         </form>
 
         {/* Account List */}
@@ -715,7 +768,7 @@ export function SimpleAccountsTelegramView({
               className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
             >
               <Download className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>Export 6 Antigravity Skills</span>
+              <span>Export 7 Antigravity Skills</span>
             </button>
             <button
               type="button"
@@ -729,10 +782,11 @@ export function SimpleAccountsTelegramView({
         </div>
 
         <p className="text-xs text-[#6E6E73] dark:text-[#86868B]">
-          When running locally inside Antigravity, your project includes 6 ready-to-use{' '}
-          <span className="font-mono">antigravity-skills/*/SKILL.md</span> playbooks plus{' '}
-          <span className="font-mono">antigravity-sync/tasks.json</span> — so even weaker local
-          models output humanized, X-Algorithm-scored posts and magazine PDFs.
+          On your laptop, double-click <span className="font-mono">start-ghostpilot.bat</span>{' '}
+          (Windows) or run <span className="font-mono">./start-ghostpilot.sh</span> (Mac/Linux) to
+          boot GhostPilot + your live Telegram bot at <span className="font-mono">localhost:3000</span>.
+          Includes 7 installed <span className="font-mono">antigravity-skills/*/SKILL.md</span>{' '}
+          playbooks covering all 6 Tweet Hunter branches.
         </p>
 
         <textarea

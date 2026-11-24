@@ -109,6 +109,107 @@ export function formatPostForTelegram(params: {
   };
 }
 
+export function formatBranchAlertForTelegram(params: {
+  type: 'auto-rt' | 'auto-unrt' | 'auto-delete';
+  post: PostItem;
+  account: AccountProfile;
+  delayLabel: string;
+}): FormattedTelegramPayload {
+  const { type, post, account, delayLabel } = params;
+  const hookPreview = (post.blocks[0] || '').split('\n')[0].slice(0, 100);
+  const handleClean = account.handle.replace(/^@/, '');
+  const profileUrl = `https://x.com/${encodeURIComponent(handleClean)}`;
+
+  if (type === 'auto-rt') {
+    return {
+      text: [
+        `<b>Auto-Retweet Boost (${delayLabel}) · ${escapeTelegramHtml(account.handle)}</b>`,
+        `<i>Give your post a second wave for another time zone:</i>`,
+        `<pre>${escapeTelegramHtml(hookPreview)}</pre>`,
+        `Tap below to open your profile and Repost it in 2 seconds ($0).`,
+      ].join('\n\n'),
+      replyMarkup: {
+        inline_keyboard: [[{ text: 'Open My X Profile to Repost ($0)', url: profileUrl }]],
+      },
+    };
+  }
+
+  if (type === 'auto-unrt') {
+    return {
+      text: [
+        `<b>Auto-Unretweet Cleanup (${delayLabel}) · ${escapeTelegramHtml(account.handle)}</b>`,
+        `<i>Keep your timeline crisp — undo the repost on:</i>`,
+        `<pre>${escapeTelegramHtml(hookPreview)}</pre>`,
+      ].join('\n\n'),
+      replyMarkup: {
+        inline_keyboard: [[{ text: 'Open My X Profile ($0)', url: profileUrl }]],
+      },
+    };
+  }
+
+  return {
+    text: [
+      `<b>Auto-Delete Check (${delayLabel}) · ${escapeTelegramHtml(account.handle)}</b>`,
+      `<i>Review this post — if impressions stayed low, delete it to keep your profile signal high:</i>`,
+      `<pre>${escapeTelegramHtml(hookPreview)}</pre>`,
+    ].join('\n\n'),
+    replyMarkup: {
+      inline_keyboard: [[{ text: 'Review on My X Profile ($0)', url: profileUrl }]],
+    },
+  };
+}
+
+export function formatReplyGuyPackForTelegram(params: {
+  account: AccountProfile;
+  niche: string;
+  targets: Array<{ name: string; handle: string; latestTweet?: string }>;
+  sampleReplies: Array<{ angle: string; text: string }>;
+}): FormattedTelegramPayload {
+  const { account, niche, targets, sampleReplies } = params;
+  const targetLines = targets
+    .slice(0, 5)
+    .map((t, i) => `${i + 1}. <b>${escapeTelegramHtml(t.name)}</b> (${escapeTelegramHtml(t.handle)})`);
+
+  const replyLines = sampleReplies
+    .slice(0, 3)
+    .map((r) => `<b>${escapeTelegramHtml(r.angle)}:</b>\n<pre>${escapeTelegramHtml(r.text)}</pre>`);
+
+  const firstHandle = (targets[0]?.handle || '').replace(/^@/, '');
+  const buttons: TelegramInlineButton[][] = [];
+  if (firstHandle) {
+    buttons.push([{ text: `Open @${firstHandle} on X ($0)`, url: `https://x.com/${encodeURIComponent(firstHandle)}` }]);
+  }
+
+  return {
+    text: [
+      `<b>Daily Reply-Guy Mission · ${escapeTelegramHtml(account.handle)}</b>`,
+      `<i>0-Follower Growth Engine for ${escapeTelegramHtml(niche)} — leave 5–10 sharp replies today:</i>`,
+      targetLines.length > 0 ? targetLines.join('\n') : 'Add big accounts in Engage & Auto-DM.',
+      ...replyLines,
+    ].join('\n\n'),
+    replyMarkup: buttons.length ? { inline_keyboard: buttons } : undefined,
+  };
+}
+
+export function formatFourStepDmForTelegram(params: {
+  account: AccountProfile;
+  steps: Array<{ step: number; title: string; message: string }>;
+}): FormattedTelegramPayload {
+  const { account, steps } = params;
+  const blocks = steps.map(
+    (s) => `<b>${escapeTelegramHtml(s.title)}:</b>\n<pre>${escapeTelegramHtml(s.message)}</pre>`
+  );
+
+  return {
+    text: [
+      `<b>4-Step Free-PDF to Affiliate Group DM Scripts · ${escapeTelegramHtml(account.handle)}</b>`,
+      `<i>Tap any code box below to copy and paste directly into X DMs ($0):</i>`,
+      ...blocks,
+    ].join('\n\n'),
+  };
+}
+
+
 export function formatAutoPlugReminderForTelegram(params: {
   post: PostItem;
   account: AccountProfile;

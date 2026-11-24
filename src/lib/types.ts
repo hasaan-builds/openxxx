@@ -2,6 +2,7 @@ export type NavSection =
   | 'today'
   | 'ideas'
   | 'queue-pdfs'
+  | 'engage-dm'
   | 'accounts-telegram'
   // Legacy aliases kept for seamless cross-view routing
   | 'autopilot'
@@ -160,7 +161,14 @@ export interface AuthorityDossier {
 
 export interface LeadMagnetSection {
   id: string;
-  type: 'takeaway' | 'framework' | 'checklist' | 'script' | 'offer-callout';
+  type:
+    | 'takeaway'
+    | 'framework'
+    | 'comparison'
+    | 'checklist'
+    | 'script'
+    | 'worksheet'
+    | 'offer-callout';
   heading: string;
   body: string;
   bullets: string[];
@@ -179,11 +187,23 @@ export interface LeadMagnet {
   authorHandle: string;
   linkedOfferId?: string;
   giveawayKeyword: string;
+  requireEmailGate?: boolean;
+  perceivedValueLabel?: string;
   sections: LeadMagnetSection[];
   views: number;
   downloads: number;
   offerClicks: number;
   createdAt: string;
+}
+
+export interface CapturedLead {
+  id: string;
+  accountId?: string;
+  email: string;
+  sourcePdfId: string;
+  sourcePdfTitle: string;
+  sourceSlug: string;
+  capturedAt: string;
 }
 
 export type CarouselThemeId = 'obsidian' | 'editorial' | 'cobalt' | 'ivory';
@@ -294,6 +314,9 @@ export interface PostItem {
   xTweetIds?: string[];
   telegramDeliveredAt?: string;
   telegramAutoPlugSent?: boolean;
+  telegramAutoRtSent?: boolean;
+  telegramAutoUnrtSent?: boolean;
+  telegramAutoDeleteSent?: boolean;
   errorMessage?: string;
   createdAt: string;
 }
@@ -439,6 +462,7 @@ export interface GhostPilotStore {
   analytics: DailyAnalyticsPoint[];
   antigravityTasks: AntigravityTask[];
   automationLogs: AutomationLogEntry[];
+  capturedLeads?: CapturedLead[];
   telegramConfig?: TelegramConfig;
   globalAutomationDefaults: {
     autoPlugEnabled: boolean;

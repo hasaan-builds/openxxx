@@ -25,6 +25,8 @@ import type { GhostPilotStore, LeadMagnet, PostItem } from '../lib/types';
 interface SimpleQueuePdfsViewProps {
   store: GhostPilotStore;
   initialTab?: 'posts' | 'pdfs' | 'write';
+  incomingDraftBlocks?: string[];
+  onConsumeIncomingDraft?: () => void;
   onUpdateStore: (patch: Partial<GhostPilotStore>) => Promise<void>;
   onReplaceStore: (next: GhostPilotStore) => void;
   onGoToTelegramSetup: () => void;
@@ -47,6 +49,8 @@ function formatWhen(iso?: string): string {
 export function SimpleQueuePdfsView({
   store,
   initialTab = 'posts',
+  incomingDraftBlocks,
+  onConsumeIncomingDraft,
   onUpdateStore,
   onReplaceStore,
   onGoToTelegramSetup,
@@ -65,14 +69,25 @@ export function SimpleQueuePdfsView({
   const [aiBusy, setAiBusy] = useState<'rewrite' | 'expand-thread' | null>(null);
   const [savingDraft, setSavingDraft] = useState(false);
 
-  // PDF Creator state
+  // Paid-Worth PDF Creator state
   const [pdfTopic, setPdfTopic] = useState('');
+  const [pdfFormat, setPdfFormat] = useState<LeadMagnet['format']>('Playbook');
+  const [pdfRequireEmail, setPdfRequireEmail] = useState(true);
   const [creatingPdf, setCreatingPdf] = useState(false);
   const [sendingPdfId, setSendingPdfId] = useState<string | null>(null);
 
   useEffect(() => {
     setTab(initialTab);
   }, [initialTab]);
+
+  useEffect(() => {
+    if (incomingDraftBlocks && incomingDraftBlocks.length > 0) {
+      setEditingPostId(null);
+      setDraftBlocks(incomingDraftBlocks);
+      setTab('write');
+      onConsumeIncomingDraft?.();
+    }
+  }, [incomingDraftBlocks, onConsumeIncomingDraft]);
 
   const queuedPosts = store.posts
     .filter((p) => p.status === 'queued' || p.status === 'draft')
@@ -105,6 +120,54 @@ export function SimpleQueuePdfsView({
   const handleDeletePost = async (postId: string) => {
     await onUpdateStore({ posts: store.posts.filter((p) => p.id !== postId) });
     onNotify('Removed post from your queue.');
+  };
+
+  const handleTogglePostBranch = async (
+    post: PostItem,
+    field: 'autoPlugEnabled' | 'autoRetweetEnabled' | 'isEvergreen' | 'autoDeleteEnabled'
+  ) => {
+    const nextValue = !post.automations[field];
+    const nextPosts = store.posts.map((p) =>
+      p.id === post.id
+        ? {
+            ...p,
+            automations: {
+              ...p.automations,
+              [field]: nextValue,
+              autoPlugText:
+                field === 'autoPlugEnabled' && nextValue && !p.automations.autoPlugText
+                  ? primaryOffer?.autoPlugTemplate ||
+                    `Want the full ${store.brandBrain.niche} playbook? Check the link in bio.`
+                  : p.automations.autoPlugText,
+              autoDeleteAfterHours:
+                field === 'autoDeleteEnabled' && nextValue && !p.automations.autoDeleteAfterHours
+                  ? 48
+                  : p.automations.autoDeleteAfterHours,
+            },
+          }
+        : p
+    );
+    await onUpdateStore({ posts: nextPosts });
+    const labels: Record<typeof field, string> = {
+      autoPlugEnabled: 'Auto-Plug (+30m)',
+      autoRetweetEnabled: 'Auto-Retweet (+8h)',
+      isEvergreen: 'Evergreen Recycling',
+      autoDeleteEnabled: 'Auto-Delete Check (+48h)',
+    };
+    onNotify(`${labels[field]} turned ${nextValue ? 'ON' : 'OFF'} for this post.`);
+  };
+
+  const handleTogglePdfEmailGate = async (magnet: LeadMagnet) => {
+    const nextGate = !magnet.requireEmailGate;
+    const nextMagnets = store.leadMagnets.map((m) =>
+      m.id === magnet.id ? { ...m, requireEmailGate: nextGate } : m
+    );
+    await onUpdateStore({ leadMagnets: nextMagnets });
+    onNotify(
+      nextGate
+        ? `Email Capture Gate enabled on "${magnet.title}" ($0 leads saved to Engage & Auto-DM).`
+        : `Email Capture Gate turned off — "${magnet.title}" is now instant-open.`
+    );
   };
 
   const handleStartEdit = (post: PostItem) => {
@@ -226,17 +289,20 @@ export function SimpleQueuePdfsView({
 
   const handleGeneratePdf = async (e: React.FormEvent) => {
     e.preventDefault();
-    const topic = pdfTopic.trim() || `${store.brandBrain.niche} Playbook`;
+    const topic = pdfTopic.trim() || `${store.brandBrain.niche} Execution System`;
     setCreatingPdf(true);
     try {
       const res = await api.generateLeadMagnet({
         topic,
-        format: 'Playbook',
+        format: pdfFormat,
         offerId: primaryOffer?.id,
+        requireEmailGate: pdfRequireEmail,
       });
       await onUpdateStore({ leadMagnets: [res.leadMagnet, ...store.leadMagnets] });
       setPdfTopic('');
-      onNotify(`Created Free PDF "${res.leadMagnet.title}"!`);
+      onNotify(
+        `Built 7-Chapter Paid-Worth ${pdfFormat} "${res.leadMagnet.title}" with your Affiliate Group bridge!`
+      );
     } catch (err) {
       onNotify(err instanceof Error ? err.message : 'PDF generation failed.', 'error');
     } finally {
@@ -297,8 +363,8 @@ export function SimpleQueuePdfsView({
         <div className="apple-segmented self-start sm:self-auto">
           {(
             [
-              { id: 'posts', label: `Scheduled Posts (${queuedPosts.length})` },
-              { id: 'pdfs', label: `Free PDFs (${store.leadMagnets.length})` },
+              { id: 'posts', label: `Scheduled & Rules (${queuedPosts.length})` },
+              { id: 'pdfs', label: `Paid-Worth PDFs (${store.leadMagnets.length})` },
               { id: 'write', label: editingPostId ? 'Edit Post' : 'Quick Write' },
             ] as const
           ).map((item) => (
@@ -395,6 +461,46 @@ export function SimpleQueuePdfsView({
                     </div>
                   )}
 
+                  {/* Tweet Hunter Branch 3 Per-Post Automation Toggles */}
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-2 border-t border-black/[0.05] dark:border-white/[0.06] text-xs text-[#515154] dark:text-[#A1A1A6]">
+                    <label className="inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap">
+                      <input
+                        type="checkbox"
+                        checked={post.automations.autoPlugEnabled}
+                        onChange={() => handleTogglePostBranch(post, 'autoPlugEnabled')}
+                        className="h-3.5 w-3.5 accent-[#0071E3]"
+                      />
+                      <span>Auto-Plug (+30m)</span>
+                    </label>
+                    <label className="inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap">
+                      <input
+                        type="checkbox"
+                        checked={post.automations.autoRetweetEnabled}
+                        onChange={() => handleTogglePostBranch(post, 'autoRetweetEnabled')}
+                        className="h-3.5 w-3.5 accent-[#0071E3]"
+                      />
+                      <span>Auto-RT (+8h)</span>
+                    </label>
+                    <label className="inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap">
+                      <input
+                        type="checkbox"
+                        checked={post.automations.isEvergreen}
+                        onChange={() => handleTogglePostBranch(post, 'isEvergreen')}
+                        className="h-3.5 w-3.5 accent-[#0071E3]"
+                      />
+                      <span>Evergreen (14d)</span>
+                    </label>
+                    <label className="inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap">
+                      <input
+                        type="checkbox"
+                        checked={post.automations.autoDeleteEnabled}
+                        onChange={() => handleTogglePostBranch(post, 'autoDeleteEnabled')}
+                        className="h-3.5 w-3.5 accent-[#0071E3]"
+                      />
+                      <span>Auto-Delete (+48h)</span>
+                    </label>
+                  </div>
+
                   <div className="flex flex-wrap items-center gap-2 pt-1">
                     <button
                       type="button"
@@ -471,21 +577,39 @@ export function SimpleQueuePdfsView({
         </div>
       )}
 
-      {/* TAB 2: FREE GIVEAWAY PDFs */}
+      {/* TAB 2: PAID-WORTH FREE GIVEAWAY PDFs */}
       {tab === 'pdfs' && (
         <div className="space-y-6">
-          <form onSubmit={handleGeneratePdf} className="apple-card p-5 sm:p-6 space-y-3">
-            <div className="text-sm font-semibold text-[#1D1D1F] dark:text-[#F5F5F7]">
-              Create a New Free Giveaway PDF (With Your Whop Offer Inside)
+          <form onSubmit={handleGeneratePdf} className="apple-card p-5 sm:p-6 space-y-4">
+            <div>
+              <div className="text-sm font-semibold text-[#1D1D1F] dark:text-[#F5F5F7]">
+                Build a 7-Chapter Paid-Worth Free PDF (Bridged to Your Affiliate Group)
+              </div>
+              <p className="text-xs text-[#6E6E73] dark:text-[#86868B] mt-0.5">
+                Generates a complete $97-grade resource: Executive Reality Check, 4-Part Operating
+                System, 95% vs Top 1% Matrix, Swipe File Prompts, 7-Day Checklist, Troubleshooting
+                Traps, and your Affiliate Group Next Step.
+              </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2.5">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_160px_auto] gap-2.5">
               <input
                 type="text"
                 value={pdfTopic}
                 onChange={(e) => setPdfTopic(e.target.value)}
-                placeholder={`Topic (e.g., 7 Scripts for ${store.brandBrain.niche})`}
-                className="apple-input flex-1 text-sm"
+                placeholder={`Topic (e.g., 7-Day ${store.brandBrain.niche} Blueprint)`}
+                className="apple-input text-sm"
               />
+              <select
+                value={pdfFormat}
+                onChange={(e) => setPdfFormat(e.target.value as LeadMagnet['format'])}
+                aria-label="Free PDF format"
+                className="apple-input text-sm"
+              >
+                <option value="Playbook">Playbook</option>
+                <option value="Swipe File">Swipe File</option>
+                <option value="Checklist">Checklist</option>
+                <option value="Deep-Dive Report">Deep-Dive Report</option>
+              </select>
               <button
                 type="submit"
                 disabled={creatingPdf}
@@ -496,16 +620,27 @@ export function SimpleQueuePdfsView({
                 ) : (
                   <FileText className="h-4 w-4" aria-hidden="true" />
                 )}
-                <span>{creatingPdf ? 'Building PDF...' : 'Create Free PDF ($0)'}</span>
+                <span>{creatingPdf ? 'Building 7 Chapters...' : 'Build Paid-Worth PDF ($0)'}</span>
               </button>
             </div>
+            <label className="inline-flex items-center gap-2 text-xs text-[#515154] dark:text-[#A1A1A6] cursor-pointer">
+              <input
+                type="checkbox"
+                checked={pdfRequireEmail}
+                onChange={(e) => setPdfRequireEmail(e.target.checked)}
+                className="h-3.5 w-3.5 accent-[#0071E3]"
+              />
+              <span>
+                Enable $0 Email Capture Gate on hosted /r/ page (saves leads locally for CSV export)
+              </span>
+            </label>
           </form>
 
           <section className="apple-card divide-y divide-black/[0.06] dark:divide-white/[0.08]">
             {store.leadMagnets.length === 0 ? (
               <div className="p-8 text-center text-sm text-[#6E6E73] dark:text-[#86868B]">
-                No free PDFs yet. Type any topic above to generate your first giveaway PDF + smart
-                landing page.
+                No free PDFs yet. Type any topic above to generate your first 7-chapter paid-worth
+                giveaway PDF + email-gated vault page.
               </div>
             ) : (
               store.leadMagnets.map((magnet) => {
@@ -514,12 +649,22 @@ export function SimpleQueuePdfsView({
                 return (
                   <article key={magnet.id} className="p-5 sm:p-6 space-y-3.5">
                     <div className="space-y-1">
-                      <div className="text-xs text-[#6E6E73] dark:text-[#86868B] flex flex-wrap items-center gap-2">
-                        <span>{magnet.format}</span>
+                      <div className="text-xs text-[#6E6E73] dark:text-[#86868B] flex flex-wrap items-center gap-2 tabular-nums">
+                        <span className="font-semibold text-[#1D1D1F] dark:text-[#F5F5F7]">
+                          {magnet.format}
+                        </span>
                         <span aria-hidden="true">·</span>
-                        <span>Comment Keyword: {magnet.giveawayKeyword}</span>
+                        <span>{magnet.perceivedValueLabel || '$97 Value · Free Edition'}</span>
                         <span aria-hidden="true">·</span>
-                        <span className="tabular-nums">{magnet.sections.length} sections</span>
+                        <span>Keyword: {magnet.giveawayKeyword}</span>
+                        <span aria-hidden="true">·</span>
+                        <span>{magnet.sections.length} chapters</span>
+                        <span aria-hidden="true">·</span>
+                        <span>{magnet.views} views</span>
+                        <span aria-hidden="true">·</span>
+                        <span>{magnet.downloads} unlocks</span>
+                        <span aria-hidden="true">·</span>
+                        <span>{magnet.offerClicks} group clicks</span>
                       </div>
                       <h3 className="font-display text-lg font-semibold text-[#1D1D1F] dark:text-[#F5F5F7]">
                         {magnet.title}
@@ -553,11 +698,11 @@ export function SimpleQueuePdfsView({
                       <button
                         type="button"
                         onClick={() => {
-                          const offer = store.brandBrain.offers.find(
-                            (o) => o.id === magnet.linkedOfferId
-                          ) || primaryOffer;
+                          const offer =
+                            store.brandBrain.offers.find((o) => o.id === magnet.linkedOfferId) ||
+                            primaryOffer;
                           exportLeadMagnetToPdf(magnet, offer);
-                          onNotify(`Downloaded magazine-grade PDF: ${magnet.title}`);
+                          onNotify(`Downloaded 7-chapter Paid-Worth PDF: ${magnet.title}`);
                         }}
                         className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
                       >
@@ -582,8 +727,15 @@ export function SimpleQueuePdfsView({
                         className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
                       >
                         <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-                        <span>Open Free PDF Page</span>
+                        <span>Open Vault Page</span>
                       </a>
+                      <button
+                        type="button"
+                        onClick={() => handleTogglePdfEmailGate(magnet)}
+                        className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
+                      >
+                        <span>Email Gate: {magnet.requireEmailGate ? 'ON' : 'OFF'}</span>
+                      </button>
                       <button
                         type="button"
                         onClick={() =>
@@ -592,7 +744,7 @@ export function SimpleQueuePdfsView({
                         className="apple-btn-secondary px-3.5 py-2 text-xs whitespace-nowrap"
                       >
                         <Copy className="h-3.5 w-3.5" aria-hidden="true" />
-                        <span>Copy Reply Template</span>
+                        <span>Copy Reply</span>
                       </button>
                     </div>
                   </article>

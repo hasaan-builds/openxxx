@@ -121,6 +121,9 @@ export function scopeStoreToAccount(
     automationLogs: fullStore.automationLogs.filter((i) =>
       belongsToAccount(i.accountId, accountId, primaryId)
     ),
+    capturedLeads: (fullStore.capturedLeads || []).filter((i) =>
+      belongsToAccount(i.accountId, accountId, primaryId)
+    ),
   };
 }
 
@@ -252,6 +255,15 @@ export function mergeScopedPatchIntoStore(
     mergedPatch.automationLogs = mergeScopedCollection(
       fullStore.automationLogs,
       patch.automationLogs,
+      accountId,
+      primaryId
+    );
+  }
+
+  if (patch.capturedLeads) {
+    mergedPatch.capturedLeads = mergeScopedCollection(
+      fullStore.capturedLeads || [],
+      patch.capturedLeads,
       accountId,
       primaryId
     );

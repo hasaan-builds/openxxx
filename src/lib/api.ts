@@ -83,8 +83,34 @@ export const api = {
     format: LeadMagnet['format'];
     dossierId?: string;
     offerId?: string;
+    requireEmailGate?: boolean;
   }) =>
     requestJson<{ leadMagnet: LeadMagnet; engine: string }>('/api/lead-magnets/generate', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
+
+  // Branch 1: Viral Library 1-Click Remix
+  remixViralTweet: (payload: {
+    viralText: string;
+    hookFormula?: string;
+    scheduleNow?: boolean;
+  }) =>
+    requestJson<{
+      blocks: string[];
+      post?: PostItem;
+      store: GhostPilotStore;
+    }>('/api/viral/remix', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
+
+  // Branch 5: Reply-Guy Value Reply Suggestions
+  generateReplySuggestions: (payload: { targetHandle: string; targetTopic: string }) =>
+    requestJson<{
+      replies: Array<{ id: string; angle: string; text: string }>;
+      engine: string;
+    }>('/api/engage/reply-suggestions', {
       method: 'POST',
       body: JSON.stringify(payload),
     }),
@@ -140,7 +166,7 @@ export const api = {
       }
     ),
 
-  runLocalTurbo: (payload?: { goal?: string }) =>
+  runLocalTurbo: (payload?: { goal?: string; count?: number }) =>
     requestJson<{ importedPosts: number; importedCarousels: number; importedMagnets: number; store: GhostPilotStore }>(
       '/api/antigravity/run-local-turbo',
       {
@@ -201,4 +227,13 @@ export const api = {
         body: JSON.stringify({ origin: origin || window.location.origin }),
       }
     ),
+
+  sendBranchPackToTelegram: (payload: { pack: 'replies' | 'dm'; origin?: string }) =>
+    requestJson<{ ok: boolean; store: GhostPilotStore }>('/api/telegram/send-branch-pack', {
+      method: 'POST',
+      body: JSON.stringify({
+        pack: payload.pack,
+        origin: payload.origin || window.location.origin,
+      }),
+    }),
 };

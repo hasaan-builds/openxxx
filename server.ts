@@ -49,14 +49,26 @@ import {
   fetchTelegramInboxMessages,
   getTelegramBotInfo,
   sendTelegramMessage,
+  setTelegramBotCommands,
 } from './server/telegramClient';
 import {
   buildXIntentUrl,
   formatAutoPlugReminderForTelegram,
+  formatBranchAlertForTelegram,
+  formatFourStepDmForTelegram,
   formatGiveawayPackForTelegram,
   formatPostForTelegram,
+  formatReplyGuyPackForTelegram,
   validateTelegramCredentials,
 } from './src/lib/telegramFormatter';
+import {
+  buildBatchFourteenDayTopics,
+  buildFourStepAffiliateDmSequence,
+  buildPaidWorthLeadMagnet,
+  buildValueReplySuggestions,
+  evaluatePostBranchAlerts,
+  validateLeadEmail,
+} from './src/lib/branchEngine';
 
 const PORT = 3000;
 
@@ -145,41 +157,49 @@ async function processDueScheduledPosts(): Promise<number> {
       }
     }
 
-    // 2. Delayed Auto-Plug Reminder in Telegram (e.g. 30 minutes after scheduled post drop)
-    if (
-      post.status === 'published' &&
-      post.telegramDeliveredAt &&
-      !post.telegramAutoPlugSent &&
-      post.automations.autoPlugEnabled &&
-      post.automations.autoPlugText.trim() &&
-      tg?.enabled &&
-      tg.autoPlugReminderEnabled &&
-      tg.botToken &&
-      tg.chatId
-    ) {
-      const delayMs = Math.max(1, post.automations.autoPlugDelayMinutes || tg.autoPlugDelayMinutes || 30) * 60 * 1000;
-      if (now - new Date(post.telegramDeliveredAt).getTime() >= delayMs) {
+    // 2. Full Tweet Hunter Post-Publish Branch Alerts (Auto-Plug, Auto-RT, Auto-UnRT, Auto-Delete)
+    if (post.status === 'published' && tg?.enabled && tg.botToken && tg.chatId) {
+      const dueAlerts = evaluatePostBranchAlerts(post, now, {
+        defaultAutoPlugMinutes: tg.autoPlugDelayMinutes || 30,
+      });
+
+      for (const alert of dueAlerts) {
+        if (alert.type === 'auto-plug' && !tg.autoPlugReminderEnabled) continue;
         try {
-          const reminder = formatAutoPlugReminderForTelegram({ post, account });
+          const payload =
+            alert.type === 'auto-plug'
+              ? formatAutoPlugReminderForTelegram({ post, account })
+              : formatBranchAlertForTelegram({
+                  type: alert.type,
+                  post,
+                  account,
+                  delayLabel: alert.delayLabel,
+                });
+
           await sendTelegramMessage({
             botToken: tg.botToken,
             chatId: tg.chatId,
-            text: reminder.text,
-            replyMarkup: reminder.replyMarkup,
+            text: payload.text,
+            replyMarkup: payload.replyMarkup,
           });
-          post.telegramAutoPlugSent = true;
+
+          if (alert.type === 'auto-plug') post.telegramAutoPlugSent = true;
+          if (alert.type === 'auto-rt') post.telegramAutoRtSent = true;
+          if (alert.type === 'auto-unrt') post.telegramAutoUnrtSent = true;
+          if (alert.type === 'auto-delete') post.telegramAutoDeleteSent = true;
           processed++;
+
           store.automationLogs.unshift({
-            id: `log-tgplug-${Date.now()}-${processed}`,
+            id: `log-branch-${alert.type}-${Date.now()}-${processed}`,
             accountId: account.id,
             timestamp: new Date().toISOString(),
-            type: 'auto-plug',
+            type: alert.type,
             mode: 'live',
             postId: post.id,
-            message: `Sent Auto-Plug reply reminder to Telegram for ${account.handle}.`,
+            message: `Sent ${alert.label} (${alert.delayLabel}) to Telegram for ${account.handle}.`,
           });
         } catch {
-          // Will retry on next tick
+          // Will retry on next scheduler tick
         }
       }
     }
@@ -479,14 +499,147 @@ async function startServer() {
     }
   });
 
-  // --- APP 4: LEAD MAGNET STUDIO (GAMMA PDF + BEACON SMART RESOURCE PAGE) ---
+  // --- BRANCH 1: VIRAL TWEET LIBRARY 1-CLICK REMIX ---
+  app.post('/api/viral/remix', async (req, res) => {
+    try {
+      const { viralText, hookFormula, scheduleNow = false } = req.body as {
+        viralText?: string;
+        hookFormula?: string;
+        scheduleNow?: boolean;
+      };
+      if (!viralText?.trim()) {
+        return res.status(400).json({ error: 'Provide a viral tweet to remix.' });
+      }
+      const store = loadStore();
+      const account =
+        store.accounts.find((a) => a.id === store.activeAccountId) || store.accounts[0];
+      const activeBrain = account?.brandBrain || store.brandBrain;
+      const offer = activeBrain.offers[0];
+
+      let blocks: string[] = [];
+      if (isGeminiConfigured()) {
+        try {
+          blocks = await ghostwriteWithGemini({
+            action: 'rewrite',
+            text: `Remix this proven viral structure (${hookFormula || 'viral hook'}) for the "${activeBrain.niche}" niche and subtly align it with "${offer?.name || 'our free playbook'}":\n\n${viralText.trim()}`,
+            brandBrain: activeBrain,
+          });
+        } catch {
+          // Fall back to deterministic local remix
+        }
+      }
+
+      if (blocks.length === 0) {
+        const cleanHook = viralText.trim().split('\n')[0].slice(0, 110);
+        blocks = [
+          humanizeCopy(
+            `Everyone in ${activeBrain.niche} talks about tactics.\n\nHere is what actually moves the needle (inspired by "${cleanHook}"):\n\n1. Fix 1 painful beginner leak\n2. Give away a paid-grade checklist free\n3. Route warm leads into ${offer?.name || 'your main system'}\n\nSave this and run it for 14 days.`
+          ).cleanedText,
+        ];
+      } else {
+        blocks = blocks.map((b) => humanizeCopy(b).cleanedText || b);
+      }
+
+      let createdPost: PostItem | undefined;
+      if (scheduleNow) {
+        const scored = scoreCopy(blocks, { brandBrain: activeBrain });
+        const slot = findNextOpenSlot(store.queueSlots, store.posts, new Date());
+        createdPost = {
+          id: `post-remix-${Date.now()}`,
+          accountId: account.id,
+          blocks,
+          status: 'queued',
+          format: blocks.length > 1 ? 'thread' : 'single',
+          scheduledAt: slot,
+          frameworkName: `Viral Remix (${hookFormula || 'Proven Hook'})`,
+          predictiveScore: scored.total,
+          automations: {
+            threadDelayMinutes: 0,
+            autoPlugEnabled: Boolean(offer?.autoPlugTemplate),
+            autoPlugText: offer?.autoPlugTemplate || '',
+            autoPlugDelayMinutes: store.globalAutomationDefaults.autoPlugDelayMinutes || 30,
+            autoPlugMinLikes: 0,
+            autoRetweetEnabled: store.globalAutomationDefaults.autoRetweetEnabled,
+            autoRetweetDelayHours: store.globalAutomationDefaults.autoRetweetDelayHours || 8,
+            autoUnretweetAfterHours: store.globalAutomationDefaults.autoUnretweetAfterHours || 24,
+            autoDeleteEnabled: store.globalAutomationDefaults.autoDeleteEnabled,
+            autoDeleteAfterHours: store.globalAutomationDefaults.autoDeleteAfterHours || 48,
+            isEvergreen: true,
+            evergreenIntervalDays: 14,
+            linkedOfferId: offer?.id,
+          },
+          metrics: { impressions: 0, likes: 0, retweets: 0, replies: 0, bookmarks: 0, offerClicks: 0 },
+          createdAt: new Date().toISOString(),
+        };
+        store.posts.unshift(createdPost);
+        saveStore(store);
+      }
+
+      res.json({ blocks, post: createdPost, store });
+    } catch (err) {
+      res.status(500).json({ error: err instanceof Error ? err.message : 'Viral remix failed.' });
+    }
+  });
+
+  // --- BRANCH 5: REPLY-GUY VALUE REPLY GENERATOR ---
+  app.post('/api/engage/reply-suggestions', async (req, res) => {
+    try {
+      const { targetHandle = '@creator', targetTopic = '' } = req.body as {
+        targetHandle?: string;
+        targetTopic?: string;
+      };
+      const store = loadStore();
+      const account =
+        store.accounts.find((a) => a.id === store.activeAccountId) || store.accounts[0];
+      const activeBrain = account?.brandBrain || store.brandBrain;
+
+      const replies = buildValueReplySuggestions({
+        targetHandle,
+        targetTopic: targetTopic.trim() || activeBrain.niche,
+        niche: activeBrain.niche,
+      });
+
+      if (isGeminiConfigured() && targetTopic.trim()) {
+        try {
+          const aiBlocks = await ghostwriteWithGemini({
+            action: 'reply',
+            text: `Target ${targetHandle} posted about: "${targetTopic.trim()}". Write 1 sharp, non-sycophantic Reply-Guy comment adding genuine ${activeBrain.niche} insight (under 220 chars, zero "great post").`,
+            brandBrain: activeBrain,
+          });
+          if (aiBlocks[0]) {
+            replies[0] = {
+              id: 'reply-ai-1',
+              angle: 'Practical Addition',
+              text: (humanizeCopy(aiBlocks[0]).cleanedText || aiBlocks[0]).slice(0, 250),
+            };
+            return res.json({ replies, engine: 'gemini-hybrid' });
+          }
+        } catch {
+          // Local suggestions remain ready
+        }
+      }
+
+      res.json({ replies, engine: 'local-reply-engine' });
+    } catch (err) {
+      res.status(500).json({ error: err instanceof Error ? err.message : 'Reply generator failed.' });
+    }
+  });
+
+  // --- APP 4: PAID-WORTH LEAD MAGNET STUDIO (7-CHAPTER PLAYBOOK + EMAIL-GATED SMART VAULT) ---
   app.post('/api/lead-magnets/generate', async (req, res) => {
     try {
-      const { topic, format = 'Playbook', dossierId, offerId } = req.body as {
+      const {
+        topic,
+        format = 'Playbook',
+        dossierId,
+        offerId,
+        requireEmailGate = true,
+      } = req.body as {
         topic: string;
         format?: LeadMagnet['format'];
         dossierId?: string;
         offerId?: string;
+        requireEmailGate?: boolean;
       };
       const store = loadStore();
       const account =
@@ -498,13 +651,23 @@ async function startServer() {
       const offer =
         activeBrain.offers.find((o) => o.id === offerId) || activeBrain.offers[0];
 
-      let leadMagnet: LeadMagnet;
-      let engine = 'local-blueprint';
+      const baseline = buildPaidWorthLeadMagnet({
+        topic: topic || activeBrain.niche,
+        format,
+        dossier,
+        offer,
+        account,
+        niche: activeBrain.niche,
+        requireEmailGate,
+      });
+
+      let leadMagnet: LeadMagnet = baseline;
+      let engine = 'paid-worth-local';
       let fallbackReason: string | undefined;
 
       if (isGeminiConfigured()) {
         try {
-          leadMagnet = await generateLeadMagnetWithGemini({
+          const aiMagnet = await generateLeadMagnetWithGemini({
             topic: topic || activeBrain.niche,
             format,
             dossier,
@@ -513,14 +676,24 @@ async function startServer() {
             authorName: account.name,
             authorHandle: account.handle,
           });
-          engine = 'gemini-4-hydrogen';
+          // Merge Gemini's rich topic-specific sections with our guaranteed 7-chapter Paid-Worth structure
+          const mergedSections = [
+            ...aiMagnet.sections.slice(0, 4),
+            ...baseline.sections.filter(
+              (s) => s.type === 'comparison' || s.type === 'checklist' || s.type === 'worksheet' || s.type === 'offer-callout'
+            ),
+          ].slice(0, 7);
+          leadMagnet = {
+            ...aiMagnet,
+            requireEmailGate,
+            perceivedValueLabel: '$97 Value · Free Edition',
+            sections: mergedSections.length >= 6 ? mergedSections : baseline.sections,
+          };
+          engine = 'gemini-paid-worth';
         } catch (err) {
           fallbackReason = err instanceof Error ? err.message : 'Gemini call failed';
           console.error('[GhostPilot] LeadMagnet Gemini error:', fallbackReason);
-          leadMagnet = buildLocalLeadMagnet(topic || activeBrain.niche, format, dossier, offer, account);
         }
-      } else {
-        leadMagnet = buildLocalLeadMagnet(topic || activeBrain.niche, format, dossier, offer, account);
       }
 
       leadMagnet.accountId = store.activeAccountId;
@@ -532,7 +705,52 @@ async function startServer() {
     }
   });
 
-  // Beacon-style Hosted Smart Resource Page (/r/:slug) — Apple Editorial Styling
+  // Email Lead Capture Endpoint for Hosted Paid-Worth Vault (/r/:slug/capture)
+  app.post('/r/:slug/capture', (req, res) => {
+    const store = loadStore();
+    const magnet = store.leadMagnets.find((m) => m.slug === req.params.slug);
+    if (!magnet) {
+      return res.status(404).json({ error: 'Resource not found.' });
+    }
+    const { email } = req.body as { email?: string };
+    const check = validateLeadEmail(email || '');
+    if (!check.valid) {
+      return res.status(400).json({ error: check.error });
+    }
+
+    if (!Array.isArray(store.capturedLeads)) {
+      store.capturedLeads = [];
+    }
+    const alreadyExists = store.capturedLeads.some(
+      (l) => l.email === check.normalized && l.sourcePdfId === magnet.id
+    );
+    if (!alreadyExists) {
+      store.capturedLeads.unshift({
+        id: `lead-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        accountId: magnet.accountId || store.activeAccountId,
+        email: check.normalized,
+        sourcePdfId: magnet.id,
+        sourcePdfTitle: magnet.title,
+        sourceSlug: magnet.slug,
+        capturedAt: new Date().toISOString(),
+      });
+    }
+    magnet.downloads += 1;
+
+    const allOffers = [
+      ...store.brandBrain.offers,
+      ...store.accounts.flatMap((a) => a.brandBrain?.offers || []),
+    ];
+    const offer = allOffers.find((o) => o.id === magnet.linkedOfferId);
+    if (offer) {
+      offer.leads += 1;
+    }
+
+    saveStore(store);
+    res.json({ ok: true, unlocked: true, email: check.normalized });
+  });
+
+  // Hosted Paid-Worth Smart Resource Vault (/r/:slug) — With Optional $0 Email Capture Gate
   app.get('/r/:slug', (req, res) => {
     const store = loadStore();
     const magnet = store.leadMagnets.find((m) => m.slug === req.params.slug);
@@ -548,16 +766,21 @@ async function startServer() {
       ...store.accounts.flatMap((a) => a.brandBrain?.offers || []),
     ];
     const offer = allOffers.find((o) => o.id === magnet.linkedOfferId);
+    const gateActive = Boolean(magnet.requireEmailGate);
+    const tocListHtml = magnet.sections
+      .map((sec, idx) => `<li><strong>0${idx + 1}.</strong> ${escapeHtml(sec.heading.replace(/^0?\d+\.\s*/, ''))}</li>`)
+      .join('');
+
     const sectionsHtml = magnet.sections
       .map(
         (sec, idx) => `
-      <section class="card ${sec.type === 'offer-callout' ? 'card-offer' : ''}">
-        <div class="kicker">0${idx + 1} · ${escapeHtml(sec.type.replace('-', ' '))}</div>
+      <section class="card ${sec.type === 'offer-callout' ? 'card-offer' : ''} ${sec.type === 'comparison' ? 'card-compare' : ''}">
+        <div class="kicker">Chapter 0${idx + 1} · ${escapeHtml(sec.type.replace('-', ' '))}</div>
         <h2>${escapeHtml(sec.heading)}</h2>
         <p>${escapeHtml(sec.body)}</p>
         ${
           sec.bullets.length
-            ? `<ul>${sec.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>`
+            ? `<ul class="${sec.type === 'checklist' ? 'checklist' : ''}">${sec.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>`
             : ''
         }
       </section>`
@@ -566,13 +789,29 @@ async function startServer() {
 
     const offerHtml = offer
       ? `<div class="cta-banner">
-          <div class="kicker">Recommended Next Step · ${escapeHtml(offer.platform)}</div>
+          <div class="kicker">Recommended Affiliate Group · ${escapeHtml(offer.platform)}</div>
           <h2>${escapeHtml(offer.name)}</h2>
           <p>${escapeHtml(offer.promise)}</p>
           <a class="cta-btn" href="/r/${escapeHtml(magnet.slug)}/go" target="_blank" rel="noopener noreferrer">
-            Access ${escapeHtml(offer.name)} (${escapeHtml(offer.priceLabel)}) →
+            Explore ${escapeHtml(offer.name)} (${escapeHtml(offer.priceLabel)}) →
           </a>
         </div>`
+      : '';
+
+    const gateHtml = gateActive
+      ? `<section id="email-gate-card" class="card gate-card">
+          <div class="kicker">${escapeHtml(magnet.perceivedValueLabel || '$97 Value · Free Edition')} · Instant Unlock</div>
+          <h2>Unlock All ${magnet.sections.length} Chapters + Copy-Paste Templates Free</h2>
+          <p>Inside this complete ${escapeHtml(magnet.format.toLowerCase())}:</p>
+          <ul class="toc-list">${tocListHtml}</ul>
+          <form id="lead-capture-form" class="gate-form">
+            <label for="lead-email" class="sr-only">Email address</label>
+            <input id="lead-email" name="email" type="email" required placeholder="Enter your best email to unlock instantly..." />
+            <button type="submit" id="lead-submit-btn">Unlock Full Playbook Free →</button>
+          </form>
+          <p id="lead-error" class="gate-error" role="alert"></p>
+          <p class="gate-note">100% free · Instant browser unlock + print-ready PDF · Zero spam.</p>
+        </section>`
       : '';
 
     res.send(`<!doctype html>
@@ -584,47 +823,109 @@ async function startServer() {
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
     body { margin: 0; font-family: 'DM Sans', -apple-system, sans-serif; background: #F5F5F7; color: #1D1D1F; line-height: 1.65; -webkit-font-smoothing: antialiased; }
-    .hero { background: #FFFFFF; border-bottom: 1px solid rgba(0,0,0,0.06); padding: 72px 24px 64px; }
-    .wrap { max-width: 740px; margin: 0 auto; }
-    .kicker { font-size: 13px; font-weight: 600; color: #0071E3; margin-bottom: 12px; letter-spacing: -0.01em; }
-    h1 { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 18px; color: #1D1D1F; }
-    h2 { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 22px; letter-spacing: -0.02em; margin: 0 0 10px; line-height: 1.25; }
-    .sub { color: #6E6E73; font-size: 18px; max-width: 620px; margin: 0 0 24px; line-height: 1.5; }
-    .meta { font-size: 13px; color: #86868B; }
-    .content { padding: 40px 24px 88px; }
-    .card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); border-radius: 20px; padding: 32px; margin-bottom: 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 12px 32px -18px rgba(0,0,0,0.08); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .hero { background: #FFFFFF; border-bottom: 1px solid rgba(0,0,0,0.06); padding: 64px 24px 56px; }
+    .wrap { max-width: 760px; margin: 0 auto; }
+    .kicker { font-size: 13px; font-weight: 600; color: #0071E3; margin-bottom: 10px; letter-spacing: -0.01em; }
+    h1 { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: clamp(30px, 5vw, 46px); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 16px; color: #1D1D1F; }
+    h2 { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 21px; letter-spacing: -0.02em; margin: 0 0 10px; line-height: 1.25; }
+    .sub { color: #515154; font-size: 17px; max-width: 640px; margin: 0 0 22px; line-height: 1.5; }
+    .meta { font-size: 13px; color: #6E6E73; }
+    .content { padding: 36px 24px 88px; }
+    .card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.06); border-radius: 20px; padding: 30px; margin-bottom: 18px; box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 12px 32px -18px rgba(0,0,0,0.08); }
     .card-offer { background: #F0F7FF; border-color: rgba(0,113,227,0.18); }
+    .card-compare { background: #FAFAFC; }
+    .gate-card { border-color: rgba(0,113,227,0.25); }
     ul { padding-left: 20px; margin: 14px 0 0; }
-    li { margin-bottom: 8px; color: #515154; }
-    .cta-banner { background: #1D1D1F; color: #F5F5F7; border-radius: 24px; padding: 36px; margin-top: 32px; }
+    li { margin-bottom: 9px; color: #3A3A3C; }
+    .toc-list { list-style: none; padding-left: 0; margin: 14px 0 22px; }
+    .toc-list li { padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 14px; }
+    .checklist { list-style: none; padding-left: 0; }
+    .checklist li::before { content: '☐  '; color: #0071E3; font-weight: 700; }
+    .gate-form { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .gate-form input { flex: 1; min-width: 220px; padding: 12px 16px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.14); font-size: 15px; font-family: inherit; }
+    .gate-form button { background: #0071E3; color: #fff; border: none; padding: 12px 22px; border-radius: 12px; font-weight: 600; font-size: 14px; cursor: pointer; font-family: inherit; }
+    .gate-form button:hover { background: #0077ED; }
+    .gate-error { color: #DC2626; font-size: 13px; margin: 10px 0 0; min-height: 18px; }
+    .gate-note { color: #6E6E73; font-size: 12px; margin: 8px 0 0; }
+    .hidden { display: none; }
+    .cta-banner { background: #1D1D1F; color: #F5F5F7; border-radius: 24px; padding: 36px; margin-top: 28px; }
     .cta-banner .kicker { color: #2997FF; }
     .cta-banner p { color: #A1A1A6; }
     .cta-btn { display: inline-block; margin-top: 16px; background: #0071E3; color: #FFFFFF; text-decoration: none; font-weight: 600; padding: 13px 24px; border-radius: 999px; }
     .cta-btn:hover { background: #0077ED; }
-    .toolbar { display: flex; gap: 12px; margin-top: 24px; }
+    .toolbar { display: flex; gap: 12px; margin-top: 22px; }
     .btn-ghost { background: rgba(0,0,0,0.05); color: #1D1D1F; border: none; padding: 10px 18px; border-radius: 999px; cursor: pointer; font-weight: 600; font-family: inherit; }
     .btn-ghost:hover { background: rgba(0,0,0,0.09); }
-    @media print { .toolbar { display: none; } body { background: #fff; } .card { box-shadow: none; } }
+    @media print { .toolbar, #email-gate-card { display: none; } body { background: #fff; } .card { box-shadow: none; } }
   </style>
 </head>
 <body>
   <header class="hero">
     <div class="wrap">
-      <div class="kicker">${escapeHtml(magnet.format)} · ${escapeHtml(magnet.niche)}</div>
+      <div class="kicker">${escapeHtml(magnet.format)} · ${escapeHtml(magnet.niche)} · ${escapeHtml(magnet.perceivedValueLabel || '$97 Value · Free Edition')}</div>
       <h1>${escapeHtml(magnet.title)}</h1>
       <p class="sub">${escapeHtml(magnet.subtitle)}</p>
-      <div class="meta">By ${escapeHtml(magnet.authorName)} (${escapeHtml(magnet.authorHandle)}) · ${magnet.views.toLocaleString()} views</div>
-      <div class="toolbar">
-        <button class="btn-ghost" onclick="window.print()">Print or Save as PDF</button>
+      <div class="meta">By ${escapeHtml(magnet.authorName)} (${escapeHtml(magnet.authorHandle)}) · ${magnet.sections.length} chapters · ${magnet.views.toLocaleString()} views</div>
+      <div id="print-toolbar" class="toolbar ${gateActive ? 'hidden' : ''}">
+        <button class="btn-ghost" onclick="window.print()">Print or Save Full Playbook as PDF</button>
       </div>
     </div>
   </header>
   <main class="content">
     <div class="wrap">
-      ${sectionsHtml}
-      ${offerHtml}
+      ${gateHtml}
+      <div id="playbook-body" class="${gateActive ? 'hidden' : ''}">
+        ${sectionsHtml}
+        ${offerHtml}
+      </div>
     </div>
   </main>
+  ${
+    gateActive
+      ? `<script>
+    (function() {
+      var slug = ${JSON.stringify(magnet.slug)};
+      var key = 'gp_unlocked_' + slug;
+      var gate = document.getElementById('email-gate-card');
+      var body = document.getElementById('playbook-body');
+      var toolbar = document.getElementById('print-toolbar');
+      function unlock() {
+        if (gate) gate.classList.add('hidden');
+        if (body) body.classList.remove('hidden');
+        if (toolbar) toolbar.classList.remove('hidden');
+      }
+      try { if (localStorage.getItem(key) === '1') unlock(); } catch (e) {}
+      var form = document.getElementById('lead-capture-form');
+      if (!form) return;
+      form.addEventListener('submit', async function(ev) {
+        ev.preventDefault();
+        var input = document.getElementById('lead-email');
+        var errEl = document.getElementById('lead-error');
+        var btn = document.getElementById('lead-submit-btn');
+        errEl.textContent = '';
+        btn.disabled = true;
+        btn.textContent = 'Unlocking...';
+        try {
+          var res = await fetch('/r/' + encodeURIComponent(slug) + '/capture', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: input.value })
+          });
+          var data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Could not unlock.');
+          try { localStorage.setItem(key, '1'); } catch (e) {}
+          unlock();
+        } catch (err) {
+          errEl.textContent = err.message || 'Please enter a valid email.';
+          btn.disabled = false;
+          btn.textContent = 'Unlock Full Playbook Free →';
+        }
+      });
+    })();
+  </script>`
+      : ''
+  }
 </body>
 </html>`);
   });
@@ -937,226 +1238,412 @@ async function startServer() {
     }
   });
 
-  app.post('/api/telegram/poll-inbox', async (req, res) => {
-    try {
-      const store = loadStore();
-      const account =
-        store.accounts.find((a) => a.id === store.activeAccountId) || store.accounts[0];
-      const activeBrain = account?.brandBrain || store.brandBrain;
-      const tg = resolveTelegramConfig(store, account?.id);
-      if (!tg?.botToken || !tg?.chatId) {
-        return res.status(400).json({ error: 'Connect your Telegram Bot first.' });
-      }
+  let telegramPollerBusy = false;
 
-      const { messages, nextUpdateId } = await fetchTelegramInboxMessages(
-        tg.botToken,
-        tg.chatId,
-        tg.lastUpdateId
-      );
-      if (typeof nextUpdateId === 'number') {
-        tg.lastUpdateId = nextUpdateId;
-      }
+  async function processTelegramInboxAndAutoPair(originUrl?: string): Promise<{
+    checked: number;
+    createdPosts: number;
+    autoPaired?: boolean;
+    store: GhostPilotStore;
+  }> {
+    const store = loadStore();
+    const account =
+      store.accounts.find((a) => a.id === store.activeAccountId) || store.accounts[0];
+    const activeBrain = account?.brandBrain || store.brandBrain;
+    const tg = resolveTelegramConfig(store, account?.id);
+    if (!tg?.botToken) {
+      throw new Error('Connect your Telegram Bot Token first.');
+    }
 
-      let createdPosts = 0;
-      const origin =
-        (typeof req.body?.origin === 'string' && req.body.origin) ||
-        process.env.APP_URL ||
-        'http://localhost:3000';
+    const origin =
+      originUrl ||
+      process.env.APP_URL ||
+      'http://localhost:3000';
 
-      for (const msg of messages.slice(0, 4)) {
-        const trimmed = msg.text.trim();
-        const lower = trimmed.toLowerCase();
-
-        // Slash Command: /help
-        if (lower === '/help' || lower === '/start') {
-          await sendTelegramMessage({
-            botToken: tg.botToken,
-            chatId: tg.chatId,
-            text: [
-              `<b>GhostPilot $0 Telegram Commands</b> (${account.handle})`,
-              '',
-              `• <code>/today</code> — Send your next queued post + 1-tap X button`,
-              `• <code>/ideas</code> — Pull live 7-source ideas for ${activeBrain.niche}`,
-              `• <code>/pdf your topic</code> — Build a Free PDF + Comment-to-PDF Reply Pack`,
-              `• <code>/stats</code> — View queue count, PDFs & next scheduled drop`,
-              `• <b>Paste any URL</b> (YouTube, Whop, article, GitHub) — Auto-converts into a humanized tweet!`,
-            ].join('\n'),
-          });
-          continue;
+    // Auto-pair Chat ID the instant the user taps Start or sends "hi" to their bot!
+    if (!tg.chatId) {
+      try {
+        const detected = await detectTelegramChatId(tg.botToken);
+        tg.chatId = detected.chatId;
+        tg.botUsername = detected.botUsername;
+        tg.enabled = true;
+        tg.twoWayInboxEnabled = true;
+        tg.autoPlugReminderEnabled = true;
+        tg.lastUpdateId = detected.lastUpdateId;
+        if (store.telegramConfig) {
+          store.telegramConfig = { ...store.telegramConfig, ...tg };
+        } else {
+          store.telegramConfig = { ...tg };
         }
+        saveStore(store);
 
-        // Slash Command: /stats
-        if (lower === '/stats') {
-          const accPosts = store.posts.filter((p) => !p.accountId || p.accountId === account.id);
-          const ready = accPosts.filter((p) => p.status === 'queued' || p.status === 'draft').length;
-          const accPdfs = store.leadMagnets.filter((m) => !m.accountId || m.accountId === account.id).length;
-          await sendTelegramMessage({
-            botToken: tg.botToken,
-            chatId: tg.chatId,
-            text: `<b>GhostPilot Status · ${account.handle}</b>\n\n• Niche: ${activeBrain.niche}\n• Ready Posts in Queue: <b>${ready}</b>\n• Free Giveaway PDFs: <b>${accPdfs}</b>\n• Drop Times: ${store.queueSlots.map((s) => s.time).join(', ')}`,
-          });
-          continue;
-        }
-
-        // Slash Command: /today
-        if (lower === '/today') {
-          const nextPost = store.posts
-            .filter((p) => (!p.accountId || p.accountId === account.id) && p.status === 'queued')
-            .sort((a, b) => (a.scheduledAt || '').localeCompare(b.scheduledAt || ''))[0];
-          if (!nextPost) {
-            await sendTelegramMessage({
-              botToken: tg.botToken,
-              chatId: tg.chatId,
-              text: `No queued posts for ${account.handle} yet. Text me any URL or tap "Create Today's Posts ($0)" in GhostPilot!`,
-            });
-          } else {
-            const payload = formatPostForTelegram({ post: nextPost, account, baseUrl: origin });
-            await sendTelegramMessage({
-              botToken: tg.botToken,
-              chatId: tg.chatId,
-              text: payload.text,
-              replyMarkup: payload.replyMarkup,
-            });
-          }
-          continue;
-        }
-
-        // Slash Command: /ideas
-        if (lower === '/ideas') {
-          const scan = await runLiveIndustryScan({
-            niche: activeBrain.niche,
-            subreddits: activeBrain.subreddits,
-            customRssUrls: activeBrain.customRssUrls,
-            includeGithub: true,
-          });
-          const top5 = scan.items.slice(0, 5);
-          const lines = top5.map(
-            (it, i) => `${i + 1}. <b>[${it.source}]</b> ${it.title.slice(0, 110)}\n${it.url}`
-          );
-          await sendTelegramMessage({
-            botToken: tg.botToken,
-            chatId: tg.chatId,
-            text: `<b>Top 5 Live $0 Ideas · ${activeBrain.niche}</b>\n\n${lines.join('\n\n') || 'No fresh signals found right now.'}\n\n<i>Reply with any link above and I will write your post!</i>`,
-          });
-          continue;
-        }
-
-        // Slash Command: /pdf <topic>
-        if (lower.startsWith('/pdf')) {
-          const pdfTopic = trimmed.replace(/^\/pdf\s*/i, '').trim() || activeBrain.niche;
-          const offer = activeBrain.offers[0];
-          const newMagnet = buildLocalLeadMagnet(
-            pdfTopic,
-            'Playbook',
-            store.dossiers[0],
-            offer,
-            account
-          );
-          newMagnet.accountId = account.id;
-          store.leadMagnets.unshift(newMagnet);
-          const pack = formatGiveawayPackForTelegram({
-            magnet: newMagnet,
-            offer,
-            account,
-            baseUrl: origin,
-          });
-          await sendTelegramMessage({
-            botToken: tg.botToken,
-            chatId: tg.chatId,
-            text: `<b>Built your new Free PDF + Giveaway Reply Pack ($0)!</b>\n\n${pack.text}`,
-            replyMarkup: pack.replyMarkup,
-          });
-          continue;
-        }
-
-        let topic = trimmed;
-        let insight = `Practical lesson for ${activeBrain.niche} buyers.`;
-
-        if (msg.url) {
-          try {
-            const extracted = await extractUrlWithJinaReader(msg.url);
-            topic = extracted.title;
-            insight = extracted.keyTakeaways[0] || extracted.markdown.slice(0, 220);
-            store.radarItems.unshift({
-              id: `tg-in-${Date.now()}-${createdPosts}`,
-              accountId: account.id,
-              source: extracted.engine === 'youtube-transcript' ? 'YouTube Transcript' : 'Custom RSS',
-              sourceDetail: extracted.engine === 'youtube-transcript' ? 'YouTube Transcript ($0)' : 'Sent from Telegram',
-              title: extracted.title,
-              summary: extracted.keyTakeaways.join(' · ').slice(0, 260) || insight,
-              url: extracted.url,
-              niche: activeBrain.niche,
-              signalScore: 95,
-              publishedAt: new Date().toISOString(),
-              painPointTag: 'Telegram Inbox Link',
-            });
-          } catch {
-            // Fall back to raw message text
-          }
-        }
-
-        const offer = activeBrain.offers[0];
-        const variations = buildRankedABVariations({
-          topic,
-          keyInsight: insight,
-          brandBrain: activeBrain,
-          persona: activeBrain.personas[0],
-          offer,
+        await setTelegramBotCommands(tg.botToken).catch(() => undefined);
+        await sendTelegramMessage({
+          botToken: tg.botToken,
+          chatId: tg.chatId,
+          text: [
+            `<b>GhostPilot $0 Autopilot Connected!</b>`,
+            '',
+            `Active X Account: <b>${account.handle}</b> (${activeBrain.niche})`,
+            `Chat ID <code>${tg.chatId}</code> auto-paired with zero setup!`,
+            '',
+            `<b>Try any command right here:</b>`,
+            `• <code>/today</code> — Get your next post + 1-tap Post on X button`,
+            `• <code>/ideas</code> — Scan 7 live $0 sources for fresh ideas`,
+            `• <code>/pdf your topic</code> — Build a Free PDF + Giveaway Reply Pack`,
+            `• <code>/stats</code> — Queue count & schedule`,
+            `• Or paste <b>any YouTube / Whop / article link</b> to turn it into a tweet!`,
+          ].join('\n'),
         });
-        const best = variations[0];
-        if (!best) continue;
 
-        const humanizedBlocks = best.blocks.map((b) => humanizeCopy(b).cleanedText || b);
-        const nextSlot = findNextOpenSlot(store.queueSlots, store.posts, new Date());
-        const newPost: PostItem = {
-          id: `post-tgin-${Date.now()}-${createdPosts}`,
-          accountId: account.id,
-          blocks: humanizedBlocks,
-          status: 'queued',
-          format: humanizedBlocks.length > 1 ? 'thread' : 'single',
-          scheduledAt: nextSlot,
-          frameworkName: best.frameworkName,
-          trigger: best.trigger,
-          predictiveScore: best.score.total,
-          automations: {
-            threadDelayMinutes: 0,
-            autoPlugEnabled: Boolean(offer?.autoPlugTemplate),
-            autoPlugText: offer?.autoPlugTemplate || '',
-            autoPlugDelayMinutes: 30,
-            autoPlugMinLikes: 0,
-            autoRetweetEnabled: false,
-            autoRetweetDelayHours: 8,
-            autoUnretweetAfterHours: 24,
-            autoDeleteEnabled: false,
-            autoDeleteAfterHours: 0,
-            isEvergreen: true,
-            evergreenIntervalDays: 14,
-            linkedOfferId: offer?.id,
-          },
-          metrics: { impressions: 0, likes: 0, retweets: 0, replies: 0, bookmarks: 0, offerClicks: 0 },
-          createdAt: new Date().toISOString(),
-        };
-        store.posts.unshift(newPost);
-        createdPosts++;
+        const firstQueued = store.posts
+          .filter((p) => (!p.accountId || p.accountId === account.id) && p.status === 'queued')
+          .sort((a, b) => (a.scheduledAt || '').localeCompare(b.scheduledAt || ''))[0];
+        if (firstQueued) {
+          const sample = formatPostForTelegram({ post: firstQueued, account, baseUrl: origin });
+          await sendTelegramMessage({
+            botToken: tg.botToken,
+            chatId: tg.chatId,
+            text: `<b>Here is your next ready post (tap below to post on X for $0):</b>\n\n${sample.text}`,
+            replyMarkup: sample.replyMarkup,
+          });
+        }
+        return { checked: 1, createdPosts: 0, autoPaired: true, store };
+      } catch {
+        return { checked: 0, createdPosts: 0, autoPaired: false, store };
+      }
+    }
 
-        const replyPayload = formatPostForTelegram({
-          post: newPost,
+    const { messages, nextUpdateId } = await fetchTelegramInboxMessages(
+      tg.botToken,
+      tg.chatId,
+      tg.lastUpdateId
+    );
+    if (typeof nextUpdateId === 'number') {
+      tg.lastUpdateId = nextUpdateId;
+    }
+
+    let createdPosts = 0;
+
+    for (const msg of messages.slice(0, 4)) {
+      const trimmed = msg.text.trim();
+      const lower = trimmed.toLowerCase();
+
+      // Slash Command: /help or /start
+      if (lower === '/help' || lower === '/start') {
+        await sendTelegramMessage({
+          botToken: tg.botToken,
+          chatId: tg.chatId,
+          text: [
+            `<b>GhostPilot $0 TweetHunter Commands</b> (${account.handle})`,
+            '',
+            `• <code>/today</code> — Send your next queued post + 1-tap X button`,
+            `• <code>/ideas</code> — Pull live 7-source ideas for ${activeBrain.niche}`,
+            `• <code>/pdf your topic</code> — Build a 7-Chapter Paid-Worth PDF + Giveaway Pack`,
+            `• <code>/replies</code> — Get today's Reply-Guy targets + 3 value replies`,
+            `• <code>/dm</code> — Get your 4-Step Free-PDF to Affiliate Group DM scripts`,
+            `• <code>/stats</code> — View queue, PDFs, captured email leads & affiliate clicks`,
+            `• <b>Paste any URL</b> (YouTube, Whop, article, GitHub) — Auto-converts into a humanized tweet!`,
+          ].join('\n'),
+        });
+        continue;
+      }
+
+      // Slash Command: /stats
+      if (lower === '/stats') {
+        const accPosts = store.posts.filter((p) => !p.accountId || p.accountId === account.id);
+        const ready = accPosts.filter((p) => p.status === 'queued' || p.status === 'draft').length;
+        const accPdfs = store.leadMagnets.filter((m) => !m.accountId || m.accountId === account.id);
+        const accLeads = (store.capturedLeads || []).filter((l) => !l.accountId || l.accountId === account.id).length;
+        const affiliateClicks = accPdfs.reduce((sum, m) => sum + (m.offerClicks || 0), 0);
+        await sendTelegramMessage({
+          botToken: tg.botToken,
+          chatId: tg.chatId,
+          text: `<b>GhostPilot Status · ${account.handle}</b>\n\n• Niche: ${activeBrain.niche}\n• Ready Posts in Queue: <b>${ready}</b>\n• Paid-Worth Free PDFs: <b>${accPdfs.length}</b>\n• Captured Email Leads: <b>${accLeads}</b>\n• Affiliate Group Clicks: <b>${affiliateClicks}</b>\n• Drop Times: ${Array.from(new Set(store.queueSlots.map((s) => s.time))).join(', ')}`,
+        });
+        continue;
+      }
+
+      // Slash Command: /replies
+      if (lower === '/replies') {
+        const accContacts = store.crmContacts.filter((c) => !c.accountId || c.accountId === account.id);
+        const sampleReplies = buildValueReplySuggestions({
+          targetHandle: accContacts[0]?.handle || '@creator',
+          targetTopic: accContacts[0]?.latestTweet || activeBrain.niche,
+          niche: activeBrain.niche,
+        });
+        const pack = formatReplyGuyPackForTelegram({
+          account,
+          niche: activeBrain.niche,
+          targets: accContacts,
+          sampleReplies,
+        });
+        await sendTelegramMessage({
+          botToken: tg.botToken,
+          chatId: tg.chatId,
+          text: pack.text,
+          replyMarkup: pack.replyMarkup,
+        });
+        continue;
+      }
+
+      // Slash Command: /dm
+      if (lower === '/dm') {
+        const accMagnet = store.leadMagnets.find((m) => !m.accountId || m.accountId === account.id);
+        const offer = activeBrain.offers[0];
+        const steps = buildFourStepAffiliateDmSequence({
+          magnet: accMagnet,
+          offer,
+          niche: activeBrain.niche,
+          baseUrl: origin,
+        });
+        const dmPack = formatFourStepDmForTelegram({ account, steps });
+        await sendTelegramMessage({
+          botToken: tg.botToken,
+          chatId: tg.chatId,
+          text: dmPack.text,
+        });
+        continue;
+      }
+
+      // Slash Command: /today
+      if (lower === '/today') {
+        const nextPost = store.posts
+          .filter((p) => (!p.accountId || p.accountId === account.id) && p.status === 'queued')
+          .sort((a, b) => (a.scheduledAt || '').localeCompare(b.scheduledAt || ''))[0];
+        if (!nextPost) {
+          await sendTelegramMessage({
+            botToken: tg.botToken,
+            chatId: tg.chatId,
+            text: `No queued posts for ${account.handle} yet. Text me any URL or tap "Batch 14 Posts ($0)" in GhostPilot!`,
+          });
+        } else {
+          const payload = formatPostForTelegram({ post: nextPost, account, baseUrl: origin });
+          await sendTelegramMessage({
+            botToken: tg.botToken,
+            chatId: tg.chatId,
+            text: payload.text,
+            replyMarkup: payload.replyMarkup,
+          });
+        }
+        continue;
+      }
+
+      // Slash Command: /ideas
+      if (lower === '/ideas') {
+        const scan = await runLiveIndustryScan({
+          niche: activeBrain.niche,
+          subreddits: activeBrain.subreddits,
+          customRssUrls: activeBrain.customRssUrls,
+          includeGithub: true,
+        });
+        const top5 = scan.items.slice(0, 5);
+        const lines = top5.map(
+          (it, i) => `${i + 1}. <b>[${it.source}]</b> ${it.title.slice(0, 110)}\n${it.url}`
+        );
+        await sendTelegramMessage({
+          botToken: tg.botToken,
+          chatId: tg.chatId,
+          text: `<b>Top 5 Live $0 Ideas · ${activeBrain.niche}</b>\n\n${lines.join('\n\n') || 'No fresh signals found right now.'}\n\n<i>Reply with any link above and I will write your post!</i>`,
+        });
+        continue;
+      }
+
+      // Slash Command: /pdf <topic>
+      if (lower.startsWith('/pdf')) {
+        const pdfTopic = trimmed.replace(/^\/pdf\s*/i, '').trim() || activeBrain.niche;
+        const offer = activeBrain.offers[0];
+        const newMagnet = buildPaidWorthLeadMagnet({
+          topic: pdfTopic,
+          format: 'Playbook',
+          dossier: store.dossiers[0],
+          offer,
+          account,
+          niche: activeBrain.niche,
+          requireEmailGate: true,
+        });
+        newMagnet.accountId = account.id;
+        store.leadMagnets.unshift(newMagnet);
+        const pack = formatGiveawayPackForTelegram({
+          magnet: newMagnet,
+          offer,
           account,
           baseUrl: origin,
         });
         await sendTelegramMessage({
           botToken: tg.botToken,
           chatId: tg.chatId,
-          text: `<b>Turned your Telegram note into a humanized queued post!</b>\n\n${replyPayload.text}`,
-          replyMarkup: replyPayload.replyMarkup,
+          text: `<b>Built your 7-Chapter Paid-Worth Free PDF + Giveaway Pack ($0)!</b>\n\n${pack.text}`,
+          replyMarkup: pack.replyMarkup,
         });
+        continue;
       }
 
+      let topic = trimmed;
+      let insight = `Practical lesson for ${activeBrain.niche} buyers.`;
+
+      if (msg.url) {
+        try {
+          const extracted = await extractUrlWithJinaReader(msg.url);
+          topic = extracted.title;
+          insight = extracted.keyTakeaways[0] || extracted.markdown.slice(0, 220);
+          store.radarItems.unshift({
+            id: `tg-in-${Date.now()}-${createdPosts}`,
+            accountId: account.id,
+            source: extracted.engine === 'youtube-transcript' ? 'YouTube Transcript' : 'Custom RSS',
+            sourceDetail: extracted.engine === 'youtube-transcript' ? 'YouTube Transcript ($0)' : 'Sent from Telegram',
+            title: extracted.title,
+            summary: extracted.keyTakeaways.join(' · ').slice(0, 260) || insight,
+            url: extracted.url,
+            niche: activeBrain.niche,
+            signalScore: 95,
+            publishedAt: new Date().toISOString(),
+            painPointTag: 'Telegram Inbox Link',
+          });
+        } catch {
+          // Fall back to raw message text
+        }
+      }
+
+      const offer = activeBrain.offers[0];
+      const variations = buildRankedABVariations({
+        topic,
+        keyInsight: insight,
+        brandBrain: activeBrain,
+        persona: activeBrain.personas[0],
+        offer,
+      });
+      const best = variations[0];
+      if (!best) continue;
+
+      const humanizedBlocks = best.blocks.map((b) => humanizeCopy(b).cleanedText || b);
+      const nextSlot = findNextOpenSlot(store.queueSlots, store.posts, new Date());
+      const newPost: PostItem = {
+        id: `post-tgin-${Date.now()}-${createdPosts}`,
+        accountId: account.id,
+        blocks: humanizedBlocks,
+        status: 'queued',
+        format: humanizedBlocks.length > 1 ? 'thread' : 'single',
+        scheduledAt: nextSlot,
+        frameworkName: best.frameworkName,
+        trigger: best.trigger,
+        predictiveScore: best.score.total,
+        automations: {
+          threadDelayMinutes: 0,
+          autoPlugEnabled: Boolean(offer?.autoPlugTemplate),
+          autoPlugText: offer?.autoPlugTemplate || '',
+          autoPlugDelayMinutes: 30,
+          autoPlugMinLikes: 0,
+          autoRetweetEnabled: false,
+          autoRetweetDelayHours: 8,
+          autoUnretweetAfterHours: 24,
+          autoDeleteEnabled: false,
+          autoDeleteAfterHours: 0,
+          isEvergreen: true,
+          evergreenIntervalDays: 14,
+          linkedOfferId: offer?.id,
+        },
+        metrics: { impressions: 0, likes: 0, retweets: 0, replies: 0, bookmarks: 0, offerClicks: 0 },
+        createdAt: new Date().toISOString(),
+      };
+      store.posts.unshift(newPost);
+      createdPosts++;
+
+      const replyPayload = formatPostForTelegram({
+        post: newPost,
+        account,
+        baseUrl: origin,
+      });
+      await sendTelegramMessage({
+        botToken: tg.botToken,
+        chatId: tg.chatId,
+        text: `<b>Turned your Telegram note into a humanized queued post!</b>\n\n${replyPayload.text}`,
+        replyMarkup: replyPayload.replyMarkup,
+      });
+    }
+
+    if (messages.length > 0 || typeof nextUpdateId === 'number') {
       saveStore(store);
-      res.json({ checked: messages.length, createdPosts, store });
+    }
+    return { checked: messages.length, createdPosts, store };
+  }
+
+  app.post('/api/telegram/poll-inbox', async (req, res) => {
+    try {
+      const origin =
+        (typeof req.body?.origin === 'string' && req.body.origin) ||
+        process.env.APP_URL ||
+        'http://localhost:3000';
+      const result = await processTelegramInboxAndAutoPair(origin);
+      res.json(result);
     } catch (err) {
       res.status(400).json({
         error: err instanceof Error ? err.message : 'Could not check Telegram inbox.',
+      });
+    }
+  });
+
+  app.post('/api/telegram/send-branch-pack', async (req, res) => {
+    try {
+      const { pack, origin } = req.body as { pack?: 'replies' | 'dm'; origin?: string };
+      const store = loadStore();
+      const account =
+        store.accounts.find((a) => a.id === store.activeAccountId) || store.accounts[0];
+      const activeBrain = account?.brandBrain || store.brandBrain;
+      const tg = resolveTelegramConfig(store, account?.id);
+      if (!tg?.botToken || !tg?.chatId) {
+        return res.status(400).json({
+          error: 'Connect your free Telegram Bot first under Accounts & Telegram (takes 30 seconds).',
+        });
+      }
+
+      const cleanOrigin = origin || process.env.APP_URL || 'http://localhost:3000';
+      if (pack === 'replies') {
+        const accContacts = store.crmContacts.filter(
+          (c) => !c.accountId || c.accountId === account.id
+        );
+        const sampleReplies = buildValueReplySuggestions({
+          targetHandle: accContacts[0]?.handle || '@creator',
+          targetTopic: accContacts[0]?.latestTweet || activeBrain.niche,
+          niche: activeBrain.niche,
+        });
+        const formatted = formatReplyGuyPackForTelegram({
+          account,
+          niche: activeBrain.niche,
+          targets: accContacts,
+          sampleReplies,
+        });
+        await sendTelegramMessage({
+          botToken: tg.botToken,
+          chatId: tg.chatId,
+          text: formatted.text,
+          replyMarkup: formatted.replyMarkup,
+        });
+      } else {
+        const accMagnet = store.leadMagnets.find(
+          (m) => !m.accountId || m.accountId === account.id
+        );
+        const offer = activeBrain.offers[0];
+        const steps = buildFourStepAffiliateDmSequence({
+          magnet: accMagnet,
+          offer,
+          niche: activeBrain.niche,
+          baseUrl: cleanOrigin,
+        });
+        const formatted = formatFourStepDmForTelegram({ account, steps });
+        await sendTelegramMessage({
+          botToken: tg.botToken,
+          chatId: tg.chatId,
+          text: formatted.text,
+        });
+      }
+
+      tg.lastSentAt = new Date().toISOString();
+      saveStore(store);
+      res.json({ ok: true, store });
+    } catch (err) {
+      res.status(400).json({
+        error: err instanceof Error ? err.message : 'Could not send pack to Telegram.',
       });
     }
   });
@@ -1453,9 +1940,9 @@ async function startServer() {
     }
   });
 
-  // Built-in <1s $0 Local Turbo Runner — works 100% offline/locally regardless of LLM speed or limits
+  // Built-in <1s $0 Local Turbo & 14-Day Batch Runner — works 100% offline/locally
   app.post('/api/antigravity/run-local-turbo', (req, res) => {
-    const { goal } = req.body as { goal?: string };
+    const { goal, count = 4 } = req.body as { goal?: string; count?: number };
     const store = loadStore();
     const activeAccount =
       store.accounts.find((a) => a.id === store.activeAccountId) || store.accounts[0];
@@ -1471,29 +1958,41 @@ async function startServer() {
       (d) => (d.accountId || store.accounts[0]?.id) === activeAccount.id
     );
 
-    const topics = [
-      ...(goal?.trim() ? [goal.trim()] : []),
-      ...(accountRadar.slice(0, 2).map((r) => r.title)),
-      ...(accountDossier?.angles.buyerPainPoints.slice(0, 2) || []),
-      `${activeBrain.niche} step-by-step system`,
-      `${activeBrain.niche} mistakes costing beginners money`,
-    ].slice(0, 4);
+    const safeCount = Math.max(1, Math.min(30, Number(count) || 4));
+    const batchPlans = buildBatchFourteenDayTopics({
+      niche: activeBrain.niche,
+      offerName: offer?.name,
+      radarItems: accountRadar,
+      dossier: accountDossier,
+      count: safeCount,
+    });
 
-    const generatedPosts = topics.map((topic, idx) => {
+    const cleanGoal = (goal || '').trim();
+    const isMetaPrompt = /^(create|write|generate|make)\s+(ready-to-post|daily|viral)?\s*(tweets|posts|threads)/i.test(
+      cleanGoal
+    );
+    if (cleanGoal && !isMetaPrompt && cleanGoal.length <= 90 && batchPlans.length > 0) {
+      batchPlans[0] = { topic: cleanGoal, format: 'giveaway' };
+    }
+
+    const generatedPosts = batchPlans.map((plan, idx) => {
       const ranked = buildRankedABVariations({
-        topic,
+        topic: plan.topic,
         keyInsight:
-          accountDossier?.angles.coreFrameworks[idx % Math.max(1, accountDossier?.angles.coreFrameworks.length || 1)] ||
-          accountRadar[idx]?.summary,
+          plan.insight ||
+          accountDossier?.angles.coreFrameworks[
+            idx % Math.max(1, accountDossier?.angles.coreFrameworks.length || 1)
+          ],
         brandBrain: activeBrain,
         persona,
         offer,
       });
-      const winner = ranked[0];
+      const winner = ranked[idx % Math.max(1, ranked.length)] || ranked[0];
+      const humanized = winner.blocks.map((b) => humanizeCopy(b).cleanedText || b);
       return {
-        blocks: winner.blocks,
-        format: (idx === 0 ? 'giveaway' : 'single') as PostItem['format'],
-        frameworkName: `${winner.frameworkName} (Local Turbo)`,
+        blocks: humanized,
+        format: plan.format,
+        frameworkName: `${winner.frameworkName} (${safeCount >= 14 ? '14-Day Batch' : 'Local Turbo'})`,
       };
     });
 
@@ -1525,6 +2024,21 @@ async function startServer() {
   setInterval(() => {
     void processDueScheduledPosts();
   }, 60 * 1000);
+
+  // Start 8-second live Two-Way Telegram Bot Auto-Pair & Slash-Command Poller ($0)
+  setInterval(() => {
+    if (telegramPollerBusy) return;
+    const st = loadStore();
+    const tg = resolveTelegramConfig(st, st.activeAccountId);
+    if (!tg?.botToken) return;
+    if (tg.chatId && tg.twoWayInboxEnabled === false) return;
+    telegramPollerBusy = true;
+    void processTelegramInboxAndAutoPair(process.env.APP_URL)
+      .catch(() => undefined)
+      .finally(() => {
+        telegramPollerBusy = false;
+      });
+  }, 8 * 1000);
 
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`GhostPilot server listening on http://0.0.0.0:${PORT}`);

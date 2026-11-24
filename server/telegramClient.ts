@@ -38,6 +38,20 @@ export async function getTelegramBotInfo(botToken: string): Promise<{ id: number
   };
 }
 
+export async function setTelegramBotCommands(botToken: string): Promise<void> {
+  await telegramCall<boolean>(botToken, 'setMyCommands', {
+    commands: [
+      { command: 'today', description: 'Get next scheduled X post + 1-tap Post button' },
+      { command: 'ideas', description: 'Scan 7 live $0 sources for fresh niche ideas' },
+      { command: 'pdf', description: 'Build a Paid-Worth Free PDF + Giveaway Reply Pack' },
+      { command: 'replies', description: 'Get today Reply-Guy targets + 3 value replies' },
+      { command: 'dm', description: 'Get your 4-step Affiliate Group DM closing scripts' },
+      { command: 'stats', description: 'Check queue, PDFs, email leads & affiliate clicks' },
+      { command: 'help', description: 'Show all GhostPilot $0 Telegram commands' },
+    ],
+  });
+}
+
 export async function sendTelegramMessage(params: {
   botToken: string;
   chatId: string;
@@ -134,7 +148,7 @@ export async function fetchTelegramInboxMessages(
     if (!msg?.text) continue;
     if (String(msg.chat.id) !== chatId.trim()) continue;
     const text = msg.text.trim();
-    if (!text || text === '/start' || text.toLowerCase() === 'hi') continue;
+    if (!text || text.toLowerCase() === 'hi') continue;
     const urlMatch = text.match(/https?:\/\/[^\s]+/i);
     messages.push({
       updateId: upd.update_id,

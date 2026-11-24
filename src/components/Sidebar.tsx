@@ -4,6 +4,7 @@ import {
   Lightbulb,
   Lock,
   LogOut,
+  MessageSquare,
   Plus,
   Send,
   Sparkles,
@@ -53,8 +54,9 @@ export function Sidebar({
 
   const navItems: NavItem[] = [
     { id: 'today', label: 'Today', icon: Sparkles },
-    { id: 'ideas', label: 'Ideas ($0)', icon: Lightbulb },
+    { id: 'ideas', label: 'Ideas & Viral', icon: Lightbulb },
     { id: 'queue-pdfs', label: 'Queue & PDFs', icon: FileText, count: queuedCount },
+    { id: 'engage-dm', label: 'Engage & Auto-DM', icon: MessageSquare },
     { id: 'accounts-telegram', label: 'Accounts & Telegram', icon: Send },
   ];
 

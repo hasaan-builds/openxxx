@@ -59,23 +59,30 @@ export function exportLeadMagnetToPdf(
   const subtitleLines = doc.splitTextToSize(magnet.subtitle, contentWidth);
   doc.text(subtitleLines, margin, afterTitleY, { lineHeightFactor: 1.45 });
 
-  // What's inside preview card
-  const tocTop = Math.max(afterTitleY + subtitleLines.length * 24 + 44, 410);
+  // What's inside preview card (supports up to 7 paid-worth chapters)
+  const visibleToc = magnet.sections.slice(0, 7);
+  const tocHeight = Math.max(210, 62 + visibleToc.length * 24 + 18);
+  const tocTop = Math.min(Math.max(afterTitleY + subtitleLines.length * 24 + 36, 360), pageHeight - tocHeight - 105);
   doc.setFillColor(17, 24, 39);
   doc.setDrawColor(51, 65, 85);
-  doc.roundedRect(margin, tocTop, contentWidth, 210, 10, 10, 'FD');
+  doc.roundedRect(margin, tocTop, contentWidth, tocHeight, 10, 10, 'FD');
 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(11);
   doc.setTextColor(accentR, accentG, accentB);
-  doc.text('INSIDE THIS PLAYBOOK', margin + 24, tocTop + 34);
+  doc.text(
+    `INSIDE THIS ${magnet.format.toUpperCase()}  ·  ${(magnet.perceivedValueLabel || 'COMPLETE EDITION').toUpperCase()}`,
+    margin + 24,
+    tocTop + 32
+  );
 
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(12);
+  doc.setFontSize(11.5);
   doc.setTextColor(226, 232, 240);
-  magnet.sections.slice(0, 5).forEach((sec, idx) => {
-    const rowY = tocTop + 66 + idx * 28;
-    doc.text(`0${idx + 1}.  ${sec.heading.slice(0, 62)}`, margin + 24, rowY);
+  visibleToc.forEach((sec, idx) => {
+    const rowY = tocTop + 60 + idx * 24;
+    const cleanHeading = sec.heading.replace(/^0?\d+\.\s*/, '');
+    doc.text(`0${idx + 1}.  ${cleanHeading.slice(0, 64)}`, margin + 24, rowY);
   });
 
   // Author Footer
@@ -204,12 +211,14 @@ export function exportLeadMagnetToPdf(
     doc.setTextColor(accentR, accentG, accentB);
     const labelMap: Record<typeof section.type, string> = {
       takeaway: 'EXECUTIVE TAKEAWAY',
-      framework: `FRAMEWORK 0${index + 1}`,
-      checklist: 'ACTION CHECKLIST',
-      script: 'WORD-FOR-WORD SCRIPT',
-      'offer-callout': 'RECOMMENDED NEXT STEP',
+      framework: `OPERATING SYSTEM  ·  PART 0${index + 1}`,
+      comparison: '95% MISTAKES VS TOP 1% PLAYBOOK',
+      checklist: '7-DAY ACTION CHECKLIST',
+      script: 'COPY-PASTE SWIPE FILE & PROMPTS',
+      worksheet: 'TROUBLESHOOTING & DIAGNOSTIC',
+      'offer-callout': 'RECOMMENDED GROUP NEXT STEP',
     };
-    doc.text(labelMap[section.type], margin + 20, innerY);
+    doc.text(labelMap[section.type] || `SECTION 0${index + 1}`, margin + 20, innerY);
     innerY += 20;
 
     // Heading

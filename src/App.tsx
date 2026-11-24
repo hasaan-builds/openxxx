@@ -15,11 +15,12 @@ import type {
   NavSection,
 } from './lib/types';
 import { SimpleAccountsTelegramView } from './views/SimpleAccountsTelegramView';
+import { SimpleEngageDmView } from './views/SimpleEngageDmView';
 import { SimpleIdeasView } from './views/SimpleIdeasView';
 import { SimpleQueuePdfsView } from './views/SimpleQueuePdfsView';
 import { SimpleTodayView } from './views/SimpleTodayView';
 
-type SimpleHub = 'today' | 'ideas' | 'queue-pdfs' | 'accounts-telegram';
+type SimpleHub = 'today' | 'ideas' | 'queue-pdfs' | 'engage-dm' | 'accounts-telegram';
 
 export function App() {
   const [store, setStore] = useState<GhostPilotStore | null>(null);
@@ -36,6 +37,7 @@ export function App() {
 
   const [activeHub, setActiveHub] = useState<SimpleHub>('today');
   const [queueInitialTab, setQueueInitialTab] = useState<'posts' | 'pdfs' | 'write'>('posts');
+  const [incomingDraftBlocks, setIncomingDraftBlocks] = useState<string[] | undefined>(undefined);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [manualWizardOpen, setManualWizardOpen] = useState(false);
@@ -105,8 +107,12 @@ export function App() {
       setActiveHub('today');
       return;
     }
-    if (section === 'ideas' || section === 'research-hub' || section === 'research') {
+    if (section === 'ideas' || section === 'research-hub' || section === 'research' || section === 'viral') {
       setActiveHub('ideas');
+      return;
+    }
+    if (section === 'engage-dm' || section === 'crm' || section === 'grow-hub') {
+      setActiveHub('engage-dm');
       return;
     }
     if (section === 'lead-magnets' || section === 'carousels') {
@@ -123,7 +129,7 @@ export function App() {
       section === 'queue-pdfs' ||
       section === 'write-hub' ||
       section === 'queue' ||
-      section === 'viral'
+      section === 'automations'
     ) {
       setQueueInitialTab('posts');
       setActiveHub('queue-pdfs');
@@ -353,6 +359,11 @@ export function App() {
                 setQueueInitialTab('pdfs');
                 setActiveHub('queue-pdfs');
               }}
+              onLoadDraftInWrite={(blocks) => {
+                setIncomingDraftBlocks(blocks);
+                setQueueInitialTab('write');
+                setActiveHub('queue-pdfs');
+              }}
               onNotify={notify}
             />
           )}
@@ -362,6 +373,20 @@ export function App() {
               key={`queue-${activeAccount.id}`}
               store={scopedStore}
               initialTab={queueInitialTab}
+              incomingDraftBlocks={incomingDraftBlocks}
+              onConsumeIncomingDraft={() => setIncomingDraftBlocks(undefined)}
+              onUpdateStore={handleScopedUpdateStore}
+              onReplaceStore={setStore}
+              onGoToTelegramSetup={() => setActiveHub('accounts-telegram')}
+              onNotify={notify}
+            />
+          )}
+
+          {activeHub === 'engage-dm' && (
+            <SimpleEngageDmView
+              key={`engage-${activeAccount.id}`}
+              store={scopedStore}
+              activeAccount={activeAccount}
               onUpdateStore={handleScopedUpdateStore}
               onReplaceStore={setStore}
               onGoToTelegramSetup={() => setActiveHub('accounts-telegram')}

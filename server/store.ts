@@ -25,6 +25,9 @@ export function loadStore(): GhostPilotStore {
       const raw = fs.readFileSync(DB_FILE, 'utf-8');
       const parsed = JSON.parse(raw) as GhostPilotStore;
       if (parsed && Array.isArray(parsed.accounts) && parsed.brandBrain) {
+        if (!Array.isArray(parsed.capturedLeads)) {
+          parsed.capturedLeads = [];
+        }
         cachedStore = parsed;
         return cachedStore;
       }

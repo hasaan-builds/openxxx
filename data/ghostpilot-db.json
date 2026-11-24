@@ -114,6 +114,16 @@
             "estimatedRevenue": 0
           }
         ]
+      },
+      "telegram": {
+        "enabled": true,
+        "botToken": "9186604883:AAHJXE5YKtfb_VJ2msPW4jw42I44U4z9Y-c",
+        "chatId": "8526562130",
+        "botUsername": "xautomarobot",
+        "autoPlugReminderEnabled": true,
+        "autoPlugDelayMinutes": 30,
+        "twoWayInboxEnabled": true,
+        "lastUpdateId": 432513768
       }
     },
     {
@@ -245,22 +255,22 @@
       }
     }
   ],
-  "activeAccountId": "acc-primary",
+  "activeAccountId": "acc-1795284214698",
   "brandBrain": {
-    "niche": "High-Ticket Sales & Appointment Setting",
+    "niche": "AI Agents & Vibe Coding",
     "subNiches": [
-      "Objection handling & calm closing on $3k–$25k calls"
+      "Building $0 AI apps with Antigravity & Gemini"
     ],
     "subreddits": [
-      "sales",
-      "entrepreneur",
-      "SaaS",
-      "consulting"
+      "LocalLLaMA",
+      "artificial",
+      "SideProject",
+      "singularity"
     ],
     "customRssUrls": [],
-    "tone": "Direct, tactical sales operator sharing real call notes, exact word tracks, and zero fluff.",
+    "tone": "Sharp, builder-first curator sharing tested tools, exact workflows, and zero hype.",
     "voiceRules": [
-      "Stay 100% locked onto High-Ticket Sales & Appointment Setting: Objection handling & calm closing on $3k–$25k calls. Never drift into unrelated topics.",
+      "Stay 100% locked onto AI Agents & Vibe Coding: Building $0 AI apps with Antigravity & Gemini. Never drift into unrelated topics.",
       "Primary business goal: Sell a Whop or Affiliate Course.",
       "Lead every post with a concrete number, buyer pain point, or contrarian proof.",
       "Write in crisp Grade 5–7 readability with generous whitespace and zero robotic AI fluff."
@@ -282,12 +292,12 @@
       "cutting-edge"
     ],
     "winningPhrases": [
-      "close",
-      "objection",
-      "discovery",
-      "call",
-      "prospect",
-      "deal"
+      "agent",
+      "github",
+      "workflow",
+      "local",
+      "prompt",
+      "automate"
     ],
     "weeklyMix": {
       "singlePosts": 3,
@@ -297,43 +307,43 @@
     },
     "personas": [
       {
-        "id": "persona-high-ticket-sales",
-        "name": "Remote closers",
-        "role": "Remote closers, appointment setters & B2B founders",
+        "id": "persona-ai-agents-vibe-coding",
+        "name": "Indie builders",
+        "role": "Indie builders, solo founders & beginner vibe coders",
         "fears": [
-          "getting ghosted after sending proposals",
-          "freezing on price objections",
-          "inconsistent commission checks"
+          "falling behind on AI tools",
+          "wasting money on paid API subscriptions",
+          "getting stuck on technical errors"
         ],
         "desires": [
-          "30%+ close rates without pushiness",
-          "$10k+/mo remote closing income",
-          "word-for-word rebuttal scripts"
+          "launch profitable AI apps fast",
+          "automate work at $0/month",
+          "discover breakout GitHub repos early"
         ],
         "keywords": [
-          "close",
-          "objection",
-          "discovery",
-          "call",
-          "prospect",
-          "deal",
-          "script",
-          "setter",
-          "pipeline"
+          "agent",
+          "github",
+          "workflow",
+          "local",
+          "prompt",
+          "automate",
+          "free",
+          "repo",
+          "stack"
         ]
       }
     ],
-    "activePersonaId": "persona-high-ticket-sales",
+    "activePersonaId": "persona-ai-agents-vibe-coding",
     "offers": [
       {
-        "id": "offer-1795274407189",
-        "name": "High-Ticket Sales & Appointment Setting Starter Offer (Whop)",
+        "id": "offer-1795284280969",
+        "name": "AI Agents & Vibe Coding Starter Offer (Whop)",
         "platform": "Whop",
         "url": "https://whop.com/",
         "priceLabel": "$49",
-        "promise": "Help remote closers master Objection handling & calm closing on $3k–$25k calls without guesswork.",
-        "autoPlugTemplate": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
-        "giveawayKeyword": "CLOSE",
+        "promise": "Help indie builders master Building $0 AI apps with Antigravity & Gemini without guesswork.",
+        "autoPlugTemplate": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "giveawayKeyword": "STACK",
         "clicks": 0,
         "leads": 0,
         "estimatedRevenue": 0
@@ -1210,6 +1220,114 @@
   ],
   "leadMagnets": [
     {
+      "id": "lm-1795476598201",
+      "accountId": "acc-1795284214698",
+      "slug": "zero-budget-ai-x-growth-affiliate-group-playbo-8201",
+      "title": "Zero-Budget AI X Growth & Affiliate Group Playbook: The Complete Playbook",
+      "subtitle": "A practical, step-by-step AI Agents & Vibe Coding field manual with diagnostic frameworks, copy-paste scripts, common trap fixes, and a 7-day execution checklist.",
+      "format": "Playbook",
+      "niche": "AI Agents & Vibe Coding",
+      "themeColor": "#0071E3",
+      "authorName": "Alex Rivera",
+      "authorHandle": "@alexbuildsai",
+      "linkedOfferId": "offer-1795284280969",
+      "giveawayKeyword": "STACK",
+      "requireEmailGate": true,
+      "perceivedValueLabel": "$97 Value · Free Edition",
+      "views": 0,
+      "downloads": 1,
+      "offerClicks": 0,
+      "createdAt": "2026-11-23T23:29:58.201Z",
+      "sections": [
+        {
+          "id": "sec-1795476598201-1",
+          "type": "takeaway",
+          "heading": "01. Executive Reality Check: Why Most Zero-Budget AI X Growth & Affiliate Group Playbook Attempts Stall",
+          "body": "Most beginners jump straight into random tactics without isolating the single bottleneck holding back results in AI Agents & Vibe Coding. Before you install another tool or chase another trend, lock in these 4 non-negotiable truths:",
+          "bullets": [
+            "Mistake #1: Consuming 10 hours of scattered tutorials with zero written execution order.",
+            "Mistake #2: Copying big accounts' surface-level hooks instead of their underlying distribution system.",
+            "Mistake #3: Skipping proof and specificity — vague advice never earns bookmarks or DMs.",
+            "The Fix: Run one measurable 30-minute daily workflow for 14 straight days before tweaking variables."
+          ]
+        },
+        {
+          "id": "sec-1795476598201-2",
+          "type": "framework",
+          "heading": "02. The 4-Part Zero-Budget AI X Growth & Affiliate Group Playbook Operating System",
+          "body": "Follow these four phases in strict sequence. Do not skip Phase 1 — every downstream conversion depends on getting your angle and offer alignment sharp first:",
+          "bullets": [
+            "Phase 1 (Signal Mining): Extract 5 real buyer complaints from active communities every Monday morning.",
+            "Phase 2 (Asset Packaging): Turn the #1 painful complaint into a focused, zero-fluff playbook or teardown.",
+            "Phase 3 (Distribution Loop): Pair 1 daily value post with 10 targeted replies under established AI Agents & Vibe Coding voices.",
+            "Phase 4 (Conversion Bridge): Deliver the free resource fast, ask 1 diagnostic question, and invite qualified leads to AI Agents & Vibe Coding Starter Offer (Whop)."
+          ]
+        },
+        {
+          "id": "sec-1795476598201-3",
+          "type": "comparison",
+          "heading": "03. What 95% Do Wrong vs. The Top 1% Playbook",
+          "body": "Use this side-by-side audit table to spot leaks in your current AI Agents & Vibe Coding setup within 60 seconds:",
+          "bullets": [
+            "95% Approach: Post random AI-generated tips with zero follow-up -> Top 1% Approach: Publish 1 specific proof-backed breakdown with an Auto-Plug link 30 minutes later.",
+            "95% Approach: Give away thin 1-page summaries people forget -> Top 1% Approach: Deliver paid-grade checklists & scripts so readers immediately trust your recommendations.",
+            "95% Approach: Wait passively for followers at 0 audience -> Top 1% Approach: Spend 15 minutes daily adding sharp, contrarian replies under 10 big niche accounts.",
+            "95% Approach: Drop cold affiliate links in Tweet 1 (killed by the X link penalty) -> Top 1% Approach: Keep Tweet 1 link-free and route interested readers via reply or DM."
+          ]
+        },
+        {
+          "id": "sec-1795476598201-4",
+          "type": "script",
+          "heading": "04. Word-for-Word Swipe File & Copy-Paste Prompts",
+          "body": "Adapt these proven templates directly into your daily workflow — replace the bracketed placeholders with your exact AI Agents & Vibe Coding details:",
+          "bullets": [
+            "Hook Formula: \"Most people in AI Agents & Vibe Coding spend 10 hours a week on [low-leverage task]. Here is the 3-step system that cuts it to 30 minutes (bookmark this):\"",
+            "Giveaway Post: \"I built a step-by-step Zero-Budget AI X Growth & Affiliate Group Playbook field manual with exact prompts + 7-day checklist. Comment 'STACK' and I'll send it free.\"",
+            "Auto-Plug Reply (+30m): \"If you want the full copy-paste templates from this breakdown, I put them in a free page here -> [Your Link]\"",
+            "DM Diagnostic Bridge: \"Out of the 4 phases in the guide, which one are you trying to get working first?\""
+          ]
+        },
+        {
+          "id": "sec-1795476598201-5",
+          "type": "checklist",
+          "heading": "05. Your 7-Day Zero-Cost Execution Sprint",
+          "body": "Print or save this page and check off one focused block per day for the next 7 days:",
+          "bullets": [
+            "Day 1: Tighten your X Bio (under 160 chars) + pin your strongest free resource post to the top of your profile.",
+            "Day 2: Build a list of 15 active AI Agents & Vibe Coding accounts (10k–200k followers) and leave 10 high-value replies.",
+            "Day 3: Publish 1 step-by-step thread breaking down a real mistake costing AI Agents & Vibe Coding beginners time or money.",
+            "Day 4: Post a 4-slide visual carousel summarizing Phase 1–4 from Section 02 above.",
+            "Day 5: Launch 1 Comment-to-PDF giveaway post and deliver the link fast to every commenter.",
+            "Day 6: Follow up with warm commenters using the Step 2 diagnostic question (zero hard pitch).",
+            "Day 7: Audit your top 2 posts by bookmarks & profile clicks, mark them Evergreen, and batch next week's queue."
+          ]
+        },
+        {
+          "id": "sec-1795476598201-6",
+          "type": "worksheet",
+          "heading": "06. Troubleshooting Traps (When Results Feel Slow)",
+          "body": "Every operator hits friction in Weeks 1–3. Diagnose the exact symptom below instead of quitting early:",
+          "bullets": [
+            "Low Views (<100 impressions)? You have a distribution problem, not a writing problem — double your daily Reply-Guy comments under big accounts for 7 days.",
+            "High Views, Low Bookmarks? Your hook worked, but the body was too abstract — add numbered steps, exact tool names, or copy-paste scripts.",
+            "Comments on Giveaway, Zero Link Clicks? Make your free resource preview concrete (show exact chapters & checklists) and send the link within 2 hours.",
+            "Clicks to AI Agents & Vibe Coding Starter Offer (Whop), Low Conversions? Warm leads with a 2-message DM check-in first so they see why the community solves their exact bottleneck."
+          ]
+        },
+        {
+          "id": "sec-1795476598201-7",
+          "type": "offer-callout",
+          "heading": "07. Ready to Go Faster? Inside AI Agents & Vibe Coding Starter Offer (Whop)",
+          "body": "Help indie builders master Building $0 AI apps with Antigravity & Gemini without guesswork.",
+          "bullets": [
+            "Partner Group Offer: AI Agents & Vibe Coding Starter Offer (Whop) ($49) on Whop",
+            "Direct step-by-step support so you avoid months of trial and error",
+            "Tap the button below to check current access details"
+          ]
+        }
+      ]
+    },
+    {
       "id": "lm-1795392492276",
       "slug": "the-2026-high-ticket-discovery-call-audit-play-2276",
       "title": "The 2026 High-Ticket Discovery Call Audit Playbook",
@@ -1458,6 +1576,694 @@
     }
   ],
   "posts": [
+    {
+      "id": "post-ag-1795477428814-3",
+      "accountId": "acc-primary",
+      "blocks": [
+        "90 days ago: stuck guessing on This morning, masked ICE agents detained at least one passenger waiting to board an Alaska Airlines flight at Sea-Tac Airport. The masked agents forcibly dragged the individual off the jet bridge, taking them into custody. Let me be clear: this is absolutely una with inconsistent results.\n\nToday: a repeatable system producing predictable wins every week.\n\nNothing lucky changed — just this 3-step bridge:\n1. Anchor around Trending social conversation in AI Agents — tap Write Post to quote, counter, or expand this angle.\n2. Test 5 hook angles before publishing\n3. Funnel every high-intent reader to High-Ticket Sales & Appointment Setting Starter Offer (Whop)\n\nSave this to steal the exact bridge."
+      ],
+      "status": "queued",
+      "format": "thread",
+      "scheduledAt": "2026-12-13T11:00:00.000Z",
+      "frameworkName": "BAB (Before-After-Bridge) (Local Turbo)",
+      "predictiveScore": 75,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:43:48.814Z"
+    },
+    {
+      "id": "post-ag-1795477428813-2",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Unpopular truth about ICE is completely and totally out of control. Like many Americans, I’m outraged by masked agents, who do not identify themselves, dragging people off jetways as they board a flight, creating chaos in our communities. Today’s actions at Seattle-Tacoma Internat:\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master Trending social conversation in AI Agents — tap Write Post to quote, counter, or expand this angle.\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-12-12T11:00:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
+      "predictiveScore": 79,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:43:48.813Z"
+    },
+    {
+      "id": "post-ag-1795477428813-1",
+      "accountId": "acc-primary",
+      "blocks": [
+        "Unpopular truth about elizaOS/eliza — Trending open-source repository:\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master Open source agentic operating system\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-12-11T09:30:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
+      "predictiveScore": 83,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:43:48.813Z"
+    },
+    {
+      "id": "post-ag-1795477428813-0",
+      "accountId": "acc-primary",
+      "blocks": [
+        "I spent 24 hours reverse-engineering all our agents at langchain (internal GTM & content agents, LangSmith Engine) have a learning loop with similar pieces wrote about what we think makes up a \"knowledge factory\" https://t.co/xaAZb5i79q for Remote closers, appointment setters & B2B founders.\n\nPut the exact system into a free PDF Playbook:\n• Why Trending social conversation in AI Agents — tap Write Post to quote, counter, or expand this angle. beats 90% of generic advice\n• 3 word-for-word scripts you can use today\n• The complete step-by-step checklist\n\nComment \"CLOSE\" and I'll send you the PDF free."
+      ],
+      "status": "queued",
+      "format": "thread",
+      "scheduledAt": "2026-12-10T16:30:00.000Z",
+      "frameworkName": "S-Tier Comment-to-PDF Giveaway (Local Turbo)",
+      "predictiveScore": 87,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step High-Ticket Sales & Appointment Setting toolkit (High-Ticket Sales & Appointment Setting Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795274407189"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:43:48.813Z"
+    },
+    {
+      "id": "post-remix-1795476422893",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "I analyzed 100 failed AI agent builds last month.",
+        "84 of them died for the exact same reason:",
+        "The dev tried to ship features before the user felt the pain.",
+        "Stop coding in the dark.",
+        "Learn to build what people actually pay for in my Vibe Coding Starter Kit (link in bio)."
+      ],
+      "status": "queued",
+      "format": "thread",
+      "scheduledAt": "2026-12-10T09:00:00.000Z",
+      "frameworkName": "Viral Remix (Credible Sample Size + Single Root Cause)",
+      "predictiveScore": 72,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 0,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 14,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:27:02.893Z"
+    },
+    {
+      "id": "post-ag-1795476415466-13",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "How to master How to replace expensive AI Agents & Vibe Coding subscriptions with a simple daily loop in 14 days (even if you're starting from scratch):\n\nStep 1: Study the top 5 buyer pain points in AI Agents & Vibe Coding\nStep 2: Apply focusing on one repeatable ai agents & vibe coding system instead of guessing\nStep 3: Package the shortcut into a 1-page checklist\nStep 4: Share real proof every Tuesday and Thursday\n\nSave this — Step 2 does 80% of the heavy lifting."
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-12-09T09:00:00.000Z",
+      "frameworkName": "Steal My Exact Playbook (14-Day Batch)",
+      "predictiveScore": 85,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.466Z"
+    },
+    {
+      "id": "post-ag-1795476415466-12",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "Unpopular truth about What 95% do wrong vs Top 1% in AI Agents & Vibe Coding:\n\n90% of mainstream advice for Indie builders, solo founders & beginner vibe coders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master focusing on one repeatable ai agents & vibe coding system instead of guessing\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "carousel",
+      "scheduledAt": "2026-12-08T17:00:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (14-Day Batch)",
+      "predictiveScore": 87,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.466Z"
+    },
+    {
+      "id": "post-ag-1795476415465-11",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "Unpopular truth about 5 mistakes keeping beginners stuck at 0 results in AI Agents & Vibe Coding:\n\n90% of mainstream advice for Indie builders, solo founders & beginner vibe coders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master focusing on one repeatable ai agents & vibe coding system instead of guessing\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "thread",
+      "scheduledAt": "2026-12-08T09:00:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (14-Day Batch)",
+      "predictiveScore": 91,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.465Z"
+    },
+    {
+      "id": "post-ag-1795476415465-10",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "I spent 24 hours reverse-engineering The $0 laptop workflow for AI Agents & Vibe Coding beginners for Indie builders, solo founders & beginner vibe coders.\n\nPut the exact system into a free PDF Playbook:\n• Why focusing on one repeatable ai agents & vibe coding system instead of guessing beats 90% of generic advice\n• 3 word-for-word scripts you can use today\n• The complete step-by-step checklist\n\nComment \"STACK\" and I'll send you the PDF free."
+      ],
+      "status": "queued",
+      "format": "giveaway",
+      "scheduledAt": "2026-12-07T16:30:00.000Z",
+      "frameworkName": "S-Tier Comment-to-PDF Giveaway (14-Day Batch)",
+      "predictiveScore": 94,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.465Z"
+    },
+    {
+      "id": "post-ag-1795476415464-9",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "How to master My complete 7-day AI Agents & Vibe Coding starter sprint (Free PDF inside) in 14 days (even if you're starting from scratch):\n\nStep 1: Study the top 5 buyer pain points in AI Agents & Vibe Coding\nStep 2: Apply focusing on one repeatable ai agents & vibe coding system instead of guessing\nStep 3: Package the shortcut into a 1-page checklist\nStep 4: Share real proof every Tuesday and Thursday\n\nSave this — Step 2 does 80% of the heavy lifting."
+      ],
+      "status": "queued",
+      "format": "giveaway",
+      "scheduledAt": "2026-12-07T09:00:00.000Z",
+      "frameworkName": "Steal My Exact Playbook (14-Day Batch)",
+      "predictiveScore": 84,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.464Z"
+    },
+    {
+      "id": "post-ag-1795476415464-8",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "90 days ago: stuck guessing on Stop consuming AI Agents & Vibe Coding tutorials without this 1 filter with inconsistent results.\n\nToday: a repeatable system producing predictable wins every week.\n\nNothing lucky changed — just this 3-step bridge:\n1. Anchor around focusing on one repeatable ai agents & vibe coding system instead of guessing\n2. Test 5 hook angles before publishing\n3. Funnel every high-intent reader to AI Agents & Vibe Coding Starter Offer (Whop)\n\nSave this to steal the exact bridge."
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-12-06T11:00:00.000Z",
+      "frameworkName": "BAB (Before-After-Bridge) (14-Day Batch)",
+      "predictiveScore": 82,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.464Z"
+    },
+    {
+      "id": "post-ag-1795476415463-7",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "Unpopular truth about Inside the exact AI Agents & Vibe Coding roadmap inside AI Agents & Vibe Coding Starter Offer (Whop):\n\n90% of mainstream advice for Indie builders, solo founders & beginner vibe coders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master focusing on one repeatable ai agents & vibe coding system instead of guessing\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-12-05T11:00:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (14-Day Batch)",
+      "predictiveScore": 83,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": false,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.463Z"
+    },
+    {
+      "id": "post-ag-1795476415463-6",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "You are quietly losing hours every week on The 30-minute daily AI Agents & Vibe Coding routine anyone can stick to because of 1 fixable mistake.\n\nMost Indie builders, solo founders & beginner vibe coders skip the diagnosis and guess.\n\nTop 1% operators do this instead:\n1. Start with focusing on one repeatable ai agents & vibe coding system instead of guessing\n2. Cut 80% of busywork that doesn't convert\n3. Measure one clear outcome every 7 days\n\nBookmark this before your next sprint."
+      ],
+      "status": "queued",
+      "format": "thread",
+      "scheduledAt": "2026-12-04T09:30:00.000Z",
+      "frameworkName": "Silent Leak (Loss Aversion) (14-Day Batch)",
+      "predictiveScore": 87,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.463Z"
+    },
+    {
+      "id": "post-ag-1795476415463-5",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "I spent 24 hours reverse-engineering Why consistency beats complicated tools in AI Agents & Vibe Coding for Indie builders, solo founders & beginner vibe coders.\n\nPut the exact system into a free PDF Playbook:\n• Why focusing on one repeatable ai agents & vibe coding system instead of guessing beats 90% of generic advice\n• 3 word-for-word scripts you can use today\n• The complete step-by-step checklist\n\nComment \"STACK\" and I'll send you the PDF free."
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-12-03T16:30:00.000Z",
+      "frameworkName": "S-Tier Comment-to-PDF Giveaway (14-Day Batch)",
+      "predictiveScore": 92,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.463Z"
+    },
+    {
+      "id": "post-ag-1795476415462-4",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "90 days ago: stuck guessing on Free AI Agents & Vibe Coding checklist + exact swipe file (Comment to grab) with inconsistent results.\n\nToday: a repeatable system producing predictable wins every week.\n\nNothing lucky changed — just this 3-step bridge:\n1. Anchor around focusing on one repeatable ai agents & vibe coding system instead of guessing\n2. Test 5 hook angles before publishing\n3. Funnel every high-intent reader to AI Agents & Vibe Coding Starter Offer (Whop)\n\nSave this to steal the exact bridge."
+      ],
+      "status": "queued",
+      "format": "giveaway",
+      "scheduledAt": "2026-12-03T09:00:00.000Z",
+      "frameworkName": "BAB (Before-After-Bridge) (14-Day Batch)",
+      "predictiveScore": 84,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.462Z"
+    },
+    {
+      "id": "post-ag-1795476415462-3",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "How to master How to replace expensive AI Agents & Vibe Coding subscriptions with a simple daily loop in 14 days (even if you're starting from scratch):\n\nStep 1: Study the top 5 buyer pain points in AI Agents & Vibe Coding\nStep 2: Apply focusing on one repeatable ai agents & vibe coding system instead of guessing\nStep 3: Package the shortcut into a 1-page checklist\nStep 4: Share real proof every Tuesday and Thursday\n\nSave this — Step 2 does 80% of the heavy lifting."
+      ],
+      "status": "queued",
+      "format": "single",
+      "scheduledAt": "2026-12-02T09:00:00.000Z",
+      "frameworkName": "Steal My Exact Playbook (14-Day Batch)",
+      "predictiveScore": 85,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.462Z"
+    },
+    {
+      "id": "post-ag-1795476415462-2",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "Unpopular truth about What 95% do wrong vs Top 1% in AI Agents & Vibe Coding:\n\n90% of mainstream advice for Indie builders, solo founders & beginner vibe coders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master focusing on one repeatable ai agents & vibe coding system instead of guessing\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "carousel",
+      "scheduledAt": "2026-12-01T17:00:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (14-Day Batch)",
+      "predictiveScore": 87,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.462Z"
+    },
+    {
+      "id": "post-ag-1795476415462-1",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "Unpopular truth about 5 mistakes keeping beginners stuck at 0 results in AI Agents & Vibe Coding:\n\n90% of mainstream advice for Indie builders, solo founders & beginner vibe coders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master focusing on one repeatable ai agents & vibe coding system instead of guessing\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
+      ],
+      "status": "queued",
+      "format": "thread",
+      "scheduledAt": "2026-12-01T09:00:00.000Z",
+      "frameworkName": "Contrarian Truth + Proof (14-Day Batch)",
+      "predictiveScore": 91,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.462Z"
+    },
+    {
+      "id": "post-ag-1795476415461-0",
+      "accountId": "acc-1795284214698",
+      "blocks": [
+        "I spent 24 hours reverse-engineering Create ready-to-post tweets for AI Agents & Vibe Coding promoting AI Agents & Vibe Coding Starter Offer (Whop) for Indie builders, solo founders & beginner vibe coders.\n\nPut the exact system into a free PDF Playbook:\n• Why focusing on one repeatable ai agents & vibe coding system instead of guessing beats 90% of generic advice\n• 3 word-for-word scripts you can use today\n• The complete step-by-step checklist\n\nComment \"STACK\" and I'll send you the PDF free."
+      ],
+      "status": "queued",
+      "format": "giveaway",
+      "scheduledAt": "2026-11-30T16:30:00.000Z",
+      "frameworkName": "S-Tier Comment-to-PDF Giveaway (14-Day Batch)",
+      "predictiveScore": 92,
+      "automations": {
+        "threadDelayMinutes": 0,
+        "autoPlugEnabled": true,
+        "autoPlugText": "P.S. If you want the complete step-by-step AI Agents & Vibe Coding toolkit (AI Agents & Vibe Coding Starter Offer (Whop)), grab it here → https://whop.com/",
+        "autoPlugDelayMinutes": 25,
+        "autoPlugMinLikes": 10,
+        "autoRetweetEnabled": true,
+        "autoRetweetDelayHours": 6,
+        "autoUnretweetAfterHours": 24,
+        "autoDeleteEnabled": false,
+        "autoDeleteAfterHours": 72,
+        "isEvergreen": true,
+        "evergreenIntervalDays": 21,
+        "linkedOfferId": "offer-1795284280969"
+      },
+      "metrics": {
+        "impressions": 0,
+        "likes": 0,
+        "retweets": 0,
+        "replies": 0,
+        "bookmarks": 0,
+        "offerClicks": 0
+      },
+      "createdAt": "2026-11-23T23:26:55.461Z"
+    },
     {
       "id": "post-ag-1795393570579-1",
       "accountId": "acc-primary",
@@ -1788,7 +2594,7 @@
       "blocks": [
         "Unpopular truth about How do you answer \"I need to talk to my partner/spouse\" without sounding pushy?:\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master The Calm Isolation Loop: Validate -> Isolate (\"Aside from price, is there anything else holding you back?\") -> Solve.\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
       ],
-      "status": "queued",
+      "status": "published",
       "format": "single",
       "scheduledAt": "2026-11-23T16:30:00.000Z",
       "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
@@ -1816,7 +2622,12 @@
         "bookmarks": 0,
         "offerClicks": 0
       },
-      "createdAt": "2026-11-22T07:09:21.929Z"
+      "createdAt": "2026-11-22T07:09:21.929Z",
+      "publishedAt": "2026-11-23T23:17:38.786Z",
+      "xTweetIds": [
+        "sandbox-1795475858786-1"
+      ],
+      "telegramAutoPlugSent": true
     },
     {
       "id": "post-ag-1795331361926-0",
@@ -1824,7 +2635,7 @@
       "blocks": [
         "Unpopular truth about Why 70% of prospects ghost right after saying \"Send me the proposal\":\n\n90% of mainstream advice for Remote closers, appointment setters & B2B founders is backwards.\n\nHere is what actually drives results:\n\n→ Stop chasing hacks; master The 3-Layer Pain Ladder: Surface Problem -> Financial Cost -> Personal Urgency (\"Why fix this this quarter?\").\n→ Build proof before pitching your offer\n→ Turn every question into a reusable asset\n\nWhich mistake do you see most often?"
       ],
-      "status": "queued",
+      "status": "published",
       "format": "giveaway",
       "scheduledAt": "2026-11-23T09:00:00.000Z",
       "frameworkName": "Contrarian Truth + Proof (Local Turbo)",
@@ -1852,7 +2663,12 @@
         "bookmarks": 0,
         "offerClicks": 0
       },
-      "createdAt": "2026-11-22T07:09:21.927Z"
+      "createdAt": "2026-11-22T07:09:21.927Z",
+      "publishedAt": "2026-11-23T23:17:38.787Z",
+      "xTweetIds": [
+        "sandbox-1795475858787-1"
+      ],
+      "telegramAutoPlugSent": true
     },
     {
       "id": "post-1795284347054",
@@ -1893,7 +2709,10 @@
       "publishedAt": "2026-11-22T12:13:07.864Z",
       "xTweetIds": [
         "sandbox-1795349587864-1"
-      ]
+      ],
+      "telegramAutoPlugSent": true,
+      "telegramAutoRtSent": true,
+      "telegramAutoUnrtSent": true
     },
     {
       "id": "post-1795264020726",
@@ -1934,7 +2753,10 @@
       "publishedAt": "2026-11-22T12:13:07.864Z",
       "xTweetIds": [
         "sandbox-1795349587864-1"
-      ]
+      ],
+      "telegramAutoPlugSent": true,
+      "telegramAutoRtSent": true,
+      "telegramAutoUnrtSent": true
     },
     {
       "id": "post-queued-1",
@@ -1977,7 +2799,10 @@
       "publishedAt": "2026-11-21T15:08:34.438Z",
       "xTweetIds": [
         "sandbox-1795273714438-1"
-      ]
+      ],
+      "telegramAutoPlugSent": true,
+      "telegramAutoRtSent": true,
+      "telegramAutoUnrtSent": true
     },
     {
       "id": "post-queued-2",
@@ -2024,7 +2849,10 @@
         "sandbox-1795328590010-2",
         "sandbox-1795328590010-3",
         "sandbox-1795328590010-4"
-      ]
+      ],
+      "telegramAutoPlugSent": true,
+      "telegramAutoRtSent": true,
+      "telegramAutoUnrtSent": true
     },
     {
       "id": "post-draft-1",
@@ -2099,7 +2927,10 @@
       "xTweetIds": [
         "sandbox-1001"
       ],
-      "createdAt": "2026-10-27T11:53:50.504Z"
+      "createdAt": "2026-10-27T11:53:50.504Z",
+      "telegramAutoPlugSent": true,
+      "telegramAutoRtSent": true,
+      "telegramAutoUnrtSent": true
     },
     {
       "id": "post-pub-2",
@@ -2139,7 +2970,10 @@
       "xTweetIds": [
         "sandbox-1002"
       ],
-      "createdAt": "2026-11-12T11:53:50.504Z"
+      "createdAt": "2026-11-12T11:53:50.504Z",
+      "telegramAutoPlugSent": true,
+      "telegramAutoRtSent": true,
+      "telegramAutoUnrtSent": true
     },
     {
       "id": "post-pub-3",
@@ -2718,6 +3552,204 @@
   ],
   "automationLogs": [
     {
+      "id": "log-branch-auto-plug-1795477427769-2",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:43:47.769Z",
+      "type": "auto-plug",
+      "mode": "live",
+      "postId": "post-ag-1795331361926-0",
+      "message": "Sent Auto-Plug Reply (+25m) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-plug-1795477426789-1",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:43:46.789Z",
+      "type": "auto-plug",
+      "mode": "live",
+      "postId": "post-ag-1795331361929-1",
+      "message": "Sent Auto-Plug Reply (+25m) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-unrt-1795475922301-6",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:18:42.301Z",
+      "type": "auto-unrt",
+      "mode": "live",
+      "postId": "post-pub-2",
+      "message": "Sent Clean Up Retweet (Auto-UnRT) (+24h) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-unrt-1795475921839-5",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:18:41.839Z",
+      "type": "auto-unrt",
+      "mode": "live",
+      "postId": "post-pub-1",
+      "message": "Sent Clean Up Retweet (Auto-UnRT) (+24h) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-unrt-1795475921386-4",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:18:41.386Z",
+      "type": "auto-unrt",
+      "mode": "live",
+      "postId": "post-queued-2",
+      "message": "Sent Clean Up Retweet (Auto-UnRT) (+24h) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-unrt-1795475920874-3",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:18:40.874Z",
+      "type": "auto-unrt",
+      "mode": "live",
+      "postId": "post-queued-1",
+      "message": "Sent Clean Up Retweet (Auto-UnRT) (+24h) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-unrt-1795475920426-2",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:18:40.426Z",
+      "type": "auto-unrt",
+      "mode": "live",
+      "postId": "post-1795264020726",
+      "message": "Sent Clean Up Retweet (Auto-UnRT) (+24h) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-unrt-1795475919966-1",
+      "accountId": "acc-1795284214698",
+      "timestamp": "2026-11-23T23:18:39.966Z",
+      "type": "auto-unrt",
+      "mode": "live",
+      "postId": "post-1795284347054",
+      "message": "Sent Clean Up Retweet (Auto-UnRT) (+24h) to Telegram for @alexbuildsai."
+    },
+    {
+      "id": "log-branch-auto-rt-1795475865262-14",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:45.262Z",
+      "type": "auto-rt",
+      "mode": "live",
+      "postId": "post-pub-2",
+      "message": "Sent Auto-Retweet Boost (+8h) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-plug-1795475864802-13",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:44.802Z",
+      "type": "auto-plug",
+      "mode": "live",
+      "postId": "post-pub-2",
+      "message": "Sent Auto-Plug Reply (+30m) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-rt-1795475864350-12",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:44.350Z",
+      "type": "auto-rt",
+      "mode": "live",
+      "postId": "post-pub-1",
+      "message": "Sent Auto-Retweet Boost (+6h) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-plug-1795475863896-11",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:43.896Z",
+      "type": "auto-plug",
+      "mode": "live",
+      "postId": "post-pub-1",
+      "message": "Sent Auto-Plug Reply (+20m) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-rt-1795475862937-10",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:42.937Z",
+      "type": "auto-rt",
+      "mode": "live",
+      "postId": "post-queued-2",
+      "message": "Sent Auto-Retweet Boost (+6h) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-plug-1795475862484-9",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:42.484Z",
+      "type": "auto-plug",
+      "mode": "live",
+      "postId": "post-queued-2",
+      "message": "Sent Auto-Plug Reply (+15m) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-rt-1795475862026-8",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:42.026Z",
+      "type": "auto-rt",
+      "mode": "live",
+      "postId": "post-queued-1",
+      "message": "Sent Auto-Retweet Boost (+8h) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-plug-1795475861579-7",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:41.579Z",
+      "type": "auto-plug",
+      "mode": "live",
+      "postId": "post-queued-1",
+      "message": "Sent Auto-Plug Reply (+25m) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-rt-1795475861129-6",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:41.129Z",
+      "type": "auto-rt",
+      "mode": "live",
+      "postId": "post-1795264020726",
+      "message": "Sent Auto-Retweet Boost (+6h) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-plug-1795475860672-5",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:40.672Z",
+      "type": "auto-plug",
+      "mode": "live",
+      "postId": "post-1795264020726",
+      "message": "Sent Auto-Plug Reply (+25m) to Telegram for @mayacloses."
+    },
+    {
+      "id": "log-branch-auto-rt-1795475860215-4",
+      "accountId": "acc-1795284214698",
+      "timestamp": "2026-11-23T23:17:40.215Z",
+      "type": "auto-rt",
+      "mode": "live",
+      "postId": "post-1795284347054",
+      "message": "Sent Auto-Retweet Boost (+6h) to Telegram for @alexbuildsai."
+    },
+    {
+      "id": "log-branch-auto-plug-1795475859251-3",
+      "accountId": "acc-1795284214698",
+      "timestamp": "2026-11-23T23:17:39.251Z",
+      "type": "auto-plug",
+      "mode": "live",
+      "postId": "post-1795284347054",
+      "message": "Sent Auto-Plug Reply (+25m) to Telegram for @alexbuildsai."
+    },
+    {
+      "id": "log-1795475858787-2",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:38.787Z",
+      "type": "publish",
+      "mode": "sandbox",
+      "postId": "post-ag-1795331361926-0",
+      "message": "Published giveaway (1 tweet) via Safe Sandbox."
+    },
+    {
+      "id": "log-1795475858786-1",
+      "accountId": "acc-primary",
+      "timestamp": "2026-11-23T23:17:38.786Z",
+      "type": "publish",
+      "mode": "sandbox",
+      "postId": "post-ag-1795331361929-1",
+      "message": "Published single (1 tweet) via Safe Sandbox."
+    },
+    {
       "id": "log-plug-1795349587864-2",
       "timestamp": "2026-11-22T12:13:07.864Z",
       "type": "auto-plug",
@@ -2815,5 +3847,26 @@
     "evergreenIntervalDays": 21,
     "autoDeleteEnabled": false,
     "autoDeleteAfterHours": 72
-  }
+  },
+  "telegramConfig": {
+    "enabled": true,
+    "botToken": "9186604883:AAHJXE5YKtfb_VJ2msPW4jw42I44U4z9Y-c",
+    "chatId": "8526562130",
+    "botUsername": "xautomarobot",
+    "autoPlugReminderEnabled": true,
+    "autoPlugDelayMinutes": 30,
+    "twoWayInboxEnabled": true,
+    "lastUpdateId": 432513768
+  },
+  "capturedLeads": [
+    {
+      "id": "lead-1795476610799-qw6u",
+      "accountId": "acc-1795284214698",
+      "email": "testlead@example.com",
+      "sourcePdfId": "lm-1795476598201",
+      "sourcePdfTitle": "Zero-Budget AI X Growth & Affiliate Group Playbook: The Complete Playbook",
+      "sourceSlug": "zero-budget-ai-x-growth-affiliate-group-playbo-8201",
+      "capturedAt": "2026-11-23T23:30:10.799Z"
+    }
+  ]
 }
