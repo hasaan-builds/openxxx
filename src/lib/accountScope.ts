@@ -124,6 +124,9 @@ export function scopeStoreToAccount(
     capturedLeads: (fullStore.capturedLeads || []).filter((i) =>
       belongsToAccount(i.accountId, accountId, primaryId)
     ),
+    openReplyQueue: (fullStore.openReplyQueue || []).filter((i) =>
+      belongsToAccount(i.accountId, accountId, primaryId)
+    ),
   };
 }
 
@@ -264,6 +267,15 @@ export function mergeScopedPatchIntoStore(
     mergedPatch.capturedLeads = mergeScopedCollection(
       fullStore.capturedLeads || [],
       patch.capturedLeads,
+      accountId,
+      primaryId
+    );
+  }
+
+  if (patch.openReplyQueue) {
+    mergedPatch.openReplyQueue = mergeScopedCollection(
+      fullStore.openReplyQueue || [],
+      patch.openReplyQueue,
       accountId,
       primaryId
     );

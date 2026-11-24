@@ -444,6 +444,34 @@ export interface AutomationLogEntry {
   postId?: string;
 }
 
+export type OpenReplyGoal = 'authority' | 'author-reply' | 'soft-pdf-bridge' | 'contrarian';
+
+export interface OpenReplyDraftOption {
+  id: string;
+  angle: 'Tactical Addition' | 'Sharp Contrarian' | 'Micro-Proof' | 'High-Signal Question';
+  text: string;
+  whyItWorks: string;
+}
+
+export interface OpenReplyItem {
+  id: string;
+  accountId?: string;
+  targetTweetUrl: string;
+  targetTweetId?: string;
+  targetAuthorHandle: string;
+  targetAuthorName?: string;
+  targetTweetText: string;
+  replyText: string;
+  angle: string;
+  goal: OpenReplyGoal;
+  executionMode: 'antigravity-direct' | 'approve-first' | 'manual-intent';
+  status: 'planned' | 'replied';
+  scheduledFor?: string;
+  createdAt: string;
+  repliedAt?: string;
+  replyPostUrl?: string;
+}
+
 export interface GhostPilotStore {
   accounts: AccountProfile[];
   activeAccountId: string;
@@ -463,6 +491,7 @@ export interface GhostPilotStore {
   antigravityTasks: AntigravityTask[];
   automationLogs: AutomationLogEntry[];
   capturedLeads?: CapturedLead[];
+  openReplyQueue?: OpenReplyItem[];
   telegramConfig?: TelegramConfig;
   globalAutomationDefaults: {
     autoPlugEnabled: boolean;

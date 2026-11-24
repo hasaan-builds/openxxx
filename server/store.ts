@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import type { AntigravityTask, GhostPilotStore } from '../src/lib/types';
+import type { AccountProfile, AntigravityTask, GhostPilotStore, OpenReplyItem } from '../src/lib/types';
 import { createInitialStore } from './seedData';
 
 const DATA_DIR = path.resolve(process.cwd(), 'data');
@@ -8,6 +8,7 @@ const DB_FILE = path.join(DATA_DIR, 'ghostpilot-db.json');
 const SYNC_DIR = path.resolve(process.cwd(), 'antigravity-sync');
 const TASKS_FILE = path.join(SYNC_DIR, 'tasks.json');
 const RESULTS_FILE = path.join(SYNC_DIR, 'results.json');
+const OPEN_REPLY_FILE = path.join(SYNC_DIR, 'open-reply-queue.json');
 
 function ensureDirs(): void {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
@@ -27,6 +28,9 @@ export function loadStore(): GhostPilotStore {
       if (parsed && Array.isArray(parsed.accounts) && parsed.brandBrain) {
         if (!Array.isArray(parsed.capturedLeads)) {
           parsed.capturedLeads = [];
+        }
+        if (!Array.isArray(parsed.openReplyQueue)) {
+          parsed.openReplyQueue = [];
         }
         cachedStore = parsed;
         return cachedStore;
@@ -149,4 +153,27 @@ export function clearAntigravityResults(): void {
     JSON.stringify({ taskId: '', posts: [], carousels: [], leadMagnets: [] }, null, 2),
     'utf-8'
   );
+}
+
+export function syncOpenReplyQueueToDisk(
+  items: OpenReplyItem[],
+  activeAccount?: AccountProfile
+): void {
+  ensureDirs();
+  const payload = {
+    power: '08-open-reply-x-direct',
+    updatedAt: new Date().toISOString(),
+    activeAccountHandle: activeAccount?.handle || '',
+    instructionsForAntigravity:
+      'Use skill 08-open-reply-x-direct. For each pending item in plannedReplies, open targetTweetUrl in Chrome (logged into X), verify or refine replyText in the user voice, type naturally with 45-110s spacing between replies (max 12/hr), pause for user approval if executionMode === "approve-first", then POST { id, replyPostUrl } to http://localhost:3000/api/open-reply/complete.',
+    safetyRules: {
+      maxRepliesPerHour: 12,
+      minDelaySecondsBetweenReplies: 45,
+      maxDelaySecondsBetweenReplies: 110,
+      neverUseGenericPraise: true,
+    },
+    plannedReplies: items.filter((item) => item.status === 'planned'),
+    recentlyReplied: items.filter((item) => item.status === 'replied').slice(0, 20),
+  };
+  fs.writeFileSync(OPEN_REPLY_FILE, JSON.stringify(payload, null, 2), 'utf-8');
 }
